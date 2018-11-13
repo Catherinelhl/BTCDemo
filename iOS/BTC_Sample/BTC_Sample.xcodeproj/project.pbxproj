@@ -9,19 +9,23 @@
 /* Begin PBXBuildFile section */
 		BF71A8E0361DBA0669EEADA9 /* Pods_BTC_Sample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF428718AEAE78CE6A2DBD78 /* Pods_BTC_Sample.framework */; };
 		F51CADC62199134D0057DCBA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CADC52199134D0057DCBA /* AppDelegate.swift */; };
-		F51CADC82199134D0057DCBA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CADC72199134D0057DCBA /* ViewController.swift */; };
 		F51CADCB2199134D0057DCBA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F51CADC92199134D0057DCBA /* Main.storyboard */; };
 		F51CADCD2199134E0057DCBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F51CADCC2199134E0057DCBA /* Assets.xcassets */; };
 		F51CADD02199134E0057DCBA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F51CADCE2199134E0057DCBA /* LaunchScreen.storyboard */; };
 		F51CADDB2199134F0057DCBA /* BTC_SampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CADDA2199134F0057DCBA /* BTC_SampleTests.swift */; };
 		F51CADE62199134F0057DCBA /* BTC_SampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CADE52199134F0057DCBA /* BTC_SampleUITests.swift */; };
+		F546AC6A219AD6FF009D4873 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F546AC69219AD6FF009D4873 /* ScanViewController.swift */; };
+		F546AC6F219AD71D009D4873 /* UIImage+ZZYQRCodeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F546AC6C219AD71D009D4873 /* UIImage+ZZYQRCodeImage.swift */; };
+		F546AC70219AD71D009D4873 /* AVCaptureSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F546AC6D219AD71D009D4873 /* AVCaptureSessionManager.swift */; };
+		F546AC71219AD71D009D4873 /* ZZYQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F546AC6E219AD71D009D4873 /* ZZYQRCode.bundle */; };
+		F546AC74219ADA62009D4873 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F546AC72219ADA62009D4873 /* RootViewController.swift */; };
+		F546AC75219ADA62009D4873 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F546AC73219ADA62009D4873 /* RootViewController.xib */; };
 		F55771A321997BEF004F5CB6 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55771A221997BEF004F5CB6 /* ApiManager.swift */; };
 		F55771A9219985D4004F5CB6 /* BitcoinTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55771A8219985D4004F5CB6 /* BitcoinTool.swift */; };
 		F55771AC21998987004F5CB6 /* MyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55771AB21998987004F5CB6 /* MyExtension.swift */; };
 		F55771AE219989A2004F5CB6 /* MyDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55771AD219989A2004F5CB6 /* MyDefine.swift */; };
-		F55771B021998AA4004F5CB6 /* KeyStoreVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55771AF21998AA4004F5CB6 /* KeyStoreVO.swift */; };
+		F55771B021998AA4004F5CB6 /* BTCKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55771AF21998AA4004F5CB6 /* BTCKeyStore.swift */; };
 		F55771B221998BF5004F5CB6 /* LocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55771B121998BF5004F5CB6 /* LocalData.swift */; };
-		F55771B721998D75004F5CB6 /* AES.m in Sources */ = {isa = PBXBuildFile; fileRef = F55771B521998D75004F5CB6 /* AES.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +51,6 @@
 		EE3905FCD20C59AD02C8738D /* Pods-BTC_Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTC_Sample.release.xcconfig"; path = "Pods/Target Support Files/Pods-BTC_Sample/Pods-BTC_Sample.release.xcconfig"; sourceTree = "<group>"; };
 		F51CADC22199134D0057DCBA /* BTC_Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BTC_Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F51CADC52199134D0057DCBA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F51CADC72199134D0057DCBA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F51CADCA2199134D0057DCBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F51CADCC2199134E0057DCBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F51CADCF2199134E0057DCBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,15 +61,19 @@
 		F51CADE12199134F0057DCBA /* BTC_SampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BTC_SampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F51CADE52199134F0057DCBA /* BTC_SampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTC_SampleUITests.swift; sourceTree = "<group>"; };
 		F51CADE72199134F0057DCBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F546AC69219AD6FF009D4873 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
+		F546AC6C219AD71D009D4873 /* UIImage+ZZYQRCodeImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ZZYQRCodeImage.swift"; sourceTree = "<group>"; };
+		F546AC6D219AD71D009D4873 /* AVCaptureSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCaptureSessionManager.swift; sourceTree = "<group>"; };
+		F546AC6E219AD71D009D4873 /* ZZYQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZZYQRCode.bundle; sourceTree = "<group>"; };
+		F546AC72219ADA62009D4873 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		F546AC73219ADA62009D4873 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		F55771A221997BEF004F5CB6 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		F55771A4219980F3004F5CB6 /* BTC_Sample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BTC_Sample-Bridging-Header.h"; sourceTree = "<group>"; };
 		F55771A8219985D4004F5CB6 /* BitcoinTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinTool.swift; sourceTree = "<group>"; };
 		F55771AB21998987004F5CB6 /* MyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExtension.swift; sourceTree = "<group>"; };
 		F55771AD219989A2004F5CB6 /* MyDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDefine.swift; sourceTree = "<group>"; };
-		F55771AF21998AA4004F5CB6 /* KeyStoreVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoreVO.swift; sourceTree = "<group>"; };
+		F55771AF21998AA4004F5CB6 /* BTCKeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCKeyStore.swift; sourceTree = "<group>"; };
 		F55771B121998BF5004F5CB6 /* LocalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalData.swift; sourceTree = "<group>"; };
-		F55771B521998D75004F5CB6 /* AES.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AES.m; sourceTree = "<group>"; };
-		F55771B621998D75004F5CB6 /* AES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AES.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,7 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				F51CADC52199134D0057DCBA /* AppDelegate.swift */,
-				F51CADC72199134D0057DCBA /* ViewController.swift */,
 				F55771AA219987F4004F5CB6 /* VO */,
 				F55771A121995E00004F5CB6 /* Controllers */,
 				F557719F21995DD2004F5CB6 /* ApiManager */,
@@ -170,6 +176,17 @@
 			path = BTC_SampleUITests;
 			sourceTree = "<group>";
 		};
+		F546AC6B219AD713009D4873 /* ZZYQRCodeSwift */ = {
+			isa = PBXGroup;
+			children = (
+				F546AC6D219AD71D009D4873 /* AVCaptureSessionManager.swift */,
+				F546AC6C219AD71D009D4873 /* UIImage+ZZYQRCodeImage.swift */,
+				F546AC6E219AD71D009D4873 /* ZZYQRCode.bundle */,
+			);
+			name = ZZYQRCodeSwift;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		F557719F21995DD2004F5CB6 /* ApiManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,7 +198,7 @@
 		F55771A021995DF2004F5CB6 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				F55771B821998D83004F5CB6 /* AES_iOS */,
+				F546AC6B219AD713009D4873 /* ZZYQRCodeSwift */,
 				F55771A8219985D4004F5CB6 /* BitcoinTool.swift */,
 				F55771AB21998987004F5CB6 /* MyExtension.swift */,
 				F55771AD219989A2004F5CB6 /* MyDefine.swift */,
@@ -193,6 +210,9 @@
 		F55771A121995E00004F5CB6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F546AC72219ADA62009D4873 /* RootViewController.swift */,
+				F546AC73219ADA62009D4873 /* RootViewController.xib */,
+				F546AC69219AD6FF009D4873 /* ScanViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -200,18 +220,9 @@
 		F55771AA219987F4004F5CB6 /* VO */ = {
 			isa = PBXGroup;
 			children = (
-				F55771AF21998AA4004F5CB6 /* KeyStoreVO.swift */,
+				F55771AF21998AA4004F5CB6 /* BTCKeyStore.swift */,
 			);
 			path = VO;
-			sourceTree = "<group>";
-		};
-		F55771B821998D83004F5CB6 /* AES_iOS */ = {
-			isa = PBXGroup;
-			children = (
-				F55771B621998D75004F5CB6 /* AES.h */,
-				F55771B521998D75004F5CB6 /* AES.m */,
-			);
-			path = AES_iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,6 +334,8 @@
 			files = (
 				F51CADD02199134E0057DCBA /* LaunchScreen.storyboard in Resources */,
 				F51CADCD2199134E0057DCBA /* Assets.xcassets in Resources */,
+				F546AC75219ADA62009D4873 /* RootViewController.xib in Resources */,
+				F546AC71219AD71D009D4873 /* ZZYQRCode.bundle in Resources */,
 				F51CADCB2199134D0057DCBA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,6 +390,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-BTC_Sample/Pods-BTC_Sample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BitcoinKit/BitcoinKit.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
@@ -391,6 +405,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BitcoinKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
@@ -411,15 +426,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F51CADC82199134D0057DCBA /* ViewController.swift in Sources */,
 				F55771A321997BEF004F5CB6 /* ApiManager.swift in Sources */,
+				F546AC70219AD71D009D4873 /* AVCaptureSessionManager.swift in Sources */,
 				F55771AE219989A2004F5CB6 /* MyDefine.swift in Sources */,
+				F546AC74219ADA62009D4873 /* RootViewController.swift in Sources */,
+				F546AC6F219AD71D009D4873 /* UIImage+ZZYQRCodeImage.swift in Sources */,
 				F55771AC21998987004F5CB6 /* MyExtension.swift in Sources */,
 				F55771A9219985D4004F5CB6 /* BitcoinTool.swift in Sources */,
 				F51CADC62199134D0057DCBA /* AppDelegate.swift in Sources */,
-				F55771B721998D75004F5CB6 /* AES.m in Sources */,
-				F55771B021998AA4004F5CB6 /* KeyStoreVO.swift in Sources */,
+				F55771B021998AA4004F5CB6 /* BTCKeyStore.swift in Sources */,
 				F55771B221998BF5004F5CB6 /* LocalData.swift in Sources */,
+				F546AC6A219AD6FF009D4873 /* ScanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
