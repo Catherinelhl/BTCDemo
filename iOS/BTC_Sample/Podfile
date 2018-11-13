@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '9.0'
+use_frameworks!
+
+target 'BTC_Sample' do
+   pod 'SnapKit'
+   pod 'RxCocoa'
+   pod 'Moya/RxSwift'
+   pod 'SwiftyJSON'
+   pod 'HandyJSON'
+   pod 'BitcoinKit'
+end
