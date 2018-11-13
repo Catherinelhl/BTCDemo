@@ -7,6 +7,9 @@ package bcaasc.io.btcdemo.contact;
 public interface MainContact {
     interface View {
 
+        void success(String info);
+        void failure(String info);
+
     }
 
     interface Presenter {
@@ -14,6 +17,6 @@ public interface MainContact {
         void getBalance();
         void getTransactionList();
         void getUnspent();
-        void pushTX();
+        void pushTX(String feeString, String toAddress, String amountString);
     }
 }

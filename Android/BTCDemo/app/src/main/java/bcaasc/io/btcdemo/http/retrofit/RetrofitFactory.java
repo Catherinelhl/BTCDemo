@@ -32,23 +32,21 @@ public class RetrofitFactory {
         }
     }
 
-    public static Retrofit getInstance() {
-//        测试：https://testnet.blockchain.info
-//        主网：https://blockchain.info
-        return getMainInstance("https://testnet.blockchain.info");
-    }
+//    public static Retrofit getInstance() {
+////        测试：https://testnet.blockchain.info
+////        主网：https://blockchain.info
+////        return getMainInstance("https://testnet.blockchain.info");
+//    }
 
     /**
      * SFN api
      *
-     * @param baseUrl
-     * @return
      */
-    public static Retrofit getMainInstance(String baseUrl) {
+    public static Retrofit getMainInstance() {
         initClient();
         if (MainInstance == null) {
             MainInstance = new Retrofit.Builder()
-                    .baseUrl(baseUrl)
+                    .baseUrl("https://testnet.blockchain.info")
                     .client(client)
                     .addConverterFactory(new StringConverterFactory())
                     .addConverterFactory(GsonConverterFactory.create())
@@ -61,13 +59,11 @@ public class RetrofitFactory {
     /**
      * AN api
      *
-     * @param baseUrl
-     * @return
      */
-    public static Retrofit getTestInstance(String baseUrl) {
+    public static Retrofit getTestInstance() {
         initClient();
         TestInstance = new Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl("https://testnet.blockchain.info")
                 .client(client)
                 .addConverterFactory(new StringConverterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
