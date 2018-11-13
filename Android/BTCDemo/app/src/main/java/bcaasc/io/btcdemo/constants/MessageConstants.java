@@ -3,6 +3,8 @@ package bcaasc.io.btcdemo.constants;
 /**
  * @author catherine.brainwilliam
  * @since 2018/11/12
+ *
+ * 定义打印信息相关常量
  */
 public class MessageConstants {
 

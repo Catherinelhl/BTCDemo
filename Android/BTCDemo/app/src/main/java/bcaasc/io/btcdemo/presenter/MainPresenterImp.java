@@ -2,12 +2,11 @@ package bcaasc.io.btcdemo.presenter;
 
 import bcaasc.io.btcdemo.bean.BtcUnspentOutputsResponse;
 import bcaasc.io.btcdemo.bean.BtcUtxo;
+import bcaasc.io.btcdemo.constants.BTCParamsConstants;
 import bcaasc.io.btcdemo.contact.MainContact;
 import bcaasc.io.btcdemo.http.MainInteractor;
 import bcaasc.io.btcdemo.tool.LogTool;
 import org.bitcoinj.core.*;
-import org.bitcoinj.params.MainNetParams;
-import org.bitcoinj.params.TestNet3Params;
 import org.bitcoinj.script.Script;
 import org.spongycastle.util.encoders.Hex;
 import retrofit2.Call;
@@ -31,13 +30,12 @@ public class MainPresenterImp implements MainContact.Presenter {
     private String address = "mkkjcX4s4zoJJaE5E1NnfvsbuMvmzgBWTo";
     private List<BtcUtxo> btcUtxoList;
     private String privateWIFKey = "93AaWXJMutsyX5KPCXzGjK9uPm18ezP5jiFjcCtvZwELYX9LAkk";
-
-
-    private BigDecimal mFeePerKb, mDelivery, mOldFee;
-    private String mTransactionRaw, mTransactionHash;
-    private List<BtcUtxo> mFromUtxo = new ArrayList<>();
-
     private MainContact.View view;
+
+
+    private BigDecimal feePerKb, delivery, oldFee;
+    private String transactionRaw, transactionHash;
+
 
     public MainPresenterImp(MainContact.View view) {
         this.view = view;
@@ -87,7 +85,7 @@ public class MainPresenterImp implements MainContact.Presenter {
     }
 
     /**
-     * 获取未消费的输出
+     * 获取UTXO事务
      *
      * @return
      */
@@ -131,65 +129,85 @@ public class MainPresenterImp implements MainContact.Presenter {
      */
     @Override
     public void pushTX(String feeString, String toAddress, String amountString) {
+        //判断当前是否有UTXO事务
         if (btcUtxoList == null) {
             return;
         }
-        Context.getOrCreate(TestNet3Params.get());
-        Transaction transaction = new Transaction(TestNet3Params.get());
+        //You must construct a Context object before using BitCoin j!
+        Context.getOrCreate(BTCParamsConstants.NetworkParameter);
+        //获取当前设定环境下的Transaction实例
+        Transaction transaction = new Transaction(BTCParamsConstants.NetworkParameter);
+        //声明一个地址
         Address addressToSend = null;
         try {
-            addressToSend = Address.fromBase58(TestNet3Params.get(), toAddress);
+            //将当前传入的地址转化成特定的地址格式
+            addressToSend = Address.fromBase58(BTCParamsConstants.NetworkParameter, toAddress);
         } catch (AddressFormatException a) {
             LogTool.e(TAG, a.getMessage());
         }
+        //因为BTC内部的单位是「聪」10^8,所以，这里需要对刚传入的金额和利息参数进行换算
         BigDecimal amount = new BigDecimal(amountString).multiply(new BigDecimal("100000000"));
-        mOldFee = new BigDecimal(feeString).multiply(new BigDecimal("100000000"));
-        if (mOldFee.doubleValue() <= 0) {
-            mOldFee = new BigDecimal("0.005").multiply(new BigDecimal("100000000"));
+        oldFee = new BigDecimal(feeString).multiply(new BigDecimal("100000000"));
+        if (oldFee.doubleValue() <= 0) {
+            oldFee = new BigDecimal("0.005").multiply(new BigDecimal("100000000"));
         }
-        BigDecimal overFlow = new BigDecimal("0.0");
-        transaction.addOutput(Coin.valueOf((amount.longValue())), addressToSend);
 
-        amount = amount.add(mOldFee);
+        //声明一个变量用于存储待会UTXO需要用的的账户金额
+        BigDecimal walletBalance = new BigDecimal("0.0");
+        transaction.addOutput(Coin.valueOf((amount.longValue())), addressToSend);
+        //将当前交易的金额+手续费
+        amount = amount.add(oldFee);
+        //重新声明一个UTXO数组
         List<BtcUtxo> btcUnspentOutputList = new ArrayList<>();
+        //遍历UTXO，得到当前地址的所有unspent
         for (int i = 0; i < btcUtxoList.size(); i++) {
             BtcUtxo unspentOutput = btcUtxoList.get(i);
-            overFlow = overFlow.add(new BigDecimal(unspentOutput.getValue()));
+            //添加当前的UTXO里面的value
+            walletBalance = walletBalance.add(new BigDecimal(unspentOutput.getValue()));
+            //将当前数据新添加入新定义的UTXO数组里面
             btcUnspentOutputList.add(unspentOutput);
-            if (overFlow.doubleValue() >= amount.doubleValue()) {
+            //比较当前账户的balance是否大于等于这次需要push的金额
+            if (walletBalance.doubleValue() >= amount.doubleValue()) {
+                //如果是，判断当前是否是最后一条UTXO事务
                 if (i < btcUtxoList.size() - 1) {
-                    overFlow = overFlow.add(new BigDecimal(btcUtxoList.get(i + 1).getValue()));
+                    //如果不是，那么就将下一条数据也加入进来
+                    walletBalance = walletBalance.add(new BigDecimal(btcUtxoList.get(i + 1).getValue()));
                     btcUnspentOutputList.add(btcUtxoList.get(i + 1));
                 }
                 break;
             }
         }
-        LogTool.d(TAG, "overFlow:" + overFlow);
+        LogTool.d(TAG, "walletBalance:" + walletBalance);
         LogTool.d(TAG, "amount:" + amount);
-        if (overFlow.doubleValue() < amount.doubleValue()) {
+        //比较当前账户的balance是否大于这次需要push的金额
+        if (walletBalance.doubleValue() < amount.doubleValue()) {
             LogTool.e(TAG, "insufficient_transaction");
         }
-        mDelivery = overFlow.subtract(amount);
-        // 私鑰WIF字串轉ECKey
-        ECKey privateKey = DumpedPrivateKey.fromBase58(TestNet3Params.get(), privateWIFKey).getKey();
+        //得到这次传送之后剩下的balance
+        delivery = walletBalance.subtract(amount);
+        // 根据私鑰WIF字串轉ECKey
+        ECKey privateKey = DumpedPrivateKey.fromBase58(BTCParamsConstants.NetworkParameter, privateWIFKey).getKey();
 
 //        ECKey currentKey = KeyStorage.getInstance().getBtcDeterministicKeyBySeedAndAddress(mSeed);
-        if (mDelivery.doubleValue() != 0.0) {
-            transaction.addOutput(Coin.valueOf((mDelivery.longValue())), privateKey.toAddress(TestNet3Params.get()));
+        //判断当前剩下的balance不为0
+        if (delivery.doubleValue() != 0.0) {
+            //将这部分再传给自己
+            transaction.addOutput(Coin.valueOf((delivery.longValue())), privateKey.toAddress(BTCParamsConstants.NetworkParameter));
         }
-        LogTool.d("delivery = " + mDelivery);
+        LogTool.d("delivery = " + delivery);
         LogTool.d(TAG, "unspentOutputs.size = " + btcUtxoList.size());
-        mFromUtxo.clear();
+        List<BtcUtxo> fromUtxo = new ArrayList<>();
+        //对重新组装的UTXO进行遍历
         for (BtcUtxo unspentOutput : btcUnspentOutputList) {
             if (unspentOutput.getValue() != 0.0) {
                 Sha256Hash sha256Hash = new Sha256Hash(Utils.parseAsHexOrBase58(unspentOutput.getTx_hash_big_endian()));
-                TransactionOutPoint outPoint = new TransactionOutPoint(TestNet3Params.get(), unspentOutput.getTx_output_n(), sha256Hash);
+                TransactionOutPoint outPoint = new TransactionOutPoint(BTCParamsConstants.NetworkParameter, unspentOutput.getTx_output_n(), sha256Hash);
                 Script script = new Script(Utils.parseAsHexOrBase58(unspentOutput.getScript()));
                 LogTool.d(TAG, "addSignedInput getTxid>>" + unspentOutput.getTx_hash_big_endian());
                 LogTool.d(TAG, "addSignedInput getSatoshis>>" + unspentOutput.getValue());
 //                DeterministicKey deterministicKey = KeyStorage.getInstance().getBtcDeterministicKeyBySeedAndAddress(mSeed);
                 transaction.addSignedInput(outPoint, script, privateKey, Transaction.SigHash.ALL, true);
-                mFromUtxo.add(unspentOutput);
+                fromUtxo.add(unspentOutput);
             }
         }
         transaction.getConfidence().setSource(TransactionConfidence.Source.SELF);
@@ -199,15 +217,17 @@ public class MainPresenterImp implements MainContact.Presenter {
         LogTool.d(TAG, "Transaction size = " + bytes.length);
         int txSizeInkB = (int) Math.ceil(bytes.length / 1024.);
 //        BigDecimal minimumFee = mFeePerKb.multiply(new BigDecimal(txSizeInkB));
-//                        if (minimumFee.doubleValue() > mOldFee.doubleValue()) {
+//                        if (minimumFee.doubleValue() > oldFee.doubleValue()) {
 //                            String error = CommonUtility.formatString(minimumFee.toString(), " QTUM");
 //                            String errorValue = String.format(mContext.getString(R.string.insufficient_fee_tips), error, error);
 //                            ExceptionHandle.ResponseThrowable responseThrowable = new ExceptionHandle.ResponseThrowable(errorValue, TRANSFER_ERROR_ONE, minimumFee, amountString, toAddress);
 //                            throw responseThrowable;
 //                        }
-        mTransactionRaw = Hex.toHexString(bytes);
-        mTransactionHash = transaction.getHashAsString();
-        interactor.pushTX(mTransactionRaw, new Callback<String>() {
+        transactionRaw = Hex.toHexString(bytes);
+        LogTool.d(TAG, "transactionRaw:" + transactionRaw);
+        transactionHash = transaction.getHashAsString();
+        LogTool.d(TAG, "transactionHash:" + transactionHash);
+        interactor.pushTX(transactionRaw, new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 //Transaction Submitted
@@ -235,10 +255,10 @@ public class MainPresenterImp implements MainContact.Presenter {
 //                                int code = errorObject.optInt("code");
 //                                String errorMessage = errorObject.optString("message");
 //                                if (code == -26) {
-//                                    BigDecimal newFee = mDelivery.add(mOldFee);
-//                                    String error = mDelivery.toPlainString();
+//                                    BigDecimal newFee = delivery.add(oldFee);
+//                                    String error = delivery.toPlainString();
 //                                    String errorValue = String.format(mContext.getString(R.string.transfer_error_too_low_value), error);
-//                                    LogTool.e(TAG, "转账剩余qtum太低  value = " + mDelivery + " oldFee = " + mOldFee + " 新的fee = " + newFee);
+//                                    LogTool.e(TAG, "转账剩余qtum太低  value = " + delivery + " oldFee = " + oldFee + " 新的fee = " + newFee);
 //                                    ExceptionHandle.ResponseThrowable responseThrowable1 = new ExceptionHandle.ResponseThrowable(errorValue, TRANSFER_ERROR_TWO, newFee, amountString, toAddress);
 //                                    e.onError(responseThrowable1);
 //                                } else {

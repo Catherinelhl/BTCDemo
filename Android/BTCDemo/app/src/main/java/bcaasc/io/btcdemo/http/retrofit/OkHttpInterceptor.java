@@ -82,6 +82,6 @@ public class OkHttpInterceptor implements Interceptor {
 
     private boolean bodyEncoded(Headers headers) {
         String contentEncoding = headers.get(MessageConstants.HTTP_CONTENT_ENCODING);
-        return contentEncoding != null && !contentEncoding.equalsIgnoreCase(Constants.ENCODE_INGORE_CASE);
+        return contentEncoding != null && !contentEncoding.equalsIgnoreCase(Constants.ENCODE_IGNORE_CASE);
     }
 }
