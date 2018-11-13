@@ -7,5 +7,4 @@ package bcaasc.io.btcdemo.constants;
 public class Constants {
 
     public static final String ENCODE_INGORE_CASE = "identity";//http設置encode忽略
-
 }
