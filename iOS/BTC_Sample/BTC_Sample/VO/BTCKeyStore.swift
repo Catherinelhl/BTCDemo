@@ -1,5 +1,5 @@
 //
-//  KeyStoreVO.swift
+//  BTCKeyStore.swift
 //  BTC_Sample
 //
 //  Created by Dong on 2018/11/12.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class KeyStoreVO {
+class BTCKeyStore {
 
     /// 地址
     var address:String?

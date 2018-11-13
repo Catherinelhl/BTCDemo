@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (4.7.3)
   - BitcoinKit (1.0.2)
+  - CryptoSwift (0.13.0)
   - HandyJSON (4.2.0)
   - Moya/Core (11.0.2):
     - Alamofire (~> 4.1)
@@ -17,6 +18,7 @@ PODS:
 
 DEPENDENCIES:
   - BitcoinKit
+  - CryptoSwift
   - HandyJSON
   - Moya/RxSwift
   - RxCocoa
@@ -27,6 +29,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - BitcoinKit
+    - CryptoSwift
     - HandyJSON
     - Moya
     - Result
@@ -38,6 +41,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   BitcoinKit: 5502c14d72ab665fbe00dc72abd74439a38ef9bc
+  CryptoSwift: 16e78bebf567bad1c87b2d58f6547f25b74c31aa
   HandyJSON: 9dfc026c7d7adc1f0f8ba8b181495f0e0763b0f4
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
@@ -46,6 +50,6 @@ SPEC CHECKSUMS:
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: ca879657d4b04851240126b3eb54528f20f2beb4
+PODFILE CHECKSUM: a296ebcbd6769e9797349f1f3d902af4d08e51ab
 
 COCOAPODS: 1.5.3
