@@ -23,11 +23,13 @@ class ScanViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .cancel, target: self, action: #selector(dismissVc))
+        
         sessionManager = AVCaptureSessionManager(captureType: .AVCaptureTypeBoth, scanRect: .null, success: {[weak self] (result) in
             if let result = result {
                 MyLog(result)
                 self?.delegate?.didReciveScanResult?(result)
-                self?.navigationController?.popViewController(animated: true)
+                self?.dismissVc()
             }
         })
         sessionManager?.showPreViewLayerIn(view: self.view)
@@ -46,5 +48,13 @@ class ScanViewController: UIViewController {
         sessionManager?.stop()
     }
     
+    
+    @objc private func dismissVc() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    deinit {
+        MyLog("移除扫描控制器")
+    }
 
 }

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import CryptoSwift
 
 extension Data {
     init?(btcHex:String) {
@@ -25,10 +25,39 @@ extension Data {
         }
         self = data
     }
+    
+    
+    /// 生成ETH地址
+    var ethAddressString : String? {
+        get {
+            let stringToEncrypt = self.toHexString().dropFirst(2).toString()
+            if let data = Data(btcHex: stringToEncrypt) {
+                return "0x" + SHA3(variant: .keccak256).calculate(for: data.bytes).toHexString().dropFirst(24).toString()
+            }else {
+                return nil
+            }
+            
+        }
+    }
 }
+
 
 extension Substring {
     func toString() -> String {
         return String(self)
+    }
+}
+
+extension Decimal {
+    var intValue:Int {
+        get{
+            return Int(NSDecimalNumber(decimal: self).doubleValue)
+        }
+    }
+    
+    var doubleValue:Double {
+        get{
+            return NSDecimalNumber(decimal: self).doubleValue
+        }
     }
 }

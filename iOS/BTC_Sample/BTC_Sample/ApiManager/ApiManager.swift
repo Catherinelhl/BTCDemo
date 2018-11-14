@@ -9,6 +9,7 @@
 import UIKit
 import Moya
 import Alamofire
+import SwiftyJSON
 
 
 let coinType:CoinType = .bitcoinMain
@@ -16,6 +17,7 @@ let coinType:CoinType = .bitcoinMain
 enum CoinType : String {
     case bitcoinMain = "/btc/main"
     case bitcoinTest = "/btc/test3"
+    case ethMain = "/eth/main"
 }
 
 let ApiManagerProvider = MoyaProvider<ApiManager>()
@@ -28,7 +30,7 @@ let ApiManagerProvider = MoyaProvider<ApiManager>()
 /// - getTxRecord: 获取交易记录
 enum ApiManager {
     case getBalance(address:String)
-    case createTx(toAddress:String,amount:Int)
+    case createTx(fromAddress:String,toAddress:String,amount:Int,fees:Int?)
     case sendTx(txJson:[String:Any],signature:String,publicKey:String)
     case getTxRecord(address:String)
 }
@@ -43,7 +45,7 @@ extension ApiManager : TargetType {
         switch self {
         case .getBalance(let address):
             return "/addrs/\(address)/balance"
-        case .createTx(_,_) :
+        case .createTx(_,_,_,_) :
             return "/txs/new"
         case .sendTx(_,_,_):
             return "/txs/send"
@@ -56,7 +58,7 @@ extension ApiManager : TargetType {
         switch self {
         case .getBalance(_) , .getTxRecord(_):
             return .get
-        case .createTx(_,_) ,.sendTx(_,_,_):
+        case .createTx(_,_,_,_) ,.sendTx(_,_,_):
             return .post
         }
     }
@@ -66,23 +68,33 @@ extension ApiManager : TargetType {
     }
     
     var task: Task {
-        var param:[String:Any] = [:]
+        
         switch self {
-        case .createTx(let toAddress, let amount):
+        case .createTx(let fromAddress,let toAddress, let amount,let fees):
             var param:[String:Any] = [:]
-            param["inputs"] = [["addresses":[""]]]
+            param["fees"] = fees
+            param["inputs"] = [["addresses":[fromAddress]]]
             param["outputs"] = [["addresses":[toAddress],
                                  "value":amount]]
             
+            MyLog(JSON(param).rawValue)
+            let jsonData = try! JSON(param).rawData()
+            return .requestData(jsonData)
+            
         case .sendTx(let txJson,let signature, let publicKey):
+            var param:[String:Any] = [:]
             param = txJson
             param["signatures"] = [signature]
             param["pubkeys"] = [publicKey]
             
+            MyLog(JSON(param).rawValue)
+            let jsonData = try! JSON(param).rawData()
+            return .requestData(jsonData)
+            
         default :
             return .requestPlain
         }
-        return .requestParameters(parameters: param, encoding: URLEncoding.default)
+        
     }
     
     var headers: [String : String]? {

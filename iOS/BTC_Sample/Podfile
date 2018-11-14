@@ -10,4 +10,5 @@ target 'BTC_Sample' do
    pod 'HandyJSON'
    pod 'BitcoinKit'
    pod 'CryptoSwift'
+   pod 'Toast-Swift'
 end
