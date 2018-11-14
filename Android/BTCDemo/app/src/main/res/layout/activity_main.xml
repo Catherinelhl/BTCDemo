@@ -6,7 +6,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".activity.MainActivity">
-
+    <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Address："/>
     <Button
             android:id="@+id/btn_get_balance"
             android:layout_width="match_parent"
@@ -22,6 +26,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Push TX"/>
+    <Button
+            android:id="@+id/btn_get_tx_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get TX Status"/>
 
     <EditText
             android:id="@+id/et_content"

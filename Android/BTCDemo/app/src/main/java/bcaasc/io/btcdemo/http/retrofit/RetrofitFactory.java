@@ -1,6 +1,7 @@
 package bcaasc.io.btcdemo.http.retrofit;
 
 
+import bcaasc.io.btcdemo.constants.BTCParamsConstants;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -16,8 +17,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class RetrofitFactory {
 
-    private static Retrofit MainInstance;
-    private static Retrofit TestInstance;
+    private static Retrofit instance;
     private static OkHttpClient client;
 
 
@@ -32,44 +32,24 @@ public class RetrofitFactory {
         }
     }
 
-//    public static Retrofit getInstance() {
-////        测试：https://testnet.blockchain.info
-////        主网：https://blockchain.info
-////        return getMainInstance("https://testnet.blockchain.info");
-//    }
-
-    /**
-     * SFN api
-     *
-     */
-    public static Retrofit getMainInstance() {
-        initClient();
-        if (MainInstance == null) {
-            MainInstance = new Retrofit.Builder()
-                    .baseUrl("https://testnet.blockchain.info")
-                    .client(client)
-                    .addConverterFactory(new StringConverterFactory())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//Observable，暂时没用
-                    .build();
-        }
-        return MainInstance;
-    }
+    //测试
+    private static String testBaseUrl = "https://testnet.blockchain.info";
+    //正式
+    private static String baseUrl = "https://blockchain.info";
 
     /**
      * AN api
-     *
      */
-    public static Retrofit getTestInstance() {
+    public static Retrofit getInstance() {
         initClient();
-        TestInstance = new Retrofit.Builder()
-                .baseUrl("https://testnet.blockchain.info")
+        instance = new Retrofit.Builder()
+                .baseUrl(BTCParamsConstants.isTest ? testBaseUrl : baseUrl)
                 .client(client)
                 .addConverterFactory(new StringConverterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//Observable，暂时没用
                 .build();
-        return TestInstance;
+        return instance;
     }
 
 

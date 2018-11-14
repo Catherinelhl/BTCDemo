@@ -1,6 +1,7 @@
 package bcaasc.io.btcdemo.http;
 
 import bcaasc.io.btcdemo.bean.BtcUnspentOutputsResponse;
+import bcaasc.io.btcdemo.bean.Transaction;
 import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.*;
@@ -34,4 +35,8 @@ public interface HttpApi {
     /*获取未确认的区块*/
     @GET("/unconfirmed-transactions?format=json")
     Observable<String> getUnconfirmedTransaction();
+
+    /*You can also request the transaction to return in binary form (Hex encoded) using ?format=hex*/
+    @GET("/rawtx/{tx_hash}")
+    Call<Transaction> getTXInfoByHash(@Path("tx_hash") String hash);
 }

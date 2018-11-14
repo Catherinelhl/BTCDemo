@@ -2,13 +2,15 @@ package bcaasc.io.btcdemo.presenter;
 
 import bcaasc.io.btcdemo.bean.BtcUnspentOutputsResponse;
 import bcaasc.io.btcdemo.bean.BtcUtxo;
+import bcaasc.io.btcdemo.constants.BTCParamsConstants;
+import bcaasc.io.btcdemo.constants.Constants;
 import bcaasc.io.btcdemo.contact.MainContact;
 import bcaasc.io.btcdemo.http.MainInteractor;
 import bcaasc.io.btcdemo.tool.LogTool;
 import org.bitcoinj.core.*;
-import org.bitcoinj.params.MainNetParams;
-import org.bitcoinj.params.TestNet3Params;
 import org.bitcoinj.script.Script;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.spongycastle.util.encoders.Hex;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,16 +30,13 @@ public class MainPresenterImp implements MainContact.Presenter {
     private String TAG = MainPresenterImp.class.getSimpleName();
 
     private MainInteractor interactor = new MainInteractor();
-    private String address = "mkkjcX4s4zoJJaE5E1NnfvsbuMvmzgBWTo";
     private List<BtcUtxo> btcUtxoList;
-    private String privateWIFKey = "93AaWXJMutsyX5KPCXzGjK9uPm18ezP5jiFjcCtvZwELYX9LAkk";
-
-
-    private BigDecimal mFeePerKb, mDelivery, mOldFee;
-    private String mTransactionRaw, mTransactionHash;
-    private List<BtcUtxo> mFromUtxo = new ArrayList<>();
-
     private MainContact.View view;
+
+
+    private BigDecimal feePerKb;
+    private String transactionRaw, transactionHash;
+
 
     public MainPresenterImp(MainContact.View view) {
         this.view = view;
@@ -45,17 +44,32 @@ public class MainPresenterImp implements MainContact.Presenter {
 
     @Override
     public void getBalance() {
-        interactor.getBalance(address, new Callback<String>() {
+        interactor.getBalance(Constants.address, new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 LogTool.d(TAG, response.body());
+                if (response.body() != null) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.body());
+                        if (jsonObject.has(Constants.address)) {
+                            JSONObject jsonObject1 = jsonObject.getJSONObject(Constants.address);
+                            if (jsonObject1.has("final_balance")) {
+                                view.getBalanceSuccess(String.valueOf(new BigDecimal(jsonObject1.getString("final_balance")).multiply(new BigDecimal(BTCParamsConstants.BtcUnitRevert))));
+                            }
+
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        LogTool.d(TAG, e.getMessage());
+                    }
+                }
                 view.success(response.body());
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 LogTool.e(TAG, t.getMessage());
-                view.success(t.getMessage());
+                view.failure(t.getMessage());
 
 
             }
@@ -70,7 +84,7 @@ public class MainPresenterImp implements MainContact.Presenter {
      */
     @Override
     public void getTransactionList() {
-        interactor.getTXList(address, new Callback<String>() {
+        interactor.getTXList(Constants.address, new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 LogTool.d(TAG, response.body());
@@ -87,13 +101,13 @@ public class MainPresenterImp implements MainContact.Presenter {
     }
 
     /**
-     * 获取未消费的输出
+     * 获取UTXO事务
      *
      * @return
      */
     @Override
     public void getUnspent() {
-        interactor.getUnspent(address, new Callback<BtcUnspentOutputsResponse>() {
+        interactor.getUnspent(Constants.address, new Callback<BtcUnspentOutputsResponse>() {
             @Override
             public void onResponse(Call<BtcUnspentOutputsResponse> call, Response<BtcUnspentOutputsResponse> response) {
                 BtcUnspentOutputsResponse unspentOutputsResponse = response.body();
@@ -104,12 +118,8 @@ public class MainPresenterImp implements MainContact.Presenter {
                     //排序UTXO  从大到小
                     Collections.sort(btcUtxoList, (unspentOutput, t1) -> Long.compare(t1.getValue(), unspentOutput.getValue()));
                     view.success(btcUtxoList.toString());
-                    String feeString = "0.001";
-                    String address = "mu41Bfy1RiGkW3KDDpj2ndr36VFad9ydau";
-                    String amountString = "0.005";
-                    pushTX(feeString, address, amountString);
+                    pushTX(Constants.feeString, Constants.toAddress, Constants.amountString);
                 }
-
             }
 
             @Override
@@ -117,6 +127,28 @@ public class MainPresenterImp implements MainContact.Presenter {
                 LogTool.e(TAG, t.getMessage());
                 view.success(t.getMessage());
 
+            }
+        });
+    }
+
+    @Override
+    public void getTXInfoByHash(String rawHash) {
+        if (rawHash == "" || rawHash == null) {
+            rawHash = transactionHash;
+        }
+        interactor.getTXInfoByHash(transactionHash, new Callback<bcaasc.io.btcdemo.bean.Transaction>() {
+            @Override
+            public void onResponse(Call<bcaasc.io.btcdemo.bean.Transaction> call, Response<bcaasc.io.btcdemo.bean.Transaction> response) {
+                bcaasc.io.btcdemo.bean.Transaction transaction = response.body();
+                if (transaction != null) {
+                    long blockHeight = transaction.getBlock_height();
+                    view.hashStatus(String.valueOf(blockHeight));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<bcaasc.io.btcdemo.bean.Transaction> call, Throwable t) {
+                view.failure(t.getMessage());
             }
         });
     }
@@ -131,83 +163,115 @@ public class MainPresenterImp implements MainContact.Presenter {
      */
     @Override
     public void pushTX(String feeString, String toAddress, String amountString) {
+        //判断当前是否有UTXO事务
         if (btcUtxoList == null) {
             return;
         }
-        Context.getOrCreate(TestNet3Params.get());
-        Transaction transaction = new Transaction(TestNet3Params.get());
+        //You must construct a Context object before using BitCoin j!
+        Context.getOrCreate(BTCParamsConstants.NetworkParameter);
+        //声明一个地址
         Address addressToSend = null;
         try {
-            addressToSend = Address.fromBase58(TestNet3Params.get(), toAddress);
+            //将当前传入的地址转化成特定的地址格式
+            addressToSend = Address.fromBase58(BTCParamsConstants.NetworkParameter, toAddress);
         } catch (AddressFormatException a) {
             LogTool.e(TAG, a.getMessage());
         }
-        BigDecimal amount = new BigDecimal(amountString).multiply(new BigDecimal("100000000"));
-        mOldFee = new BigDecimal(feeString).multiply(new BigDecimal("100000000"));
-        if (mOldFee.doubleValue() <= 0) {
-            mOldFee = new BigDecimal("0.005").multiply(new BigDecimal("100000000"));
+        LogTool.d(TAG, "fee:" + feeString);
+        //因为BTC内部的单位是「聪」10^8,所以，这里需要对刚传入的金额和利息参数进行换算
+        BigDecimal amount = new BigDecimal(amountString).multiply(new BigDecimal(BTCParamsConstants.BtcUnit));
+        BigDecimal fee;
+        //判断当前用户是否给予手续费，否则采用本APP默认的手续费规则
+        if (feeString == "" || feeString == null) {
+            fee = new BigDecimal("0.005").multiply(new BigDecimal(BTCParamsConstants.BtcUnit));
+        } else {
+            fee = new BigDecimal(feeString).multiply(new BigDecimal(BTCParamsConstants.BtcUnit));
         }
-        BigDecimal overFlow = new BigDecimal("0.0");
+        //判断当前单位换算过的fee是否满足要求，否则也按照给定的规则计算手续费
+        if (fee.doubleValue() <= 0) {
+            fee = new BigDecimal("0.005").multiply(new BigDecimal(BTCParamsConstants.BtcUnit));
+        }
+        //声明一个变量用于得到待会取出UTXO需要用来支付的的「输入」
+        BigDecimal walletBtc = new BigDecimal("0.0");
+        //获取当前设定环境下的Transaction实例
+        Transaction transaction = new Transaction(BTCParamsConstants.NetworkParameter);
+        //添加「输出」的金额以及地址信息
         transaction.addOutput(Coin.valueOf((amount.longValue())), addressToSend);
-
-        amount = amount.add(mOldFee);
+        //将当前交易的金额+手续费
+        amount = amount.add(fee);
+        //重新声明一个UTXO数组
         List<BtcUtxo> btcUnspentOutputList = new ArrayList<>();
+        //遍历UTXO，得到当前地址的所有UTXO事务
         for (int i = 0; i < btcUtxoList.size(); i++) {
             BtcUtxo unspentOutput = btcUtxoList.get(i);
-            overFlow = overFlow.add(new BigDecimal(unspentOutput.getValue()));
+            //添加当前的UTXO里面的value
+            walletBtc = walletBtc.add(new BigDecimal(unspentOutput.getValue()));
+            //将当前数据新添加入新定义的UTXO数组里面
             btcUnspentOutputList.add(unspentOutput);
-            if (overFlow.doubleValue() >= amount.doubleValue()) {
-                if (i < btcUtxoList.size() - 1) {
-                    overFlow = overFlow.add(new BigDecimal(btcUtxoList.get(i + 1).getValue()));
-                    btcUnspentOutputList.add(btcUtxoList.get(i + 1));
-                }
-                break;
-            }
+//            //比较当前账户的btc是否大于等于这次需要push的金额
+//            if (walletBtc.doubleValue() >= amount.doubleValue()) {
+//                //如果是，判断当前是否是最后一条UTXO事务
+//                if (i < btcUtxoList.size() - 1) {
+//                    //如果不是，那么就将下一条数据也加入进来
+//                    walletBtc = walletBtc.add(new BigDecimal(btcUtxoList.get(i + 1).getValue()));
+//                    btcUnspentOutputList.add(btcUtxoList.get(i + 1));
+//                }
+//                break;
+//            }
         }
-        LogTool.d(TAG, "overFlow:" + overFlow);
+        LogTool.d(TAG, "walletBtc:" + walletBtc);
         LogTool.d(TAG, "amount:" + amount);
-        if (overFlow.doubleValue() < amount.doubleValue()) {
+        //比较当前账户的balance的double值是否大于这次需要push的金额double值
+        if (walletBtc.doubleValue() < amount.doubleValue()) {
             LogTool.e(TAG, "insufficient_transaction");
         }
-        mDelivery = overFlow.subtract(amount);
-        // 私鑰WIF字串轉ECKey
-        ECKey privateKey = DumpedPrivateKey.fromBase58(TestNet3Params.get(), privateWIFKey).getKey();
+        //得到这次传送之后剩下的btc
+        BigDecimal goBackBtc = walletBtc.subtract(amount);
+        // 根据私鑰WIF字串轉ECKey
+        ECKey privateKey = DumpedPrivateKey.fromBase58(BTCParamsConstants.NetworkParameter, Constants.privateWIFKey).getKey();
 
 //        ECKey currentKey = KeyStorage.getInstance().getBtcDeterministicKeyBySeedAndAddress(mSeed);
-        if (mDelivery.doubleValue() != 0.0) {
-            transaction.addOutput(Coin.valueOf((mDelivery.longValue())), privateKey.toAddress(TestNet3Params.get()));
+        //判断当前剩下的btc不为0
+        if (goBackBtc.doubleValue() != 0.0) {
+            //添加「找零」的金额和地址
+            transaction.addOutput(Coin.valueOf((goBackBtc.longValue())), privateKey.toAddress(BTCParamsConstants.NetworkParameter));
         }
-        LogTool.d("delivery = " + mDelivery);
+        LogTool.d(TAG, "goBackBtc = " + goBackBtc);
         LogTool.d(TAG, "unspentOutputs.size = " + btcUtxoList.size());
-        mFromUtxo.clear();
+        List<BtcUtxo> fromUtxo = new ArrayList<>();
+        //对重新组装的UTXO进行遍历,进行交易签章
         for (BtcUtxo unspentOutput : btcUnspentOutputList) {
             if (unspentOutput.getValue() != 0.0) {
                 Sha256Hash sha256Hash = new Sha256Hash(Utils.parseAsHexOrBase58(unspentOutput.getTx_hash_big_endian()));
-                TransactionOutPoint outPoint = new TransactionOutPoint(TestNet3Params.get(), unspentOutput.getTx_output_n(), sha256Hash);
+                TransactionOutPoint outPoint = new TransactionOutPoint(BTCParamsConstants.NetworkParameter,
+                        unspentOutput.getTx_output_n(), sha256Hash);
                 Script script = new Script(Utils.parseAsHexOrBase58(unspentOutput.getScript()));
-                LogTool.d(TAG, "addSignedInput getTxid>>" + unspentOutput.getTx_hash_big_endian());
-                LogTool.d(TAG, "addSignedInput getSatoshis>>" + unspentOutput.getValue());
+                LogTool.d(TAG, "addSignedInput getTxid:" + unspentOutput.getTx_hash_big_endian());
+                LogTool.d(TAG, "addSignedInput getSatoshis:" + unspentOutput.getValue());
 //                DeterministicKey deterministicKey = KeyStorage.getInstance().getBtcDeterministicKeyBySeedAndAddress(mSeed);
                 transaction.addSignedInput(outPoint, script, privateKey, Transaction.SigHash.ALL, true);
-                mFromUtxo.add(unspentOutput);
+                fromUtxo.add(unspentOutput);
             }
         }
         transaction.getConfidence().setSource(TransactionConfidence.Source.SELF);
         transaction.setPurpose(Transaction.Purpose.USER_PAYMENT);
 
+        LogTool.d(TAG, "transaction is:" + transaction);
         byte[] bytes = transaction.unsafeBitcoinSerialize();
         LogTool.d(TAG, "Transaction size = " + bytes.length);
         int txSizeInkB = (int) Math.ceil(bytes.length / 1024.);
 //        BigDecimal minimumFee = mFeePerKb.multiply(new BigDecimal(txSizeInkB));
-//                        if (minimumFee.doubleValue() > mOldFee.doubleValue()) {
+//                        if (minimumFee.doubleValue() > oldFee.doubleValue()) {
 //                            String error = CommonUtility.formatString(minimumFee.toString(), " QTUM");
 //                            String errorValue = String.format(mContext.getString(R.string.insufficient_fee_tips), error, error);
 //                            ExceptionHandle.ResponseThrowable responseThrowable = new ExceptionHandle.ResponseThrowable(errorValue, TRANSFER_ERROR_ONE, minimumFee, amountString, toAddress);
 //                            throw responseThrowable;
 //                        }
-        mTransactionRaw = Hex.toHexString(bytes);
-        mTransactionHash = transaction.getHashAsString();
-        interactor.pushTX(mTransactionRaw, new Callback<String>() {
+        transactionRaw = Hex.toHexString(bytes);
+        LogTool.d(TAG, "transactionRaw:" + transactionRaw);
+        transactionHash = transaction.getHashAsString();
+        LogTool.d(TAG, "transactionHash:" + transactionHash);
+        interactor.pushTX(transactionRaw, new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 //Transaction Submitted
@@ -235,10 +299,10 @@ public class MainPresenterImp implements MainContact.Presenter {
 //                                int code = errorObject.optInt("code");
 //                                String errorMessage = errorObject.optString("message");
 //                                if (code == -26) {
-//                                    BigDecimal newFee = mDelivery.add(mOldFee);
-//                                    String error = mDelivery.toPlainString();
+//                                    BigDecimal newFee = delivery.add(oldFee);
+//                                    String error = delivery.toPlainString();
 //                                    String errorValue = String.format(mContext.getString(R.string.transfer_error_too_low_value), error);
-//                                    LogTool.e(TAG, "转账剩余qtum太低  value = " + mDelivery + " oldFee = " + mOldFee + " 新的fee = " + newFee);
+//                                    LogTool.e(TAG, "转账剩余qtum太低  value = " + delivery + " oldFee = " + oldFee + " 新的fee = " + newFee);
 //                                    ExceptionHandle.ResponseThrowable responseThrowable1 = new ExceptionHandle.ResponseThrowable(errorValue, TRANSFER_ERROR_TWO, newFee, amountString, toAddress);
 //                                    e.onError(responseThrowable1);
 //                                } else {
@@ -258,4 +322,6 @@ public class MainPresenterImp implements MainContact.Presenter {
             }
         });
     }
+
+
 }
