@@ -13,9 +13,11 @@ import org.bitcoinj.params.TestNet3Params;
 public class BTCParamsConstants {
 
     //当前是否测试环境
-    public static final boolean isTest = true;
+    public static final boolean isTest = false;
 
     //根据是否是测试环境，返回网络参数
     public static final NetworkParameters NetworkParameter = isTest ? TestNet3Params.get() : MainNetParams.get();
 
+    public static final String BtcUnit = "100000000";
+    public static final String BtcUnitRevert = "0.00000001";
 }

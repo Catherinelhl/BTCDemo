@@ -680,6 +680,7 @@ id blocking
 id bottom
 id btn_get_balance
 id btn_get_tx_list
+id btn_get_tx_status
 id btn_push
 id buttonPanel
 id center
@@ -789,6 +790,7 @@ id titleDividerNoCustom
 id title_template
 id top
 id topPanel
+id tv_address
 id uniform
 id up
 id useLogo
