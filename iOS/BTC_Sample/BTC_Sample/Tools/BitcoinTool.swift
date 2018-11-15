@@ -108,7 +108,7 @@ class BitcoinTool {
             switch coinType {
             case .bitcoinMain, .bitcoinTest:
                 privateKey = try PrivateKey.init(wif: str)
-            case .ethMain:
+            case .ethMain, .ethTest:
                 guard let privateKeyData = Data(btcHex: str) else {
                     return nil
                 }

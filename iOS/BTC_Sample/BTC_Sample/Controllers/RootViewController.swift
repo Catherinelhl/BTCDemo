@@ -30,7 +30,7 @@ class RootViewController: UIViewController {
         self.view.backgroundColor = .white
 
         myAddressLabel.text = "我的地址：" + myAddress
-        feesLabel.text = "手续费：\(fees) " + "BTC"
+        feesLabel.text = "手续费：\(fees) " + currencySymbol
         
         myAddressLabel.adjustsFontSizeToFitWidth = true
         feesLabel.adjustsFontSizeToFitWidth = true
@@ -81,7 +81,7 @@ class RootViewController: UIViewController {
                     let value = try response.mapJSON()
                     let json = JSON(value)
                     self.balance = Decimal(json["final_balance"].doubleValue)
-                    self.balanceLabel.text = "\(self.balance / rate)" + " " + "BTC"
+                    self.balanceLabel.text = "\(self.balance / rate)" + " " + currencySymbol
                     
                     self.jsonDataTextView.text = "\(value)"
                     
@@ -116,7 +116,15 @@ class RootViewController: UIViewController {
             return
         }
         
-        ApiManagerProvider.request(.createTx(fromAddress:myAddress,toAddress: reciveAddressTextField.text!, amount: (amount * rate).intValue, fees:(fees * rate).intValue )) { (result) in
+        var fee:Int
+        switch coinType {
+        case .bitcoinMain, .bitcoinTest:
+            fee = (fees * rate).intValue
+        case .ethMain, .ethTest:
+            fee = gasPrice.intValue
+        }
+        
+        ApiManagerProvider.request(.createTx(fromAddress:myAddress,toAddress: reciveAddressTextField.text!, amount: (amount * rate).intValue, fees:fee )) { (result) in
             switch result {
             case .success(let response):
                 do{
