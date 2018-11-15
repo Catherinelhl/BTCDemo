@@ -19,6 +19,7 @@
                 <outlet property="reciveAddressLabel" destination="cCK-jn-rAN" id="lzi-aM-MJ5"/>
                 <outlet property="reciveAddressTextField" destination="ZZ4-rL-PWa" id="i6G-q6-cAH"/>
                 <outlet property="sendAmountTextField" destination="hCE-YX-IXk" id="LBS-tT-knz"/>
+                <outlet property="symbolLabel" destination="ZA5-2y-akr" id="fwo-FN-CAF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
