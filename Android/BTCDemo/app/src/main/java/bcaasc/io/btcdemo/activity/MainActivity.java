@@ -3,6 +3,7 @@ package bcaasc.io.btcdemo.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,6 +33,10 @@ public class MainActivity extends Activity implements MainContact.View {
     TextView tvAddress;
     @BindView(R.id.btn_get_tx_status)
     Button btnGetTxStatus;
+    @BindView(R.id.et_amount)
+    EditText etAmount;
+    @BindView(R.id.btn_push_xiaodong)
+    Button btnPushXiaodong;
     private MainContact.Presenter presenter;
 
     @Override
@@ -48,6 +53,8 @@ public class MainActivity extends Activity implements MainContact.View {
     private void initView() {
         presenter = new MainPresenterImp(this);
         tvAddress.setText("Address:" + Constants.address);
+        etAmount.setText("0.0020");
+        presenter.getBalance();
     }
 
     private void initListener() {
@@ -66,7 +73,23 @@ public class MainActivity extends Activity implements MainContact.View {
         btnPush.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.getUnspent();
+
+                String amount = etAmount.getText().toString();
+                if (TextUtils.isEmpty(amount)) {
+                    amount = Constants.amountString;
+                }
+                presenter.getUnspent(amount, Constants.toAddress);
+            }
+        });
+        btnPushXiaodong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String amount = etAmount.getText().toString();
+                if (TextUtils.isEmpty(amount)) {
+                    amount = Constants.amountString;
+                }
+                presenter.getUnspent(amount, "13WVtuUFwoEp3wsBmocRA1KDQ8C95P5wS3");
             }
         });
         btnGetTxStatus.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +98,7 @@ public class MainActivity extends Activity implements MainContact.View {
                 presenter.getTXInfoByHash("");
             }
         });
+
 
     }
 

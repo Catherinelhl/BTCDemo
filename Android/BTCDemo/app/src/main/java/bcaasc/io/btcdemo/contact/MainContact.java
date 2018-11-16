@@ -24,7 +24,7 @@ public interface MainContact {
 
         void getTransactionList();
 
-        void getUnspent();
+        void getUnspent(String amount,String address);
 
         void getTXInfoByHash(String rawHash);
 

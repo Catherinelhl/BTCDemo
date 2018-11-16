@@ -682,6 +682,7 @@ id btn_get_balance
 id btn_get_tx_list
 id btn_get_tx_status
 id btn_push
+id btn_push_xiaodong
 id buttonPanel
 id center
 id center_horizontal
@@ -703,6 +704,7 @@ id direct
 id disableHome
 id edit_query
 id end
+id et_amount
 id et_content
 id expand_activities_button
 id expanded_menu

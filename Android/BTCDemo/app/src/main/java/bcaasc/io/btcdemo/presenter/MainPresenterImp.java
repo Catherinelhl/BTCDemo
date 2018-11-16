@@ -106,7 +106,7 @@ public class MainPresenterImp implements MainContact.Presenter {
      * @return
      */
     @Override
-    public void getUnspent() {
+    public void getUnspent(String amount,String addressTo) {
         interactor.getUnspent(Constants.address, new Callback<BtcUnspentOutputsResponse>() {
             @Override
             public void onResponse(Call<BtcUnspentOutputsResponse> call, Response<BtcUnspentOutputsResponse> response) {
@@ -118,7 +118,7 @@ public class MainPresenterImp implements MainContact.Presenter {
                     //排序UTXO  从大到小
                     Collections.sort(btcUtxoList, (unspentOutput, t1) -> Long.compare(t1.getValue(), unspentOutput.getValue()));
                     view.success(btcUtxoList.toString());
-                    pushTX(Constants.feeString, Constants.toAddress, Constants.amountString);
+                    pushTX(Constants.feeString, addressTo, amount);
                 }
             }
 
@@ -159,6 +159,8 @@ public class MainPresenterImp implements MainContact.Presenter {
      * @param feeString    手续费
      * @param toAddress    收款地址
      * @param amountString 转账数量
+     *                     <p>
+     *                     0.00001
      * @return
      */
     @Override
@@ -223,7 +225,8 @@ public class MainPresenterImp implements MainContact.Presenter {
         LogTool.d(TAG, "amount:" + amount);
         //比较当前账户的balance的double值是否大于这次需要push的金额double值
         if (walletBtc.doubleValue() < amount.doubleValue()) {
-            LogTool.e(TAG, "insufficient_transaction");
+            view.failure("insufficient_transaction");
+            return;
         }
         //得到这次传送之后剩下的btc
         BigDecimal goBackBtc = walletBtc.subtract(amount);
