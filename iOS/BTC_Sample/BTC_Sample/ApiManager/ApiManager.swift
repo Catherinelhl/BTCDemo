@@ -12,15 +12,26 @@ import Alamofire
 import SwiftyJSON
 
 
-let coinType:CoinType = .bitcoinMain
-
 enum CoinType : String {
     case bitcoinMain = "/btc/main"
     case bitcoinTest = "/btc/test3"
     case ethMain = "/eth/main"
+    case ethTest = "/beth/test"
 }
 
-let ApiManagerProvider = MoyaProvider<ApiManager>()
+var coinType:CoinType = .bitcoinMain
+
+let ApiManagerProvider = MoyaProvider<ApiManager>(requestClosure: { (endpoint:Endpoint, done: @escaping MoyaProvider.RequestResultClosure) in
+    do{
+        var request = try endpoint.urlRequest()
+        request.timeoutInterval = 30 //设置请求超时时间
+        done(.success(request))
+    }catch{
+        return
+    }
+})
+
+
 
 /// API
 ///
@@ -31,7 +42,7 @@ let ApiManagerProvider = MoyaProvider<ApiManager>()
 enum ApiManager {
     case getBalance(address:String)
     case createTx(fromAddress:String,toAddress:String,amount:Int,fees:Int?)
-    case sendTx(txJson:[String:Any],signature:String,publicKey:String)
+    case sendTx(txJson:[String:Any],signature:String,publicKey:String?)
     case getTxRecord(address:String)
 }
 
@@ -50,7 +61,12 @@ extension ApiManager : TargetType {
         case .sendTx(_,_,_):
             return "/txs/send"
         case .getTxRecord(let address):
-            return "/addrs/\(address)/full"
+            switch coinType {
+            case .bitcoinMain, .bitcoinTest:
+                return "/addrs/\(address)/full"
+            case .ethMain, .ethTest:
+                return "/addrs/\(address)"
+            }
         }
     }
     
@@ -68,18 +84,25 @@ extension ApiManager : TargetType {
     }
     
     var task: Task {
-        
+        let urlParam = ["token":"4eaed359b2984580b55e5b004fd0f68d"]
         switch self {
         case .createTx(let fromAddress,let toAddress, let amount,let fees):
             var param:[String:Any] = [:]
-            param["fees"] = fees
+            
+            switch coinType {
+            case .bitcoinMain, .bitcoinTest:
+                param["fees"] = fees
+            case .ethMain, .ethTest:
+                param["gas_price"] = fees
+            }
+            
             param["inputs"] = [["addresses":[fromAddress]]]
             param["outputs"] = [["addresses":[toAddress],
                                  "value":amount]]
             
             MyLog(JSON(param).rawValue)
             let jsonData = try! JSON(param).rawData()
-            return .requestData(jsonData)
+            return .requestCompositeData(bodyData: jsonData, urlParameters: urlParam)
             
         case .sendTx(let txJson,let signature, let publicKey):
             var param:[String:Any] = [:]
@@ -89,10 +112,10 @@ extension ApiManager : TargetType {
             
             MyLog(JSON(param).rawValue)
             let jsonData = try! JSON(param).rawData()
-            return .requestData(jsonData)
+            return .requestCompositeData(bodyData: jsonData, urlParameters: urlParam)
             
         default :
-            return .requestPlain
+            return .requestParameters(parameters: urlParam, encoding: URLEncoding.default)
         }
         
     }
