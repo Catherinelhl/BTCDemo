@@ -42,7 +42,7 @@ let ApiManagerProvider = MoyaProvider<ApiManager>(requestClosure: { (endpoint:En
 enum ApiManager {
     case getBalance(address:String)
     case createTx(fromAddress:String,toAddress:String,amount:Int,fees:Int?)
-    case sendTx(txJson:[String:Any],signature:String,publicKey:String?)
+    case sendTx(txJson:[String:Any],signatures:[String],publicKeys:[String]?)
     case getTxRecord(address:String)
 }
 
@@ -104,11 +104,11 @@ extension ApiManager : TargetType {
             let jsonData = try! JSON(param).rawData()
             return .requestCompositeData(bodyData: jsonData, urlParameters: urlParam)
             
-        case .sendTx(let txJson,let signature, let publicKey):
+        case .sendTx(let txJson,let signatures, let publicKeys):
             var param:[String:Any] = [:]
             param = txJson
-            param["signatures"] = [signature]
-            param["pubkeys"] = [publicKey]
+            param["signatures"] = signatures
+            param["pubkeys"] = publicKeys
             
             MyLog(JSON(param).rawValue)
             let jsonData = try! JSON(param).rawData()
