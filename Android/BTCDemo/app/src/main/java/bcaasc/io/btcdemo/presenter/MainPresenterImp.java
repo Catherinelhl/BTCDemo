@@ -238,7 +238,7 @@ public class MainPresenterImp implements MainContact.Presenter {
             transaction.addOutput(Coin.valueOf((goBackBtc.longValue())), privateKey.toAddress(BTCParamsConstants.NetworkParameter));
         }
         LogTool.d(TAG, "goBackBtc = " + goBackBtc);
-        LogTool.d(TAG, "unspentOutputs.size = " + btcUnspentOutputList.size());
+        LogTool.d(TAG, "unspentOutputs.size :" + btcUnspentOutputList.size() + ";unspentOutputs: " + btcUnspentOutputList);
         //对重新组装的UTXO进行遍历,进行交易签章
         for (BtcUtxo unspentOutput : btcUnspentOutputList) {
             if (unspentOutput.getValue() != 0.0) {

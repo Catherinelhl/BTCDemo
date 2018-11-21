@@ -4,7 +4,7 @@
             "outputFile": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml",
             "map": [
                 {
-                    "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b46ec0775e07b8f2a772a34aa64fcab6/res/values-hdpi-v4/values-hdpi-v4.xml",
+                    "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/4e9655f15fd68ef976af471c25f9d093/res/values-hdpi-v4/values-hdpi-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
