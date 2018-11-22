@@ -106,7 +106,7 @@ public class MainPresenterImp implements MainContact.Presenter {
      * @return
      */
     @Override
-    public void getUnspent(String amount,String addressTo) {
+    public void getUnspent(String amount, String addressTo) {
         interactor.getUnspent(Constants.address, new Callback<BtcUnspentOutputsResponse>() {
             @Override
             public void onResponse(Call<BtcUnspentOutputsResponse> call, Response<BtcUnspentOutputsResponse> response) {
@@ -211,15 +211,15 @@ public class MainPresenterImp implements MainContact.Presenter {
             //将当前数据新添加入新定义的UTXO数组里面
             btcUnspentOutputList.add(unspentOutput);
 //            //比较当前账户的btc是否大于等于这次需要push的金额
-//            if (walletBtc.doubleValue() >= amount.doubleValue()) {
+            if (walletBtc.doubleValue() >= amount.doubleValue()) {
 //                //如果是，判断当前是否是最后一条UTXO事务
 //                if (i < btcUtxoList.size() - 1) {
 //                    //如果不是，那么就将下一条数据也加入进来
 //                    walletBtc = walletBtc.add(new BigDecimal(btcUtxoList.get(i + 1).getValue()));
 //                    btcUnspentOutputList.add(btcUtxoList.get(i + 1));
 //                }
-//                break;
-//            }
+                break;
+            }
         }
         LogTool.d(TAG, "walletBtc:" + walletBtc);
         LogTool.d(TAG, "amount:" + amount);
@@ -232,28 +232,29 @@ public class MainPresenterImp implements MainContact.Presenter {
         BigDecimal goBackBtc = walletBtc.subtract(amount);
         // 根据私鑰WIF字串轉ECKey
         ECKey privateKey = DumpedPrivateKey.fromBase58(BTCParamsConstants.NetworkParameter, Constants.privateWIFKey).getKey();
-
-//        ECKey currentKey = KeyStorage.getInstance().getBtcDeterministicKeyBySeedAndAddress(mSeed);
         //判断当前剩下的btc不为0
         if (goBackBtc.doubleValue() != 0.0) {
             //添加「找零」的金额和地址
             transaction.addOutput(Coin.valueOf((goBackBtc.longValue())), privateKey.toAddress(BTCParamsConstants.NetworkParameter));
         }
         LogTool.d(TAG, "goBackBtc = " + goBackBtc);
-        LogTool.d(TAG, "unspentOutputs.size = " + btcUtxoList.size());
-        List<BtcUtxo> fromUtxo = new ArrayList<>();
+        LogTool.d(TAG, "unspentOutputs.size :" + btcUnspentOutputList.size() + ";unspentOutputs: " + btcUnspentOutputList);
         //对重新组装的UTXO进行遍历,进行交易签章
         for (BtcUtxo unspentOutput : btcUnspentOutputList) {
             if (unspentOutput.getValue() != 0.0) {
+                // 获取交易输入TXId对应的交易数据
                 Sha256Hash sha256Hash = new Sha256Hash(Utils.parseAsHexOrBase58(unspentOutput.getTx_hash_big_endian()));
+                // 获取交易输入所对应的上一笔交易中的交易输出
                 TransactionOutPoint outPoint = new TransactionOutPoint(BTCParamsConstants.NetworkParameter,
                         unspentOutput.getTx_output_n(), sha256Hash);
+                //获取当前script进行格式解析
                 Script script = new Script(Utils.parseAsHexOrBase58(unspentOutput.getScript()));
+                LogTool.d(TAG, "script:" + unspentOutput.getScript());
+                LogTool.d(TAG, "script2:" + script);
                 LogTool.d(TAG, "addSignedInput getTxid:" + unspentOutput.getTx_hash_big_endian());
                 LogTool.d(TAG, "addSignedInput getSatoshis:" + unspentOutput.getValue());
-//                DeterministicKey deterministicKey = KeyStorage.getInstance().getBtcDeterministicKeyBySeedAndAddress(mSeed);
+                //添加「交易」信息
                 transaction.addSignedInput(outPoint, script, privateKey, Transaction.SigHash.ALL, true);
-                fromUtxo.add(unspentOutput);
             }
         }
         transaction.getConfidence().setSource(TransactionConfidence.Source.SELF);
@@ -274,6 +275,14 @@ public class MainPresenterImp implements MainContact.Presenter {
         LogTool.d(TAG, "transactionRaw:" + transactionRaw);
         transactionHash = transaction.getHashAsString();
         LogTool.d(TAG, "transactionHash:" + transactionHash);
+        pushTX();
+    }
+
+    /**
+     * 广播交易
+     */
+    private void pushTX() {
+
         interactor.pushTX(transactionRaw, new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
