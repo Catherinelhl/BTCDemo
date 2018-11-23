@@ -1,0 +1,57 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:1:1-15:12
+INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:1:1-15:12
+INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:1:1-15:12
+INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:1:1-15:12
+INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:1:1-15:12
+INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:1:1-15:12
+INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:1:1-15:12
+	package
+		ADDED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:2:5-29
+		INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml
+		INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml
+		ADDED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:1:1-15:12
+		INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml
+		ADDED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:1:1-15:12
+		INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.CAMERA
+ADDED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:4:5-65
+	android:name
+		ADDED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:4:22-62
+uses-permission#android.permission.VIBRATE
+ADDED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:5:5-66
+	android:name
+		ADDED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:5:22-63
+application
+ADDED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:7:5-14:19
+	android:label
+		ADDED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:9:9-41
+	android:allowBackup
+		ADDED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:8:9-35
+activity#com.obt.qrcode.activity.CaptureActivity
+ADDED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:10:9-12:52
+	android:screenOrientation
+		ADDED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:12:13-49
+	android:name
+		ADDED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml:11:13-53
+uses-sdk
+INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml
+INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml
+INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml
+INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml
+		ADDED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml
+		INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml
+		ADDED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml
+		INJECTED from /Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/AndroidManifest.xml
