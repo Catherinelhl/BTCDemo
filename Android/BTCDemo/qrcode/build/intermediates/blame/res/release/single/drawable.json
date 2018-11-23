@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/build/intermediates/res/merged/release/drawable/scan_line.png",
+        "source": "/Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/res/drawable/scan_line.png"
+    },
+    {
+        "merged": "/Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/build/intermediates/res/merged/release/drawable/img_scan_code.png",
+        "source": "/Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/res/drawable/img_scan_code.png"
+    },
+    {
+        "merged": "/Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/build/intermediates/res/merged/release/drawable/bg_qr_grey.xml",
+        "source": "/Users/catherine.brainwilliam/AndroidStudioProjects/BcaasAndroid/qrcode/src/main/res/drawable/bg_qr_grey.xml"
+    }
+]

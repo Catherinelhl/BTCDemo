@@ -10,6 +10,7 @@ public class MessageConstants {
 
     public static final int CODE_200 = 200; // Success
     public static final int CODE_400 = 400; // Failure
+    public static final int CODE_500 = 500; // Failure
     public static final int CODE_404 = 404; // Failure
 
 
