@@ -69,6 +69,8 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
     @BindView(R.id.tv_fee)
     TextView tvFee;
     private MainContact.Presenter presenter;
+    //得到当前交易的hashRaw
+    private String hashRaw;
 
 
     @Override
@@ -224,5 +226,9 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
         }
     }
 
-
+    @Override
+    public void setHashRaw(String hashRaw) {
+        this.hashRaw = hashRaw;
+        tvTxHash.setText(hashRaw);
+    }
 }
