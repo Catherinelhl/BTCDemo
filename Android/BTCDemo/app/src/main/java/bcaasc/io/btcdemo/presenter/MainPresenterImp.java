@@ -147,9 +147,10 @@ public class MainPresenterImp implements MainContact.Presenter {
             @Override
             public void onSuccess(Response<bcaasc.io.btcdemo.bean.Transaction> response) {
                 bcaasc.io.btcdemo.bean.Transaction transaction = response.body();
+                view.success(transaction.toString());
                 if (transaction != null) {
                     long blockHeight = transaction.getBlock_height();
-                    view.hashStatus(String.valueOf(blockHeight));
+//                    view.hashStatus(String.valueOf(blockHeight));
                 }
             }
 
