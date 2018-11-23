@@ -43,10 +43,6 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/bcaasc/io/btcdemo/activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/bcaasc/io/btcdemo/activity/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/bcaasc/io/btcdemo/constants/MessageConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/bcaasc/io/btcdemo/constants/MessageConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/bcaasc/io/btcdemo/contact/MainContact.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/bcaasc/io/btcdemo/contact/MainContact.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/bcaasc/io/btcdemo/http/callback/BaseCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/bcaasc/io/btcdemo/http/callback/BaseCallback.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/bcaasc/io/btcdemo/presenter/MainPresenterImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/bcaasc/io/btcdemo/presenter/MainPresenterImp.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -114,8 +110,8 @@
       <file leaf-file-name="MainPresenterImp.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/bcaasc/io/btcdemo/presenter/MainPresenterImp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="301" selection-start-line="301" selection-end-line="301" />
+            <state relative-caret-position="215">
+              <caret line="300" column="7" lean-forward="true" selection-start-line="300" selection-start-column="7" selection-end-line="300" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -4471,12 +4467,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Android Profiler" order="7" />
       <window_info id="Build Variants" order="2" sideWeight="0.5030303" side_tool="true" weight="0.37210983" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.329602" />
-      <window_info anchor="bottom" x="28" y="213" width="1384" height="474" id="Logcat" order="7" sideWeight="0.76083815" side_tool="true" visible="true" weight="0.26865673" />
+      <window_info active="true" anchor="bottom" x="28" y="213" width="1384" height="474" id="Logcat" order="7" sideWeight="0.76083815" side_tool="true" visible="true" weight="0.2549751" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49783236" weight="0.53482586" />
@@ -4492,7 +4487,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.23916185" weight="0.34079602" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49927744" weight="0.329602" />
       <window_info id="Captures" order="2" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4969697" visible="true" weight="0.22687861" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4969697" visible="true" weight="0.22687861" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329602" />
       <window_info anchor="right" id="Gradle" order="3" />
       <window_info anchor="right" id="Fabric" order="3" />
@@ -4889,8 +4884,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/bcaasc/io/btcdemo/presenter/MainPresenterImp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="301" selection-start-line="301" selection-end-line="301" />
+        <state relative-caret-position="215">
+          <caret line="300" column="7" lean-forward="true" selection-start-line="300" selection-start-column="7" selection-end-line="300" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
