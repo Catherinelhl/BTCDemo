@@ -17,8 +17,8 @@ public class Constants {
     public static final String feeString = "0.00001";//fee min
     public static final String amountString = "0.002";
     public static String toAddress = BTCParamsConstants.isTest ? "mu41Bfy1RiGkW3KDDpj2ndr36VFad9ydau" : "3DwjFrvc6avJeUJ6hG54WoSp3p2cVM4xwc";
-    public static String address = BTCParamsConstants.isTest ? "mkkjcX4s4zoJJaE5E1NnfvsbuMvmzgBWTo" : "16ugnJ7pndAFJJfMwoSDFbNTwzHvxhL1cL";
-    public static String privateWIFKey = BTCParamsConstants.isTest ? "93AaWXJMutsyX5KPCXzGjK9uPm18ezP5jiFjcCtvZwELYX9LAkk" : "5KEJMiY5LskP3S54hcuVKD9zJmb24EYNSi6vGTnEPvve7vMzGCq";
+    public static String address = BTCParamsConstants.isTest ? "mkkjcX4s4zoJJaE5E1NnfvsbuMvmzgBWTo" : "1EeCu3HGxmYrcExqSiFR6wQfdA3AjoCgzY";
+    public static String privateWIFKey = BTCParamsConstants.isTest ? "93AaWXJMutsyX5KPCXzGjK9uPm18ezP5jiFjcCtvZwELYX9LAkk" : "5KRchiJ7zkZHyToqn2jBPk9psrQf9BmrH26GKysPjQbXeRbZCDV";
 
 
 
