@@ -16,6 +16,7 @@ public interface MainContact {
 
         void hashStatus(String info);
 
+        void setHashRaw(String hashRaw);
     }
 
     interface Presenter {
@@ -24,7 +25,7 @@ public interface MainContact {
 
         void getTransactionList();
 
-        void getUnspent(String amount,String address);
+        void getUnspent(String amount, String address);
 
         void getTXInfoByHash(String rawHash);
 

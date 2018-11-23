@@ -1,52 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".activity.MainActivity">
-    <TextView
-            android:id="@+id/tv_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Address："/>
-    <Button
-            android:id="@+id/btn_get_balance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Get Balance"/>
-    <Button
-            android:id="@+id/btn_get_tx_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Get Transaction List"/>
-    <EditText
-            android:id="@+id/et_amount"
-            android:layout_width="match_parent"
-            android:hint="please enter the amount"
-            android:layout_height="wrap_content"
-    />
-    <Button
-            android:id="@+id/btn_push"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Push TX"/>
-    <Button
-            android:id="@+id/btn_push_xiaodong"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Push TX2"/>
-    <Button
-            android:id="@+id/btn_get_tx_status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Get TX Status"/>
+        android:padding="5dp"
+        android:layout_height="match_parent">
 
-    <EditText
-            android:id="@+id/et_content"
+    <!-- my address-->
+    <LinearLayout
+            android:id="@+id/ll_my_address"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-    />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+        <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:layout_height="wrap_content"
+                android:text="Address："/>
+        <ImageButton
+                android:id="@+id/ib_receive"
+                android:layout_width="30sp"
+                android:scaleType="centerCrop"
+                android:background="#00000000"
+                android:src="@drawable/icon_receive_f"
+                android:layout_height="30sp"/>
+    </LinearLayout>
+    <!-- my balance-->
+    <LinearLayout
+            android:id="@+id/ll_my_balance"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+        <TextView
+                android:id="@+id/tv_get_balance"
+                android:textColor="@color/button_right_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Balance:"/>
+        <TextView
+                android:id="@+id/tv_balance"
+                android:layout_marginLeft="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
+    </LinearLayout>
+    <!--send amount-->
+    <LinearLayout
+            android:id="@+id/ll_send_amount"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+        <EditText
+                android:id="@+id/et_amount"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:hint="Send amount"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:id="@+id/tv_fee"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Fee:"
+                android:gravity="right|center_vertical"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"/>
+    </LinearLayout>
+    <!-- to send address-->
+    <LinearLayout
+            android:id="@+id/ll_to_send_address"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content">
+        <TextView
+                android:id="@+id/btn_to_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:text="Send to:"/>
+        <TextView
+                android:id="@+id/tv_to_address"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:layout_height="wrap_content"/>
+        <ImageButton
+                android:id="@+id/ib_scan"
+                android:layout_width="30sp"
+                android:background="#00000000"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_scan_f"
+                android:layout_height="30sp"/>
+
+    </LinearLayout>
+    <!--send action-->
+    <LinearLayout
+            android:id="@+id/ll_send_action"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="5dp"
+
+            android:layout_height="wrap_content">
+        <Button
+                android:id="@+id/btn_push"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:layout_height="wrap_content"
+                android:text="Push TX"/>
+        <Button
+                android:id="@+id/btn_get_tx_list"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_push"
+                android:text="Get Transaction List"/>
+    </LinearLayout>
+    <!--other query-->
+    <LinearLayout
+            android:id="@+id/ll_query"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+
+
+        <TextView
+                android:id="@+id/tv_get_tx_status"
+                android:layout_width="wrap_content"
+                android:textColor="@color/button_right_color"
+                android:layout_height="wrap_content"
+                android:text="TX Hash:"/>
+        <TextView
+                android:id="@+id/tv_tx_hash"
+                android:layout_width="0dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:layout_height="wrap_content"/>
+        <ImageButton
+                android:id="@+id/ib_scan_hash"
+                android:layout_width="30sp"
+                android:background="#00000000"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_scan_f"
+                android:layout_height="30sp"/>
+    </LinearLayout>
+
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+        <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </ScrollView>
 </LinearLayout>

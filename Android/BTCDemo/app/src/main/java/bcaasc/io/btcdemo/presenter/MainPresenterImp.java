@@ -6,6 +6,7 @@ import bcaasc.io.btcdemo.constants.BTCParamsConstants;
 import bcaasc.io.btcdemo.constants.Constants;
 import bcaasc.io.btcdemo.contact.MainContact;
 import bcaasc.io.btcdemo.http.MainInteractor;
+import bcaasc.io.btcdemo.http.callback.BaseCallback;
 import bcaasc.io.btcdemo.tool.LogTool;
 import org.bitcoinj.core.*;
 import org.bitcoinj.script.Script;
@@ -69,7 +70,7 @@ public class MainPresenterImp implements MainContact.Presenter {
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 LogTool.e(TAG, t.getMessage());
-                view.failure(t.getMessage());
+                view.getBalanceFailure(t.getMessage());
 
 
             }
@@ -125,7 +126,7 @@ public class MainPresenterImp implements MainContact.Presenter {
             @Override
             public void onFailure(Call<BtcUnspentOutputsResponse> call, Throwable t) {
                 LogTool.e(TAG, t.getMessage());
-                view.success(t.getMessage());
+                view.failure(t.getMessage());
 
             }
         });
@@ -136,19 +137,35 @@ public class MainPresenterImp implements MainContact.Presenter {
         if (rawHash == "" || rawHash == null) {
             rawHash = transactionHash;
         }
-        interactor.getTXInfoByHash(transactionHash, new Callback<bcaasc.io.btcdemo.bean.Transaction>() {
-            @Override
-            public void onResponse(Call<bcaasc.io.btcdemo.bean.Transaction> call, Response<bcaasc.io.btcdemo.bean.Transaction> response) {
-                bcaasc.io.btcdemo.bean.Transaction transaction = response.body();
-                if (transaction != null) {
-                    long blockHeight = transaction.getBlock_height();
-                    view.hashStatus(String.valueOf(blockHeight));
-                }
-            }
+        interactor.getTXInfoByHash(rawHash, new BaseCallback<bcaasc.io.btcdemo.bean.Transaction>() {
 
             @Override
             public void onFailure(Call<bcaasc.io.btcdemo.bean.Transaction> call, Throwable t) {
                 view.failure(t.getMessage());
+            }
+
+            @Override
+            public void onSuccess(Response<bcaasc.io.btcdemo.bean.Transaction> response) {
+                bcaasc.io.btcdemo.bean.Transaction transaction = response.body();
+                view.success(transaction.toString());
+                if (transaction != null) {
+                    long blockHeight = transaction.getBlock_height();
+//                    view.hashStatus(String.valueOf(blockHeight));
+                }
+            }
+
+            @Override
+            public void onNotFound() {
+                super.onNotFound();
+                view.failure("not found");
+
+            }
+
+            @Override
+            public void httpException() {
+                super.httpException();
+                view.failure("Transaction not found");
+
             }
         });
     }
@@ -274,6 +291,7 @@ public class MainPresenterImp implements MainContact.Presenter {
         transactionRaw = Hex.toHexString(bytes);
         LogTool.d(TAG, "transactionRaw:" + transactionRaw);
         transactionHash = transaction.getHashAsString();
+        view.setHashRaw(transactionHash);
         LogTool.d(TAG, "transactionHash:" + transactionHash);
         pushTX();
     }
