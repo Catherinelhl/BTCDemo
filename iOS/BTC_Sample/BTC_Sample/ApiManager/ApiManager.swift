@@ -46,6 +46,7 @@ enum ApiManager {
     case createTx(fromAddress:String,toAddress:String,amount:Int,fees:Int?)
     case sendTx(txJson:[String:Any],signatures:[String],publicKeys:[String]?)
     case getTxRecord(address:String)
+    case getTxDetail(txHash:String)
     
     case getUnspent(address:String)
     case pushTx(txHex:String)
@@ -81,6 +82,9 @@ extension ApiManager : TargetType {
                 return "/rawaddr/\(address)"
             }
             
+        case .getTxDetail(let txHash):
+            return "/rawtx/\(txHash)"
+            
         case .getUnspent(_):
             switch coinType {
             case .blockChain_btc_Main:
@@ -100,7 +104,7 @@ extension ApiManager : TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .getBalance(_) , .getTxRecord(_) , .getUnspent(_):
+        case .getBalance(_) , .getTxRecord(_) , .getUnspent(_), .getTxDetail(_):
             return .get
         case .createTx(_,_,_,_) ,.sendTx(_,_,_), .pushTx(_):
             return .post
@@ -112,9 +116,10 @@ extension ApiManager : TargetType {
     }
     
     var task: Task {
-        let urlParam = ["token":"4eaed359b2984580b55e5b004fd0f68d"]
+        
         switch self {
         case .createTx(let fromAddress,let toAddress, let amount,let fees):
+            let urlParam = ["token":"4eaed359b2984580b55e5b004fd0f68d"]
             var param:[String:Any] = [:]
             
             switch coinType {
@@ -135,6 +140,7 @@ extension ApiManager : TargetType {
             return .requestCompositeData(bodyData: jsonData, urlParameters: urlParam)
             
         case .sendTx(let txJson,let signatures, let publicKeys):
+            let urlParam = ["token":"4eaed359b2984580b55e5b004fd0f68d"]
             var param:[String:Any] = [:]
             param = txJson
             param["signatures"] = signatures
@@ -153,7 +159,7 @@ extension ApiManager : TargetType {
 //            let jsonData = try! JSON(param).rawData()
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
         default :
-            return .requestParameters(parameters: urlParam, encoding: URLEncoding.default)
+            return .requestPlain
         }
         
     }
