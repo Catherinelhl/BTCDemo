@@ -129,7 +129,7 @@
                         <action selector="qrCodeButtonAction:" destination="-1" eventType="touchUpInside" id="LkJ-Tw-UuM"/>
                     </connections>
                 </button>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ4-rL-PWa">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="16ugnJ7pndAFJJfMwoSDFbNTwzHvxhL1cL" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ4-rL-PWa">
                     <rect key="frame" x="103" y="82.5" width="224" height="20"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>

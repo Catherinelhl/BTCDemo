@@ -8,6 +8,7 @@
 
 import Foundation
 import CryptoSwift
+import BitcoinKit
 
 extension Data {
     init?(btcHex:String) {
@@ -41,6 +42,12 @@ extension Data {
     }
 }
 
+extension String {
+    var hashData : Data? {
+        return Data.init(btcHex: self)
+    }
+}
+
 
 extension Substring {
     func toString() -> String {
@@ -61,3 +68,8 @@ extension Decimal {
         }
     }
 }
+
+enum MyError:Error {
+    case normalError(String)
+}
+

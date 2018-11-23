@@ -25,6 +25,8 @@ class RootViewController: UIViewController {
     @IBOutlet weak var feesLabel: UILabel!
     
     private var balance:Decimal = 0
+    
+//    private var totalSend:Decimal = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +54,13 @@ class RootViewController: UIViewController {
     
     @IBAction func sendTxButtonAction(_ sender: UIButton) {
         
-        createTx()
+        switch coinType {
+        case .blockChain_btc_Main:
+            createTx_1()
+        default:
+            createTx_0()
+        }
+        
     }
     
     @IBAction func getTxRecordButtonAction(_ sender: Any) {
@@ -83,7 +91,13 @@ class RootViewController: UIViewController {
                 do{
                     let value = try response.mapJSON()
                     let json = JSON(value)
-                    self.balance = NSDecimalNumber.init(value: json["final_balance"].intValue).decimalValue
+                    switch coinType {
+                    case .blockChain_btc_Main:
+                        self.balance = NSDecimalNumber.init(value: json[myAddress]["final_balance"].intValue).decimalValue
+                    default:
+                        self.balance = NSDecimalNumber.init(value: json["final_balance"].intValue).decimalValue
+                    }
+                    
                     self.balanceLabel.text = "\(self.balance / rate)" + " " + currencySymbol
                     
                     self.jsonDataTextView.text = "\(value)"
@@ -97,12 +111,19 @@ class RootViewController: UIViewController {
         }
     }
     
-    // MARK: 创建交易
-    private func createTx() {
+    // MARK: 创建交易0
+    private func createTx_0() {
         guard reciveAddressTextField.text! != "" else {
             self.view.showToast("收款地址不能为空")
             return
         }
+        
+        let reciveAddress = reciveAddressTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard BitcoinTool.validateAddress(reciveAddress) else {
+            self.view.makeToast("收款地址格式有误")
+            return
+        }
+        
         guard let amount = Decimal(string:sendAmountTextField.text!),amount > 0 else {
             self.view.showToast("发送金额有误")
             return
@@ -113,18 +134,14 @@ class RootViewController: UIViewController {
             return
         }
         
-        let reciveAddress = reciveAddressTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard BitcoinTool.validateAddress(reciveAddress) else {
-            self.view.makeToast("收款地址格式有误")
-            return
-        }
-        
-        var fee:Int
+        var fee:Int = 0
         switch coinType {
         case .bitcoinMain, .bitcoinTest:
             fee = (fees * rate).intValue
         case .ethMain, .ethTest:
             fee = gasPrice.intValue
+        default:
+            break
         }
         
         ApiManagerProvider.request(.createTx(fromAddress:myAddress,toAddress: reciveAddressTextField.text!, amount: (amount * rate).intValue, fees:fee )) { (result) in
@@ -152,7 +169,7 @@ class RootViewController: UIViewController {
                                 publicKeys.append(myPublicKey)
                             }
                         }
-                        self.sendTx(jsonDict, signatures, publicKeys)
+                        self.sendTx_0(jsonDict, signatures, publicKeys)
                     }
                 }catch let aError{
                     MyLog(aError)
@@ -163,8 +180,8 @@ class RootViewController: UIViewController {
         }
         
     }
-    // MARK: 发送交易
-    private func sendTx(_ jsonData:[String:Any],_ signature:[String],_ publicKey:[String]){
+    // MARK: 发送交易0
+    private func sendTx_0(_ jsonData:[String:Any],_ signature:[String],_ publicKey:[String]){
         ApiManagerProvider.request(.sendTx(txJson: jsonData, signatures: signature, publicKeys: publicKey)) { (result) in
             switch result {
             case .success(let response):
@@ -188,11 +205,167 @@ class RootViewController: UIViewController {
         }
     }
     
+    // MARK: 创建交易1
+    private func createTx_1() {
+        
+        let reciveAddress = reciveAddressTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        guard reciveAddress != "" else {
+            self.view.showToast("收款地址不能为空")
+            return
+        }
+        
+        guard BitcoinTool.validateAddress(reciveAddress) else {
+            self.view.makeToast("收款地址格式有误")
+            return
+        }
+        
+        guard let amount = Decimal(string:sendAmountTextField.text!),amount > 0 else {
+            self.view.showToast("发送金额有误")
+            return
+        }
+
+        guard amount + fees <= balance else {
+            self.view.showToast("余额不足")
+            return
+        }
+        
+        
+        ApiManagerProvider.request(.getUnspent(address: myAddress)) { (result) in
+            switch result {
+            case .success(let response):
+                do {
+                    let value = try response.mapJSON()
+                    MyLog(value)
+                    let json = JSON.init(value)
+                    if let dataUtxo = BTCDataUnspentVO.deserialize(from: json.dictionaryObject),
+                        let unspentArray = dataUtxo.unspent_outputs {
+                        self.createUnspentTxs(unspentArray, amount: amount)
+                    }
+                    
+                }catch let aError {
+                    MyLog(aError)
+                }
+                
+            case .failure(let aError):
+                MyLog(aError)
+            }
+        }
+    }
+    
+    private func createUnspentTxs(_ unspentArray:[BTCUspentVO], amount:Decimal) {
+        var totalSend:Int64 = 0
+        var utxos:[UnspentTransaction] = []
+        for unspent in unspentArray {
+            if let value = unspent.value?.int64Value ,
+                let lockScriptData = unspent.script?.hashData ,
+                let txHashData = unspent.tx_hash?.hashData ,
+                let txOutputN = unspent.tx_output_n?.uint32Value {
+                
+                totalSend += value
+                let unspentOutput = TransactionOutput(value: value, lockingScript: lockScriptData)
+                let unspentOutpoint = TransactionOutPoint(hash: txHashData, index: txOutputN)
+                let utxo = UnspentTransaction(output: unspentOutput, outpoint: unspentOutpoint)
+                utxos.append(utxo)
+                if totalSend >= NSDecimalNumber.init(decimal:(amount + fees) * rate).int64Value {
+                    break
+                }
+            }
+        }
+        
+        do {
+            let toAddress = try AddressFactory.create(reciveAddressTextField.text!)
+            let privateKey = try PrivateKey.init(wif: myPrivateKey)
+            let unsignedTx = createUnsignedTx(toAddress: toAddress, privateKey: privateKey,totalSend: totalSend, amount: Int64((amount * rate).intValue), utxos: utxos)
+            let tx = signTx(unsignedTx: unsignedTx, privateKey: privateKey)
+            let txHex = tx.serialized().hex
+            MyLog(txHex)
+            pushTx(txhex: txHex)
+
+        } catch let aError {
+            MyLog(aError)
+        }
+        
+        
+    }
+    
+    private func createUnsignedTx(toAddress:Address,privateKey:PrivateKey,totalSend:Int64,amount:Int64,utxos:[UnspentTransaction]) -> UnsignedTransaction {
+        
+        let myAddress = privateKey.publicKey().toCashaddr()
+
+        let fee = Int64((fees * rate).intValue)
+        let returnAmount = totalSend - amount - fee
+        
+        let toPubKeyHash: Data = toAddress.data
+        let myPubkeyHash: Data = myAddress.data
+        
+        let lockingScriptTo = Script.buildPublicKeyHashOut(pubKeyHash: toPubKeyHash)
+        let lockingScriptReturn = Script.buildPublicKeyHashOut(pubKeyHash: myPubkeyHash)
+        
+        let toOutput = TransactionOutput(value: amount, lockingScript: lockingScriptTo)
+        let myOutput = TransactionOutput(value: returnAmount, lockingScript: lockingScriptReturn)
+        
+        let unsignedInputs = utxos.map { TransactionInput(previousOutput: $0.outpoint, signatureScript: Data(), sequence: UInt32.max) }
+        var outputs = [toOutput]
+        if returnAmount > 0 {
+            outputs.append(myOutput)
+        }
+        let tx = Transaction(version: 1, inputs: unsignedInputs, outputs: outputs, lockTime: 0)
+        return UnsignedTransaction(tx: tx, utxos: utxos)
+    }
+    
+    private func signTx(unsignedTx:UnsignedTransaction,privateKey:PrivateKey) -> Transaction{
+        var inputsToSign = unsignedTx.tx.inputs
+        var transactionToSign: Transaction {
+            return Transaction(version: unsignedTx.tx.version, inputs: inputsToSign, outputs: unsignedTx.tx.outputs, lockTime: unsignedTx.tx.lockTime)
+        }
+        
+        // Signing
+        let hashType = SighashType.BTC.ALL
+        for (i, utxo) in unsignedTx.utxos.enumerated() {
+
+            let sighash: Data = transactionToSign.signatureHash(for: utxo.output, inputIndex: i, hashType: hashType)
+            if let signature = try? Crypto.sign(sighash, privateKey: privateKey) {
+                let txin = inputsToSign[i]
+                let pubkey = privateKey.publicKey()
+                
+                let unlockingScript = Script.buildPublicKeyUnlockingScript(signature: signature, pubkey: pubkey, hashType: hashType)
+                
+                inputsToSign[i] = TransactionInput(previousOutput: txin.previousOutput, signatureScript: unlockingScript, sequence: txin.sequence)
+            }
+        }
+        
+        return transactionToSign
+    }
+    
+    // MARK: 发布交易1
+    private func pushTx(txhex:String) {
+        ApiManagerProvider.request(.pushTx(txHex: txhex)) { (result) in
+            switch result {
+            case .success(let response):
+                do{
+                    if let valueString = String.init(data: response.data, encoding: .utf8) {
+                        MyLog(valueString)
+                        self.jsonDataTextView.text = "\(valueString)"
+                    }
+                    let value = try JSON.init(data: response.data)
+                    self.jsonDataTextView.text = "\(value.rawValue)"
+                    MyLog(value)
+                }catch let aError {
+                    MyLog(aError)
+                }
+            case .failure(let aError):
+                MyLog(aError)
+            }
+        }
+    }
+    
     // MARK: 获取交易记录
     private func getTxRecord() {
         ApiManagerProvider.request(.getTxRecord(address: myAddress)) { (result) in
             switch result {
             case .success(let response):
+                MyLog(JSON(response.data))
                 do{
                     let value = try response.mapJSON()
                     self.jsonDataTextView.text = "\(value)"

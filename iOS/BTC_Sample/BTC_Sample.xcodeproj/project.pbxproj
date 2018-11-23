@@ -20,6 +20,10 @@
 		F546AC71219AD71D009D4873 /* ZZYQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F546AC6E219AD71D009D4873 /* ZZYQRCode.bundle */; };
 		F546AC74219ADA62009D4873 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F546AC72219ADA62009D4873 /* RootViewController.swift */; };
 		F546AC75219ADA62009D4873 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F546AC73219ADA62009D4873 /* RootViewController.xib */; };
+		F550BFF321A3D7290013A3FB /* BTCUspentVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F550BFF221A3D7290013A3FB /* BTCUspentVO.swift */; };
+		F550BFF521A3DC490013A3FB /* BTCDataUnspentVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F550BFF421A3DC490013A3FB /* BTCDataUnspentVO.swift */; };
+		F550BFF821A5044B0013A3FB /* BTCTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F550BFF721A5044B0013A3FB /* BTCTransaction.swift */; };
+		F550BFFD21A680A10013A3FB /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F550BFFC21A680A10013A3FB /* RootViewModel.swift */; };
 		F5562B6B219BF0D3005D98AD /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5562B69219BF0D3005D98AD /* QRCodeViewController.swift */; };
 		F5562B6C219BF0D3005D98AD /* QRCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5562B6A219BF0D3005D98AD /* QRCodeViewController.xib */; };
 		F5562B6E219C2A21005D98AD /* ETHKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5562B6D219C2A21005D98AD /* ETHKeyStore.swift */; };
@@ -70,6 +74,10 @@
 		F546AC6E219AD71D009D4873 /* ZZYQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZZYQRCode.bundle; sourceTree = "<group>"; };
 		F546AC72219ADA62009D4873 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		F546AC73219ADA62009D4873 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		F550BFF221A3D7290013A3FB /* BTCUspentVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCUspentVO.swift; sourceTree = "<group>"; };
+		F550BFF421A3DC490013A3FB /* BTCDataUnspentVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCDataUnspentVO.swift; sourceTree = "<group>"; };
+		F550BFF721A5044B0013A3FB /* BTCTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCTransaction.swift; sourceTree = "<group>"; };
+		F550BFFC21A680A10013A3FB /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		F5562B69219BF0D3005D98AD /* QRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		F5562B6A219BF0D3005D98AD /* QRCodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRCodeViewController.xib; sourceTree = "<group>"; };
 		F5562B6D219C2A21005D98AD /* ETHKeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHKeyStore.swift; sourceTree = "<group>"; };
@@ -152,6 +160,7 @@
 			children = (
 				F51CADC52199134D0057DCBA /* AppDelegate.swift */,
 				F55771AA219987F4004F5CB6 /* VO */,
+				F550BFFB21A680730013A3FB /* ViewModel */,
 				F55771A121995E00004F5CB6 /* Controllers */,
 				F557719F21995DD2004F5CB6 /* ApiManager */,
 				F55771A021995DF2004F5CB6 /* Tools */,
@@ -193,6 +202,22 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		F550BFF621A504340013A3FB /* BTCTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				F550BFF721A5044B0013A3FB /* BTCTransaction.swift */,
+			);
+			path = BTCTransaction;
+			sourceTree = "<group>";
+		};
+		F550BFFB21A680730013A3FB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F550BFFC21A680A10013A3FB /* RootViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		F557719F21995DD2004F5CB6 /* ApiManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +229,7 @@
 		F55771A021995DF2004F5CB6 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				F550BFF621A504340013A3FB /* BTCTransaction */,
 				F546AC6B219AD713009D4873 /* ZZYQRCodeSwift */,
 				F55771A8219985D4004F5CB6 /* BitcoinTool.swift */,
 				F55771AB21998987004F5CB6 /* MyExtension.swift */,
@@ -230,6 +256,8 @@
 			children = (
 				F55771AF21998AA4004F5CB6 /* BTCKeyStore.swift */,
 				F5562B6D219C2A21005D98AD /* ETHKeyStore.swift */,
+				F550BFF221A3D7290013A3FB /* BTCUspentVO.swift */,
+				F550BFF421A3DC490013A3FB /* BTCDataUnspentVO.swift */,
 			);
 			path = VO;
 			sourceTree = "<group>";
@@ -438,18 +466,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F550BFFD21A680A10013A3FB /* RootViewModel.swift in Sources */,
 				F5562B6E219C2A21005D98AD /* ETHKeyStore.swift in Sources */,
 				F55771A321997BEF004F5CB6 /* ApiManager.swift in Sources */,
 				F546AC70219AD71D009D4873 /* AVCaptureSessionManager.swift in Sources */,
+				F550BFF521A3DC490013A3FB /* BTCDataUnspentVO.swift in Sources */,
 				F55771AE219989A2004F5CB6 /* MyDefine.swift in Sources */,
 				F546AC74219ADA62009D4873 /* RootViewController.swift in Sources */,
 				F546AC6F219AD71D009D4873 /* UIImage+ZZYQRCodeImage.swift in Sources */,
+				F550BFF321A3D7290013A3FB /* BTCUspentVO.swift in Sources */,
 				F55771AC21998987004F5CB6 /* MyExtension.swift in Sources */,
 				F5562B6B219BF0D3005D98AD /* QRCodeViewController.swift in Sources */,
 				F55771A9219985D4004F5CB6 /* BitcoinTool.swift in Sources */,
 				F51CADC62199134D0057DCBA /* AppDelegate.swift in Sources */,
 				F55771B021998AA4004F5CB6 /* BTCKeyStore.swift in Sources */,
 				F55771B221998BF5004F5CB6 /* LocalData.swift in Sources */,
+				F550BFF821A5044B0013A3FB /* BTCTransaction.swift in Sources */,
 				F546AC6A219AD6FF009D4873 /* ScanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
