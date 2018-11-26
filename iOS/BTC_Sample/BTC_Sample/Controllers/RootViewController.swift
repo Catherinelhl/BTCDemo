@@ -23,6 +23,7 @@ class RootViewController: UIViewController {
 
     @IBOutlet weak var symbolLabel: UILabel!
     @IBOutlet weak var feesLabel: UILabel!
+    @IBOutlet weak var txHashTextField: UITextField!
     
     private var balance:Decimal = 0
     
@@ -80,6 +81,10 @@ class RootViewController: UIViewController {
         self.present(UINavigationController(rootViewController: scanVc), animated: true, completion: nil)
     }
     
+    
+    @IBAction func getTxDetailButtonAction(_ sender: UIButton) {
+        getTxDetail()
+    }
     
     
     // MARK: - Api request
@@ -370,6 +375,30 @@ class RootViewController: UIViewController {
                     let value = try response.mapJSON()
                     self.jsonDataTextView.text = "\(value)"
                 }catch let aError {
+                    MyLog(aError)
+                }
+            case .failure(let aError):
+                MyLog(aError)
+            }
+        }
+    }
+    
+    // MARK: 通过交易hash获取交易详情
+    private func getTxDetail() {
+        let txHash = txHashTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard txHash != "" else {
+            self.view.showToast("交易hash值不能为空")
+            return
+        }
+        
+        ApiManagerProvider.request(.getTxDetail(txHash: txHash)) { (result) in
+            switch result {
+            case .success(let response):
+                do{
+                    let value = try response.mapJSON()
+                    MyLog(value)
+                    self.jsonDataTextView.text = "\(value)"
+                }catch let aError{
                     MyLog(aError)
                 }
             case .failure(let aError):

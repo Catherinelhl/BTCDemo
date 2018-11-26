@@ -60,7 +60,7 @@ var fees:Decimal {
     get{
         switch coinType {
         case .bitcoinMain, .bitcoinTest , .blockChain_btc_Main:
-            return 0.0005
+            return 0.0001
         case .ethMain, .ethTest:
             return (gasPrice * 21000) / rate
         }
