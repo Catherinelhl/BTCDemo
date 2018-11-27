@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v22/values-v22.xml",
+            "outputFile": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v22/values-v22.xml",
             "map": [
                 {
-                    "source": "/Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e05339722c8849b6ed4046ed0bef8f94/res/values-v22/values-v22.xml",
+                    "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/4e9655f15fd68ef976af471c25f9d093/res/values-v22/values-v22.xml",
                     "from": {
                         "startLines": "2,3,4,9",
                         "startColumns": "4,4,4,4",
