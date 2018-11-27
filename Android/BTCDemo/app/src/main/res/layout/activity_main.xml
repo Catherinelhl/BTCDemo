@@ -59,6 +59,9 @@
         <EditText
                 android:id="@+id/et_amount"
                 android:layout_width="0dp"
+                android:singleLine="true"
+                android:digits="1234567890."
+                android:inputType="numberDecimal"
                 android:layout_weight="1"
                 android:hint="Send amount"
                 android:layout_height="wrap_content"/>
