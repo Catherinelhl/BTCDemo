@@ -45,10 +45,12 @@ var myPublicKey:String {
     }
 }
 
+/// 货币最小单位的和基本单位之间的汇率
 var rate:Decimal {
     get{
         switch coinType {
         case .bitcoinMain,.bitcoinTest , .blockChain_btc_Main:
+            // 1 BTC = 10^8 聪
             return pow(10, 8)
         case .ethMain, .ethTest:
             return pow(10, 18)
@@ -56,10 +58,12 @@ var rate:Decimal {
     }
 }
 
+// 手续费
 var fees:Decimal {
     get{
         switch coinType {
         case .bitcoinMain, .bitcoinTest , .blockChain_btc_Main:
+            // 单位是BTC
             return 0.0001
         case .ethMain, .ethTest:
             return (gasPrice * 21000) / rate
