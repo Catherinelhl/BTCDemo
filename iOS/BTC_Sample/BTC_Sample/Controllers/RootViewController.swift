@@ -41,6 +41,7 @@ class RootViewController: UIViewController {
         myAddressLabel.adjustsFontSizeToFitWidth = true
         feesLabel.adjustsFontSizeToFitWidth = true
         
+        // 获取余额 api返回数据单位为 聪(satoshi) （1 BTC = 10^8 聪）
         getBalnce()
     }
     
@@ -55,12 +56,12 @@ class RootViewController: UIViewController {
     
     @IBAction func sendTxButtonAction(_ sender: UIButton) {
         
-        switch coinType {
-        case .blockChain_btc_Main:
+//        switch coinType {
+//        case .blockChain_btc_Main:
             createTx_1()
-        default:
-            createTx_0()
-        }
+//        default:
+//            createTx_0()
+//        }
         
     }
     
@@ -115,7 +116,7 @@ class RootViewController: UIViewController {
             }
         }
     }
-    
+    /*
     // MARK: 创建交易0
     private func createTx_0() {
         guard reciveAddressTextField.text! != "" else {
@@ -209,6 +210,7 @@ class RootViewController: UIViewController {
             }
         }
     }
+    */
     
     // MARK: 创建交易1
     private func createTx_1() {
@@ -235,7 +237,7 @@ class RootViewController: UIViewController {
             return
         }
         
-        
+        // 网络请求获取未花费交易
         ApiManagerProvider.request(.getUnspent(address: myAddress)) { (result) in
             switch result {
             case .success(let response):
@@ -257,7 +259,7 @@ class RootViewController: UIViewController {
             }
         }
     }
-    
+    // MARK: 创建未花费交易
     private func createUnspentTxs(_ unspentArray:[BTCUspentVO], amount:Decimal) {
         var totalSend:Int64 = 0
         var utxos:[UnspentTransaction] = []
@@ -278,6 +280,7 @@ class RootViewController: UIViewController {
             }
         }
         
+        // 通过私钥签名交易并发送交易
         do {
             let toAddress = try AddressFactory.create(reciveAddressTextField.text!)
             let privateKey = try PrivateKey.init(wif: myPrivateKey)
@@ -293,7 +296,7 @@ class RootViewController: UIViewController {
         
         
     }
-    
+    // MARK: 创建未签名交易
     private func createUnsignedTx(toAddress:Address,privateKey:PrivateKey,totalSend:Int64,amount:Int64,utxos:[UnspentTransaction]) -> UnsignedTransaction {
         
         let myAddress = privateKey.publicKey().toCashaddr()
@@ -318,7 +321,7 @@ class RootViewController: UIViewController {
         let tx = Transaction(version: 1, inputs: unsignedInputs, outputs: outputs, lockTime: 0)
         return UnsignedTransaction(tx: tx, utxos: utxos)
     }
-    
+    // MARK: 签名交易
     private func signTx(unsignedTx:UnsignedTransaction,privateKey:PrivateKey) -> Transaction{
         var inputsToSign = unsignedTx.tx.inputs
         var transactionToSign: Transaction {
@@ -408,8 +411,9 @@ class RootViewController: UIViewController {
     }
 }
 
-
+// MARK: - 扫描视图代理方法
 extension RootViewController : ScanViewControllerDelegate {
+    // MARK: 扫描结果回调
     func didReciveScanResult(_ result: String) {
 
         reciveAddressTextField.text = result
