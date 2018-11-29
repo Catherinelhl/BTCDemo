@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>BTC</title>
+</head>
+<body>
+<!-- tools [Start] -->
+<script src="/BTC/resources/js/tools/jquery-1.12.4.min.js"></script>
+<script src="/BTC/resources/js/tools/aes.js"></script>
+<script src="/BTC/resources/js/tools/aes-min.js"></script>
+<!-- tools [End] -->
+
+<!-- ecc [Start] -->
+<script src="/BTC/resources/js/ecc/bitcore-lib.js"></script>
+<script src="/BTC/resources/js/ecc/bitcore-lib.min.js"></script>
+<script src="/BTC/resources/js/ecc/Crypto.js"></script>
+<script src="/BTC/resources/js/ecc/SHA256-2.5.4.js"></script>
+<script src="/BTC/resources/js/ecc/AES.js"></script>
+<script src="/BTC/resources/js/ecc/Crypto-JS-v2.0.0.js"></script>
+<script src="/BTC/resources/js/ecc/ecdsa-1.4.js"></script>
+<script src="/BTC/resources/js/ecc/encryption-1.3.js"></script>
+<script src="/BTC/resources/js/ecc/bitcoin.js"></script>
+<script src="/BTC/resources/js/ecc/base58.js"></script>
+<script src="/BTC/resources/js/ecc/SecureRandom.js"></script>
+<script src="/BTC/resources/js/ecc/eckey.js"></script>
+<script src="/BTC/resources/js/ecc/address.js"></script>
+<script src="/BTC/resources/js/ecc/util.js"></script>
+<script src="/BTC/resources/js/ecc/ecc.js"></script>
+<!-- ecc [End] -->
+
+
+<script type="text/javascript">
+
+var privatekeyWif = getPrivateKey(); console.log("privatekeyWif: " + privatekeyWif);
+
+var publickey = getPublicKeyHex(privatekeyWif); console.log("publickey: " + publickey);
+var address = getAddress(publickey); console.log("address: " + address);
+var secretKey = "111111111111111a";
+var keystore = createKeyStore(secretKey,address,publickey,privatekeyWif);
+
+//将生成的privateKey，publicKey，address存入keystore，再根据向量值和密钥值进行aes加密
+function createKeyStore(secretKey, address, publicKey, privateKey) {
+	// 将生成的privateKey，publicKey，address存入keystore，再根据向量值和密钥值进行aes加密
+	// 官方示例, 每次输出的密文都不一样
+	CryptoJS.AES.encrypt("Message", "Secret Passphrase");
+
+	// 正确用法
+
+	var str = {
+		privateKey : privateKey,
+		publicKey : publicKey,
+		address : address
+	};    
+	
+	// 密钥 16 位
+	var key = secretKey;
+	// 初始向量 initial vector 16 位
+	var iv = key;
+	// key 和 iv 可以一致
+
+	key = CryptoJS.enc.Utf8.parse(key);  //console.log("key: "+key);
+	iv = CryptoJS.enc.Utf8.parse(iv);  //console.log("str: "+objTostr(str));
+	
+	
+	var encrypted = CryptoJS.AES.encrypt(JSON.stringify(str), key, {
+		iv : iv,
+		mode : CryptoJS.mode.CBC,
+		padding : CryptoJS.pad.Pkcs7
+	});
+	// 转换为字符串
+	encrypted = encrypted.toString();        //console.log(encrypted);
+	return encrypted;
+
+}
+
+</script>
+
+</body>
+</html>
