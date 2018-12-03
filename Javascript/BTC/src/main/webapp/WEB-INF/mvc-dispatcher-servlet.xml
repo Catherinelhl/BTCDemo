@@ -9,7 +9,7 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<context:component-scan base-package="io.bcaas.spring.frontcontroller" />
+	<context:component-scan base-package="io.bcaas.controller" />
 
 	<!-- <mvc:interceptors> -->
 	<!-- <mvc:interceptor> -->
