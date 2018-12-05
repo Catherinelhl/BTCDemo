@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Demo</title>
     <link rel="stylesheet" href="/BTC/resources/css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="/BTC/resources/css/BlockChainDemo.css">
@@ -30,8 +31,9 @@
                 Address: <input id="address" class="input-address" value=""/>
 
             </div>
-            <div style="width: 10%;height: 100%;" class="item">
-                <img src="/BTC/resources/image/icon_receive.png" style="width: 40px;height: 40px;">
+            <div style="width: 10%;" class="item">
+                <img src="/BTC/resources/image/icon_receive.png" data-toggle="modal" onclick="initAddressQrcode()"
+                     style="width: 40px;height: 40px;" data-target="#myModal">
             </div>
         </div>
 
@@ -54,21 +56,22 @@
         <!--第三行-->
         <div style="width: 96%;height: 80px;margin: auto;" class="item">
             <div style="width: 50%;height: 100%;" class="item-left">
-                <div style="border-bottom: 6px solid red;width: 80%;height:50%;" class="item-left">
+                <div style="border-bottom: 6px solid red;width: 80%;" class="item-left">
 
                     <!-- 发送金额 -->
                     <input id="sendMoney" placeholder="输入交易金额" type="text"/>
                 </div>
             </div>
-            <div style="width: 50%;height: 100%;" class="item-right">
-                <text style="color: #FF8C00;font-size: 32px;font-weight: 600;">
+            <div style="width: 50%;font-size: 32px;" class="item-right">
+                <text style="color: #FF8C00;font-weight: 600;">
                     Fee:
                 </text>
 
-                <text id="fee" style="margin-left: 10px;font-size: 32px;color:#D3D3D3">
+                <!--发送金额手续费-->
+                <text id="fee" style="margin-left: 10px;color:#D3D3D3">
                     0.00001
                 </text>
-                <text style="margin-left: 10px;font-size: 32px;color:#D3D3D3">
+                <text style="margin-left: 10px;color:#D3D3D3">
                     BTC
                 </text>
 
@@ -76,48 +79,49 @@
         </div>
 
         <!--第四行-->
-        <div style="width: 96%;height: 100px;margin: auto;" class="item-left">
-            <div style="width:12%;height: 100%;font-size: 28px;font-weight: 500;margin: auto" class="item-left">
+        <div style="width: 96%;height: 100px;margin: auto;font-size: 32px;font-weight: 500" class="item-left">
+            <div style="width:12%;margin: auto" class="item-left">
                 Send to:
             </div>
 
             <!--发送方地址-->
-            <div style="width:78%;height: 100%;font-size: 30px;font-weight: 500;margin-top: 50px">
+            <div style="width:100%;height: 100px;margin-top: 50px">
                 <input id="sendAddress" class="input-balance" placeholder="输入交易地址" value=""/>
-            </div>
-
-            <div style="width: 10%;height: 100%;" class="item">
-                <img src="/BTC/resources/image/icon_receive.png" style="width: 40px;height: 40px;">
             </div>
         </div>
 
         <!--第五行 按钮-->
         <div style="width: 96%;height: 100px;margin: auto;" class="item">
-            <div style="width: 10%;height: 100%;" class="item"></div>
+            <div style="width: 10%;" class="item"></div>
 
+            <!--发送按钮-->
             <div style="width: 40%;height: 100%;" class="item">
-                <button id="btn_pushTX" onclick="pushTX()" class="item btn">Push TX</button>
+                <button id="btn_pushTX" onclick="pushTX()" class="item btn">
+                    Push TX
+                </button>
             </div>
             <div style="width: 40%;height: 100%;" class="item">
-                <button id="btn_getTransaction" onclick="getTransaction()" class="item btn">Get Transaction List
+
+                <!--获取交易记录-->
+                <button id="btn_getTransaction" onclick="getTransaction()" class="item btn">
+                    Get Transaction List
                 </button>
             </div>
 
-            <div style="width: 10%;height: 100%;" class="item"></div>
+            <div style="width: 10%;" class="item"></div>
         </div>
 
         <!--第六行-->
         <div style="width: 96%;height: 100px;margin: auto;" class="item-left">
-            <div style="width:90%;height: 100%;font-size: 32px;font-weight: 600; color: #FF8C00;" class="item-left">
+            <div style="font-size: 32px;font-weight: 600; color: #FF8C00;" class="item-left">
                 TX Hash:
-            </div>
-            <div style="width: 10%;height: 100%;" class="item">
-                <img src="/BTC/resources/image/icon_receive.png" style="width: 40px;height: 40px;">
             </div>
         </div>
 
         <!--第七行 显示response-->
         <div style="width:60%;margin: auto;height: auto;margin-left:6px;font-size:30px" class="item-left">
+
+            <!--展示交易记录list-->
             <pre id="transactionList"
                  style="font-size:18px;white-space: pre-wrap;word-wrap: break-word;display: contents">
                 展示交易记录。。。
@@ -126,15 +130,27 @@
     </div>
 </div>
 
+<!-- 二维码模态框（Modal） -->
+<div class="modal fade" id="myModal" role="dialog" aria-hidden="true" style="margin: auto">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="qrcode" class="qrCode" style="margin-left: 35%"></div>
+                <div id="qrcode1" class="qrCode" style="margin-left: 35%"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="/BTC/resources/js/tools/jquery-1.12.4.min.js"></script>
+<script src="/BTC/resources/js/tools/qrcode.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script>
     //钱包信息
     var wallet = {
-    	// address: "1Ag8vD6axmhXAFEPZkBFxcwUoW1Wsm25qR",
+        // address: "1Ag8vD6axmhXAFEPZkBFxcwUoW1Wsm25qR",
         // privateKey: "5KXF8f1t5rGPkboUsvTbAmMNUFEeijJgCFPqXPEFbPqryku4Qcb"
-        // address: "14XaUMBjfhL4Z38kb3pBCBq3DTXuWAJcQG",
-        // privateKey: "5KRQtgrc4mLfqL5zfDXQUYLKgSxbCYvRtcaGSkQFcEz2S28ojeG"
         address: "1PmR1EUzWdygApeuNX5WU9KqdwfEYjzzqp",
         privateKey: "5JR6FD5sFVxmbLFWUGEbQCybz4dxEmxNYXppwxQDjqhUyccSW1Z"
     };
@@ -146,6 +162,9 @@
 
         //初始化余额
         initBalance();
+
+        //隐藏钱包地址二维码modal
+        $('#myModal').modal('hide');
 
     });
 
@@ -249,6 +268,17 @@
         });
     }
 
+    //生成二维码
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+        width: 180,
+        height: 180
+    });
+
+    //生成二维码地址弹窗
+    function initAddressQrcode() {
+    	//生成二维码
+        qrcode.makeCode(wallet.address);
+    }
 
 </script>
 
