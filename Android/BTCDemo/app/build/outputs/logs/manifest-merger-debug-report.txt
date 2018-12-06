@@ -1,46 +1,5 @@
 -- Merging decision tree log ---
 manifest
-<<<<<<< HEAD
-ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:2:1-27:12
-INJECTED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:2:1-27:12
-INJECTED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:2:1-27:12
-INJECTED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:2:1-27:12
-MERGED from [com.android.support:multidex:1.0.3] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/multidex-1.0.3.aar/df1368ce5427c8d1d9805296651d813c/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:appcompat-v7:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e05339722c8849b6ed4046ed0bef8f94/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/dd95c8ee2ccc3fe60e1a5936b43ab036/AndroidManifest.xml:2:1-11:12
-MERGED from [com.jakewharton.rxbinding2:rxbinding:2.1.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/rxbinding-2.1.1.aar/c572ef59cfe895cc413199b2bf8f38e1/AndroidManifest.xml:2:1-8:12
-MERGED from [io.reactivex.rxjava2:rxandroid:2.1.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/rxandroid-2.1.0.aar/35d895023d7a25878ca94de30e2b208b/AndroidManifest.xml:15:1-20:12
-MERGED from [com.jakewharton:butterknife:8.8.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/butterknife-8.8.1.aar/7aa6ed974070c492e32185ae14e665a4/AndroidManifest.xml:2:1-7:12
-MERGED from [:qrcode] /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/qrcode/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-22:12
-MERGED from [com.android.support:support-fragment:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/19cce22773cc141cb139bdb818aea98e/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:animated-vector-drawable:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0.aar/87181596e4d787b3c26ebd809138d666/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-ui:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0.aar/87b8bc16975dc3b5134a71e116a39575/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-utils:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/daa80cb922afc8ae7e1d849d01ce1b0b/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-vector-drawable:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0.aar/0e1e4a2862a9b801886d0ef90ee0c8e0/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:loader:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/loader-28.0.0.aar/f861c8053279adc03d75a2a121bd1034/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:viewpager:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0.aar/0ee00283f9fa235ac435b9cb17b0ea6e/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:coordinatorlayout:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/40377ce7fa0206019a28585928fe8e2d/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:drawerlayout:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0.aar/e914ad902c9651f8c0490c4903b9a857/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:slidingpanelayout:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/ee14d24d7a5578b22affe1d9bbcd171c/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:customview:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/customview-28.0.0.aar/d8bcd4fe30c227868440737b322ee1dd/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:swiperefreshlayout:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0.aar/0d81f5d4cdd57b33dba053688684a56b/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:asynclayoutinflater:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0.aar/b326b1a65632712d29a7ae42a53863fb/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-compat:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/e0d503751b364d050c5ea2d0daae0f57/AndroidManifest.xml:17:1-24:12
-MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/72d3c0097170b018d400b8fed0dd113e/AndroidManifest.xml:17:1-25:12
-MERGED from [com.android.support:cursoradapter:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/b3964a421bc90e897dd7fa344b59d1d4/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:documentfile:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0.aar/ba0cc71040e704134d82eaffcd414677/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:localbroadcastmanager:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0.aar/96adfd5a63e1c83eea826be2c48b0a48/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:print:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/2cd3d900a8b078c3b48b443ef829da34/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/3eb9ebc2472303eeddffe7157d9033b3/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:interpolator:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/a21a6215f8991f92631c6ddf4f5cb732/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:livedata:1.1.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/955ab9412e8d004538568cb276df150d/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/457b17d62d8ee03e19b73d503efc67c7/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.core:runtime:1.1.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/b0986dccf75bcfdc1ae33ba366bd23ae/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:runtime:1.1.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/9304553f91650f9a38ee67f4b480d915/AndroidManifest.xml:17:1-22:12
-INJECTED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:2:1-27:12
-INJECTED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:2:1-27:12
-INJECTED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:2:1-27:12
-=======
 ADDED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:2:1-27:12
 INJECTED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:2:1-27:12
 INJECTED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:2:1-27:12
@@ -80,21 +39,11 @@ MERGED from [android.arch.lifecycle:runtime:1.1.1] /Users/catherine.brainwilliam
 INJECTED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:2:1-27:12
 INJECTED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:2:1-27:12
 INJECTED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:2:1-27:12
->>>>>>> 32c9ff2444b0b3d6e7cc388d3c36677561b18376
 	package
 		ADDED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:3:11-38
 		INJECTED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
 	android:versionName
-<<<<<<< HEAD
-		INJECTED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
-		ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:2:1-27:12
-		INJECTED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
-	android:versionCode
-		INJECTED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
-		ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:2:1-27:12
-		INJECTED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
-=======
 		INJECTED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
 		ADDED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:2:1-27:12
 		INJECTED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
@@ -102,31 +51,11 @@ INJECTED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDem
 		INJECTED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
 		ADDED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:2:1-27:12
 		INJECTED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
->>>>>>> 32c9ff2444b0b3d6e7cc388d3c36677561b18376
 	xmlns:android
 		ADDED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
 ADDED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:4:5-66
 	android:name
-<<<<<<< HEAD
-		ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:4:22-64
-uses-permission#android.permission.CAMERA
-ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:5:5-64
-MERGED from [:qrcode] /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/qrcode/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:11:5-65
-MERGED from [:qrcode] /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/qrcode/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:11:5-65
-	android:name
-		ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:5:22-62
-application
-ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:7:5-25:19
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/dd95c8ee2ccc3fe60e1a5936b43ab036/AndroidManifest.xml:9:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/dd95c8ee2ccc3fe60e1a5936b43ab036/AndroidManifest.xml:9:5-20
-MERGED from [:qrcode] /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/qrcode/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:14:5-20:19
-MERGED from [:qrcode] /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/qrcode/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:14:5-20:19
-MERGED from [com.android.support:support-compat:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/e0d503751b364d050c5ea2d0daae0f57/AndroidManifest.xml:22:5-94
-MERGED from [com.android.support:support-compat:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/e0d503751b364d050c5ea2d0daae0f57/AndroidManifest.xml:22:5-94
-MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/72d3c0097170b018d400b8fed0dd113e/AndroidManifest.xml:22:5-23:19
-MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/72d3c0097170b018d400b8fed0dd113e/AndroidManifest.xml:22:5-23:19
-=======
 		ADDED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:4:22-64
 uses-permission#android.permission.CAMERA
 ADDED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:5:5-64
@@ -144,117 +73,9 @@ MERGED from [com.android.support:support-compat:28.0.0] /Users/catherine.brainwi
 MERGED from [com.android.support:support-compat:28.0.0] /Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/4458ef68707fb6b9d5013a7b9873da91/AndroidManifest.xml:22:5-94
 MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/5ee781b6e2aa03792df5b13ab8fa2003/AndroidManifest.xml:22:5-23:19
 MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/5ee781b6e2aa03792df5b13ab8fa2003/AndroidManifest.xml:22:5-23:19
->>>>>>> 32c9ff2444b0b3d6e7cc388d3c36677561b18376
 	android:appComponentFactory
 		ADDED from [com.android.support:support-compat:28.0.0] /Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/4458ef68707fb6b9d5013a7b9873da91/AndroidManifest.xml:22:18-91
 	android:supportsRtl
-<<<<<<< HEAD
-		ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:13:13-39
-	android:label
-		ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:11:13-45
-	android:roundIcon
-		ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:12:13-58
-	android:icon
-		ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:10:13-47
-	android:allowBackup
-		ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:9:13-39
-	android:theme
-		ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:14:13-44
-	android:name
-		ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:8:13-49
-activity#bcaasc.io.btcdemo.activity.MainActivity
-ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:15:9-22:20
-	android:windowSoftInputMode
-		ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:16:19-73
-	android:name
-		ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:15:19-56
-intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:17:13-21:29
-action#android.intent.action.MAIN
-ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:18:17-68
-	android:name
-		ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:18:25-66
-category#android.intent.category.LAUNCHER
-ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:20:17-76
-	android:name
-		ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:20:27-74
-activity#bcaasc.io.btcdemo.activity.QrCodeActivity
-ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:23:9-24:80
-	android:theme
-		ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:24:19-78
-	android:name
-		ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:23:19-58
-uses-sdk
-INJECTED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
-INJECTED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
-MERGED from [com.android.support:multidex:1.0.3] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/multidex-1.0.3.aar/df1368ce5427c8d1d9805296651d813c/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:multidex:1.0.3] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/multidex-1.0.3.aar/df1368ce5427c8d1d9805296651d813c/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:appcompat-v7:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e05339722c8849b6ed4046ed0bef8f94/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:appcompat-v7:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e05339722c8849b6ed4046ed0bef8f94/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/dd95c8ee2ccc3fe60e1a5936b43ab036/AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/dd95c8ee2ccc3fe60e1a5936b43ab036/AndroidManifest.xml:5:5-7:41
-MERGED from [com.jakewharton.rxbinding2:rxbinding:2.1.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/rxbinding-2.1.1.aar/c572ef59cfe895cc413199b2bf8f38e1/AndroidManifest.xml:6:5-44
-MERGED from [com.jakewharton.rxbinding2:rxbinding:2.1.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/rxbinding-2.1.1.aar/c572ef59cfe895cc413199b2bf8f38e1/AndroidManifest.xml:6:5-44
-MERGED from [io.reactivex.rxjava2:rxandroid:2.1.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/rxandroid-2.1.0.aar/35d895023d7a25878ca94de30e2b208b/AndroidManifest.xml:18:5-43
-MERGED from [io.reactivex.rxjava2:rxandroid:2.1.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/rxandroid-2.1.0.aar/35d895023d7a25878ca94de30e2b208b/AndroidManifest.xml:18:5-43
-MERGED from [com.jakewharton:butterknife:8.8.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/butterknife-8.8.1.aar/7aa6ed974070c492e32185ae14e665a4/AndroidManifest.xml:5:5-43
-MERGED from [com.jakewharton:butterknife:8.8.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/butterknife-8.8.1.aar/7aa6ed974070c492e32185ae14e665a4/AndroidManifest.xml:5:5-43
-MERGED from [:qrcode] /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/qrcode/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
-MERGED from [:qrcode] /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/qrcode/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
-MERGED from [com.android.support:support-fragment:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/19cce22773cc141cb139bdb818aea98e/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/19cce22773cc141cb139bdb818aea98e/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0.aar/87181596e4d787b3c26ebd809138d666/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0.aar/87181596e4d787b3c26ebd809138d666/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0.aar/87b8bc16975dc3b5134a71e116a39575/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0.aar/87b8bc16975dc3b5134a71e116a39575/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/daa80cb922afc8ae7e1d849d01ce1b0b/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/daa80cb922afc8ae7e1d849d01ce1b0b/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0.aar/0e1e4a2862a9b801886d0ef90ee0c8e0/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0.aar/0e1e4a2862a9b801886d0ef90ee0c8e0/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:loader:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/loader-28.0.0.aar/f861c8053279adc03d75a2a121bd1034/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:loader:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/loader-28.0.0.aar/f861c8053279adc03d75a2a121bd1034/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:viewpager:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0.aar/0ee00283f9fa235ac435b9cb17b0ea6e/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:viewpager:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0.aar/0ee00283f9fa235ac435b9cb17b0ea6e/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:coordinatorlayout:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/40377ce7fa0206019a28585928fe8e2d/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:coordinatorlayout:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/40377ce7fa0206019a28585928fe8e2d/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:drawerlayout:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0.aar/e914ad902c9651f8c0490c4903b9a857/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:drawerlayout:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0.aar/e914ad902c9651f8c0490c4903b9a857/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:slidingpanelayout:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/ee14d24d7a5578b22affe1d9bbcd171c/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:slidingpanelayout:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/ee14d24d7a5578b22affe1d9bbcd171c/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:customview:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/customview-28.0.0.aar/d8bcd4fe30c227868440737b322ee1dd/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:customview:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/customview-28.0.0.aar/d8bcd4fe30c227868440737b322ee1dd/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:swiperefreshlayout:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0.aar/0d81f5d4cdd57b33dba053688684a56b/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:swiperefreshlayout:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0.aar/0d81f5d4cdd57b33dba053688684a56b/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:asynclayoutinflater:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0.aar/b326b1a65632712d29a7ae42a53863fb/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:asynclayoutinflater:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0.aar/b326b1a65632712d29a7ae42a53863fb/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/e0d503751b364d050c5ea2d0daae0f57/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/e0d503751b364d050c5ea2d0daae0f57/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/72d3c0097170b018d400b8fed0dd113e/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/72d3c0097170b018d400b8fed0dd113e/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cursoradapter:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/b3964a421bc90e897dd7fa344b59d1d4/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cursoradapter:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/b3964a421bc90e897dd7fa344b59d1d4/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:documentfile:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0.aar/ba0cc71040e704134d82eaffcd414677/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:documentfile:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0.aar/ba0cc71040e704134d82eaffcd414677/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:localbroadcastmanager:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0.aar/96adfd5a63e1c83eea826be2c48b0a48/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:localbroadcastmanager:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0.aar/96adfd5a63e1c83eea826be2c48b0a48/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:print:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/2cd3d900a8b078c3b48b443ef829da34/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:print:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/2cd3d900a8b078c3b48b443ef829da34/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/3eb9ebc2472303eeddffe7157d9033b3/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/3eb9ebc2472303eeddffe7157d9033b3/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:interpolator:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/a21a6215f8991f92631c6ddf4f5cb732/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:interpolator:28.0.0] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/a21a6215f8991f92631c6ddf4f5cb732/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata:1.1.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/955ab9412e8d004538568cb276df150d/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata:1.1.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/955ab9412e8d004538568cb276df150d/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/457b17d62d8ee03e19b73d503efc67c7/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/457b17d62d8ee03e19b73d503efc67c7/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/b0986dccf75bcfdc1ae33ba366bd23ae/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/b0986dccf75bcfdc1ae33ba366bd23ae/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/9304553f91650f9a38ee67f4b480d915/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.1] /Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/9304553f91650f9a38ee67f4b480d915/AndroidManifest.xml:20:5-44
-INJECTED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
-INJECTED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
-=======
 		ADDED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:13:13-39
 	android:label
 		ADDED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml:11:13-45
@@ -360,32 +181,21 @@ MERGED from [android.arch.lifecycle:runtime:1.1.1] /Users/catherine.brainwilliam
 MERGED from [android.arch.lifecycle:runtime:1.1.1] /Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/7eaba6f9ed90fad7fc8ea6bedcb4a273/AndroidManifest.xml:20:5-44
 INJECTED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
 INJECTED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
->>>>>>> 32c9ff2444b0b3d6e7cc388d3c36677561b18376
 	android:targetSdkVersion
 		INJECTED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
 		ADDED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-<<<<<<< HEAD
-		INJECTED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
-		ADDED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
-=======
 		INJECTED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
 		ADDED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/AndroidManifest.xml
->>>>>>> 32c9ff2444b0b3d6e7cc388d3c36677561b18376
 uses-permission#android.permission.VIBRATE
-ADDED from [:qrcode] /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/qrcode/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:12:5-66
+ADDED from [:qrcode] /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:12:5-66
 	android:name
-		ADDED from [:qrcode] /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/qrcode/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:12:22-63
+		ADDED from [:qrcode] /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:12:22-63
 activity#com.obt.qrcode.activity.CaptureActivity
-ADDED from [:qrcode] /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/qrcode/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:17:9-19:52
+ADDED from [:qrcode] /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:17:9-19:52
 	android:screenOrientation
-		ADDED from [:qrcode] /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/qrcode/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:19:13-49
+		ADDED from [:qrcode] /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:19:13-49
 	android:name
-<<<<<<< HEAD
-		ADDED from [:qrcode] /Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/qrcode/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:18:13-67
-=======
 		ADDED from [:qrcode] /Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:18:13-67
->>>>>>> 32c9ff2444b0b3d6e7cc388d3c36677561b18376
