@@ -35,7 +35,6 @@ public class MainPresenterImp implements MainContact.Presenter {
     private MainContact.View view;
 
 
-    private BigDecimal feePerKb;
     private String transactionRaw, transactionHash;
 
 
@@ -229,12 +228,6 @@ public class MainPresenterImp implements MainContact.Presenter {
             btcUnspentOutputList.add(unspentOutput);
 //            //比较当前账户的btc是否大于等于这次需要push的金额
             if (walletBtc.doubleValue() >= amount.doubleValue()) {
-//                //如果是，判断当前是否是最后一条UTXO事务
-//                if (i < btcUtxoList.size() - 1) {
-//                    //如果不是，那么就将下一条数据也加入进来
-//                    walletBtc = walletBtc.add(new BigDecimal(btcUtxoList.get(i + 1).getValue()));
-//                    btcUnspentOutputList.add(btcUtxoList.get(i + 1));
-//                }
                 break;
             }
         }
