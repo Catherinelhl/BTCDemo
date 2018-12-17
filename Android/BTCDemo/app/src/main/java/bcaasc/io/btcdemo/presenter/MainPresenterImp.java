@@ -273,14 +273,6 @@ public class MainPresenterImp implements MainContact.Presenter {
         LogTool.d(TAG, "transaction is:" + transaction);
         byte[] bytes = transaction.unsafeBitcoinSerialize();
         LogTool.d(TAG, "Transaction size = " + bytes.length);
-        int txSizeInkB = (int) Math.ceil(bytes.length / 1024.);
-//        BigDecimal minimumFee = mFeePerKb.multiply(new BigDecimal(txSizeInkB));
-//                        if (minimumFee.doubleValue() > oldFee.doubleValue()) {
-//                            String error = CommonUtility.formatString(minimumFee.toString(), " QTUM");
-//                            String errorValue = String.format(mContext.getString(R.string.insufficient_fee_tips), error, error);
-//                            ExceptionHandle.ResponseThrowable responseThrowable = new ExceptionHandle.ResponseThrowable(errorValue, TRANSFER_ERROR_ONE, minimumFee, amountString, toAddress);
-//                            throw responseThrowable;
-//                        }
         transactionRaw = Hex.toHexString(bytes);
         LogTool.d(TAG, "transactionRaw:" + transactionRaw);
         transactionHash = transaction.getHashAsString();
