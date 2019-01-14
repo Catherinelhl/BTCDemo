@@ -29,7 +29,7 @@
 				</if>
 			</then>
 			<else>
-				<File>/dpf/logs/BcaasWalletWebChina/${byDate}_BTC_Log.txt</File>
+				<File>/dpf/logs/BTC/${byDate}_BTC_Log.txt</File>
 			</else>
 		</if>
 		<encoder>
@@ -53,7 +53,7 @@
 				</if>
 			</then>
 			<else>
-				<File>/dpf/logs/BcaasWalletWebChina/BTC_Log.txt</File>
+				<File>/dpf/logs/BTC/BTC_Log.txt</File>
 			</else>
 		</if>
 		<encoder>
