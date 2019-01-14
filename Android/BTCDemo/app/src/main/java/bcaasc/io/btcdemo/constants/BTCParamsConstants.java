@@ -13,7 +13,7 @@ import org.bitcoinj.params.TestNet3Params;
 public class BTCParamsConstants {
 
     //当前是否测试环境
-    public static final boolean isTest = false;
+    public static final boolean isTest = true;
 
     //根据是否是测试环境，返回网络参数
     public static final NetworkParameters NetworkParameter = isTest ? TestNet3Params.get() : MainNetParams.get();

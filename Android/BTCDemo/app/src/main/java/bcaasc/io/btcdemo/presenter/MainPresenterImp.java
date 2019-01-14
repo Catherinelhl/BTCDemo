@@ -133,6 +133,7 @@ public class MainPresenterImp implements MainContact.Presenter {
 
     @Override
     public void getTXInfoByHash(String rawHash) {
+        rawHash="30b294f322f08621965c30ee5de221e4ef64f5a5fbb0fd255e8a15643cca9a6c";
         if (rawHash == "" || rawHash == null) {
             rawHash = transactionHash;
         }
