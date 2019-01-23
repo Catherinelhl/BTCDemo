@@ -1,38 +1,6 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/values-ml_values-ml.arsc.flat",
-            "map": [
-                {
-                    "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/78aaa226f3548536b89d2b3e74650e0d/res/values-ml/values-ml.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "30",
-                        "startColumns": "4",
-                        "startOffsets": "2955",
-                        "endColumns": "100",
-                        "endOffsets": "3051"
-                    }
-                },
-                {
-                    "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/values-ml/values-ml.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,224,342,457,550,655,787,864,940,1031,1124,1226,1320,1421,1515,1610,1709,1800,1891,1973,2084,2190,2288,2402,2502,2613,2772,2873",
-                        "endColumns": "118,117,114,92,104,131,76,75,90,92,101,93,100,93,94,98,90,90,81,110,105,97,113,99,110,158,100,81",
-                        "endOffsets": "219,337,452,545,650,782,859,935,1026,1119,1221,1315,1416,1510,1605,1704,1795,1886,1968,2079,2185,2283,2397,2497,2608,2767,2868,2950"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/values-it_values-it.arsc.flat",
             "map": [
                 {
@@ -65,20 +33,10 @@
             ]
         },
         {
-            "outputFile": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/values-da_values-da.arsc.flat",
+            "outputFile": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/values-ml_values-ml.arsc.flat",
             "map": [
                 {
-                    "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/values-da/values-da.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,208,307,419,502,602,715,792,869,960,1053,1149,1243,1338,1431,1526,1624,1715,1806,1885,1994,2102,2198,2312,2414,2515,2668,2765",
-                        "endColumns": "102,98,111,82,99,112,76,76,90,92,95,93,94,92,94,97,90,90,78,108,107,95,113,101,100,152,96,78",
-                        "endOffsets": "203,302,414,497,597,710,787,864,955,1048,1144,1238,1333,1426,1521,1619,1710,1801,1880,1989,2097,2193,2307,2409,2510,2663,2760,2839"
-                    }
-                },
-                {
-                    "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/78aaa226f3548536b89d2b3e74650e0d/res/values-da/values-da.xml",
+                    "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/78aaa226f3548536b89d2b3e74650e0d/res/values-ml/values-ml.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -89,9 +47,19 @@
                     "to": {
                         "startLines": "30",
                         "startColumns": "4",
-                        "startOffsets": "2844",
+                        "startOffsets": "2955",
                         "endColumns": "100",
-                        "endOffsets": "2940"
+                        "endOffsets": "3051"
+                    }
+                },
+                {
+                    "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/values-ml/values-ml.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,224,342,457,550,655,787,864,940,1031,1124,1226,1320,1421,1515,1610,1709,1800,1891,1973,2084,2190,2288,2402,2502,2613,2772,2873",
+                        "endColumns": "118,117,114,92,104,131,76,75,90,92,101,93,100,93,94,98,90,90,81,110,105,97,113,99,110,158,100,81",
+                        "endOffsets": "219,337,452,545,650,782,859,935,1026,1119,1221,1315,1416,1510,1605,1704,1795,1886,1968,2079,2185,2283,2397,2497,2608,2767,2868,2950"
                     }
                 }
             ]
@@ -124,6 +92,38 @@
                         "startOffsets": "2915",
                         "endColumns": "100",
                         "endOffsets": "3011"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/values-da_values-da.arsc.flat",
+            "map": [
+                {
+                    "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/values-da/values-da.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,208,307,419,502,602,715,792,869,960,1053,1149,1243,1338,1431,1526,1624,1715,1806,1885,1994,2102,2198,2312,2414,2515,2668,2765",
+                        "endColumns": "102,98,111,82,99,112,76,76,90,92,95,93,94,92,94,97,90,90,78,108,107,95,113,101,100,152,96,78",
+                        "endOffsets": "203,302,414,497,597,710,787,864,955,1048,1144,1238,1333,1426,1521,1619,1710,1801,1880,1989,2097,2193,2307,2409,2510,2663,2760,2839"
+                    }
+                },
+                {
+                    "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/78aaa226f3548536b89d2b3e74650e0d/res/values-da/values-da.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "30",
+                        "startColumns": "4",
+                        "startOffsets": "2844",
+                        "endColumns": "100",
+                        "endOffsets": "2940"
                     }
                 }
             ]
@@ -504,21 +504,6 @@
             ]
         },
         {
-            "outputFile": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/values-large-v4_values-large-v4.arsc.flat",
-            "map": [
-                {
-                    "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/values-large-v4/values-large-v4.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,114,185,256,326,396,464,532,636",
-                        "endColumns": "58,70,70,69,69,67,67,103,115",
-                        "endOffsets": "109,180,251,321,391,459,527,631,747"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/values-am_values-am.arsc.flat",
             "map": [
                 {
@@ -546,6 +531,21 @@
                         "startOffsets": "105,207,306,412,498,601,714,792,870,961,1054,1147,1241,1342,1435,1530,1624,1715,1805,1884,1984,2084,2180,2283,2382,2489,2642,2738",
                         "endColumns": "101,98,105,85,102,112,77,77,90,92,92,93,100,92,94,93,90,89,78,99,99,95,102,98,106,152,95,78",
                         "endOffsets": "202,301,407,493,596,709,787,865,956,1049,1142,1236,1337,1430,1525,1619,1710,1800,1879,1979,2079,2175,2278,2377,2484,2637,2733,2812"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/values-large-v4_values-large-v4.arsc.flat",
+            "map": [
+                {
+                    "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/values-large-v4/values-large-v4.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,114,185,256,326,396,464,532,636",
+                        "endColumns": "58,70,70,69,69,67,67,103,115",
+                        "endOffsets": "109,180,251,321,391,459,527,631,747"
                     }
                 }
             ]

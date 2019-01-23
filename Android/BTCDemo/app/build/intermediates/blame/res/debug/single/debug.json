@@ -60,12 +60,12 @@
         "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable/abc_seekbar_track_material.xml"
     },
     {
-        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_ic_star_half_black_36dp.png.flat",
-        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable-xhdpi-v4/abc_ic_star_half_black_36dp.png"
-    },
-    {
         "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/layout_abc_search_view.xml.flat",
         "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/layout/abc_search_view.xml"
+    },
+    {
+        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_ic_star_half_black_36dp.png.flat",
+        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable-xhdpi-v4/abc_ic_star_half_black_36dp.png"
     },
     {
         "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
@@ -256,12 +256,12 @@
         "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable-xxhdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png"
     },
     {
-        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/layout_activity_qrcode.xml.flat",
-        "source": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/res/layout/activity_qrcode.xml"
-    },
-    {
         "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_ic_menu_paste_mtrl_am_alpha.png.flat",
         "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable-mdpi-v4/abc_ic_menu_paste_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/layout_activity_qrcode.xml.flat",
+        "source": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/res/layout/activity_qrcode.xml"
     },
     {
         "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
@@ -276,20 +276,20 @@
         "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/layout/abc_list_menu_item_icon.xml"
     },
     {
-        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/color_abc_primary_text_material_dark.xml.flat",
-        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/color/abc_primary_text_material_dark.xml"
-    },
-    {
         "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_spinner_mtrl_am_alpha.9.png.flat",
         "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable-mdpi-v4/abc_spinner_mtrl_am_alpha.9.png"
     },
     {
-        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable_abc_list_selector_holo_dark.xml.flat",
-        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable/abc_list_selector_holo_dark.xml"
+        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/color_abc_primary_text_material_dark.xml.flat",
+        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/color/abc_primary_text_material_dark.xml"
     },
     {
         "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_spinner_mtrl_am_alpha.9.png.flat",
         "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable-xxhdpi-v4/abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable_abc_list_selector_holo_dark.xml.flat",
+        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable/abc_list_selector_holo_dark.xml"
     },
     {
         "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-ldrtl-mdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
@@ -524,12 +524,12 @@
         "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/layout/select_dialog_multichoice_material.xml"
     },
     {
-        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/layout_abc_screen_content_include.xml.flat",
-        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/layout/abc_screen_content_include.xml"
-    },
-    {
         "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_ic_star_black_16dp.png.flat",
         "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable-xxxhdpi-v4/abc_ic_star_black_16dp.png"
+    },
+    {
+        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/layout_abc_screen_content_include.xml.flat",
+        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/layout/abc_screen_content_include.xml"
     },
     {
         "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_ic_star_black_16dp.png.flat",
@@ -584,16 +584,16 @@
         "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable-xxxhdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png"
     },
     {
-        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
-        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_015.png"
+        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_btn_radio_to_on_mtrl_015.png.flat",
+        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable-xhdpi-v4/abc_btn_radio_to_on_mtrl_015.png"
     },
     {
         "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable_abc_tab_indicator_material.xml.flat",
         "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable/abc_tab_indicator_material.xml"
     },
     {
-        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_btn_radio_to_on_mtrl_015.png.flat",
-        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable-xhdpi-v4/abc_btn_radio_to_on_mtrl_015.png"
+        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
+        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_015.png"
     },
     {
         "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",
@@ -620,12 +620,12 @@
         "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable-mdpi-v4/abc_list_pressed_holo_dark.9.png"
     },
     {
-        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",
-        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable-xxxhdpi-v4/abc_text_select_handle_right_mtrl_dark.png"
-    },
-    {
         "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",
+        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable-xxxhdpi-v4/abc_text_select_handle_right_mtrl_dark.png"
     },
     {
         "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable_abc_spinner_textfield_background_material.xml.flat",
@@ -672,28 +672,28 @@
         "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/color/abc_tint_edittext.xml"
     },
     {
-        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/layout-v21_notification_action_tombstone.xml.flat",
-        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/78aaa226f3548536b89d2b3e74650e0d/res/layout-v21/notification_action_tombstone.xml"
-    },
-    {
         "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_ic_star_black_16dp.png.flat",
         "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable-hdpi-v4/abc_ic_star_black_16dp.png"
+    },
+    {
+        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/layout-v21_notification_action_tombstone.xml.flat",
+        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/78aaa226f3548536b89d2b3e74650e0d/res/layout-v21/notification_action_tombstone.xml"
     },
     {
         "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_launcher_background.png.flat",
         "source": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/generated/res/pngs/debug/drawable-mdpi/ic_launcher_background.png"
     },
     {
-        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_menu_hardkey_panel_mtrl_mult.9.png.flat",
-        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable-xhdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png"
+        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/layout-v21_notification_template_icon_group.xml.flat",
+        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/78aaa226f3548536b89d2b3e74650e0d/res/layout-v21/notification_template_icon_group.xml"
     },
     {
         "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/layout_abc_list_menu_item_layout.xml.flat",
         "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/layout/abc_list_menu_item_layout.xml"
     },
     {
-        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/layout-v21_notification_template_icon_group.xml.flat",
-        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/78aaa226f3548536b89d2b3e74650e0d/res/layout-v21/notification_template_icon_group.xml"
+        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_menu_hardkey_panel_mtrl_mult.9.png.flat",
+        "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/drawable-xhdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png"
     },
     {
         "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/app/build/intermediates/res/merged/debug/anim_abc_popup_exit.xml.flat",
