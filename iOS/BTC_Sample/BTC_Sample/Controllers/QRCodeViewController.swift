@@ -32,7 +32,7 @@ class QRCodeViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .cancel, target: self, action: #selector(dismissVc))
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .cancel, target: self, action: #selector(dismissVc))
         
         self.textLabel.text = text
         
@@ -41,7 +41,7 @@ class QRCodeViewController: UIViewController {
 
     
     @objc private func dismissVc() {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
 
 }

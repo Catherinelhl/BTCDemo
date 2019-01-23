@@ -8,13 +8,15 @@
 
 import UIKit
 
-@objc protocol ScanViewControllerDelegate {
-    @objc optional func didReciveScanResult(_ result:String)
-}
+//@objc protocol ScanViewControllerDelegate {
+//    @objc optional func didReciveScanResult(_ result:String)
+//}
 
 class ScanViewController: UIViewController {
 
-    weak var delegate:ScanViewControllerDelegate?
+//    weak var delegate:ScanViewControllerDelegate?
+    
+    var resultBlock:((String) -> Void)?
     
     private var sessionManager:AVCaptureSessionManager?
     
@@ -23,12 +25,12 @@ class ScanViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .cancel, target: self, action: #selector(dismissVc))
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .cancel, target: self, action: #selector(dismissVc))
         
         sessionManager = AVCaptureSessionManager(captureType: .AVCaptureTypeBoth, scanRect: .null, success: {[weak self] (result) in
             if let result = result {
                 MyLog(result)
-                self?.delegate?.didReciveScanResult?(result)
+                self?.resultBlock?(result)
                 self?.dismissVc()
             }
         })
@@ -50,7 +52,7 @@ class ScanViewController: UIViewController {
     
     
     @objc private func dismissVc() {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     deinit {

@@ -13,10 +13,10 @@ import Toast_Swift
 import BitcoinKit
 
 class RootViewController: UIViewController {
-    @IBOutlet weak var myAddressLabel: UILabel!
-    @IBOutlet weak var reciveAddressLabel: UILabel!
+    @IBOutlet weak var myAddressTextFiled: UITextField!
+    @IBOutlet weak var receiveAddressLabel: UILabel!
     
-    @IBOutlet weak var reciveAddressTextField: UITextField!
+    @IBOutlet weak var receiveAddressTextField: UITextField!
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var sendAmountTextField: UITextField!
     @IBOutlet weak var jsonDataTextView: UITextView!
@@ -34,26 +34,57 @@ class RootViewController: UIViewController {
         
         self.view.backgroundColor = .white
 
-        myAddressLabel.text = "我的地址：" + myAddress
+        myAddressTextFiled.text = ""
         symbolLabel.text = currencySymbol
         feesLabel.text = "手续费：\(fees) " + currencySymbol
         
-        myAddressLabel.adjustsFontSizeToFitWidth = true
+//        myAddressLabel.adjustsFontSizeToFitWidth = true
         feesLabel.adjustsFontSizeToFitWidth = true
         
         // 获取余额 api返回数据单位为 聪(satoshi) （1 BTC = 10^8 聪）
         getBalnce()
+        
+        setNavigationItem()
+    }
+    
+    private func setNavigationItem() {
+        self.title = "BTC测试网络"
+        let switchButton = UISwitch()
+        switchButton.isOn = true
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: switchButton)
+        
+        _ = switchButton.rx.value.subscribe(onNext: {[weak self] (value) in
+            if value {
+                coinType = .blockChain_btc_Test
+                self?.title = "BTC测试网络"
+            }else {
+                coinType = .blockChain_btc_Main
+                self?.title = "BTC主网络"
+            }
+            
+            myAddress = ""
+            myPrivateKey = ""
+            myPublicKey = ""
+            
+            self?.myAddressTextFiled.text = myAddress
+            self?.balanceLabel.text = "0" + " " + currencySymbol
+            self?.symbolLabel.text = currencySymbol
+            self?.feesLabel.text = "手续费：\(fees) " + currencySymbol
+            self?.jsonDataTextView.text = ""
+            self?.getBalnce()
+        })
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
+    // MARK: 获取余额按钮事件
     @IBAction func getBalanceButtonAction(_ sender: UIButton) {
         getBalnce()
         
     }
-    
+    // MARK: 发送交易按钮点击事件
     @IBAction func sendTxButtonAction(_ sender: UIButton) {
         
 //        switch coinType {
@@ -64,25 +95,47 @@ class RootViewController: UIViewController {
 //        }
         
     }
-    
+    // MARK: 获取交易按钮记录点击事件
     @IBAction func getTxRecordButtonAction(_ sender: Any) {
         
         getTxRecord()
     }
     
-    @IBAction func qrCodeButtonAction(_ sender: Any) {
-        let qrCodeVc = UINavigationController(rootViewController: QRCodeViewController.init(text: myAddress))
-        self.present(qrCodeVc, animated: true, completion: nil)
+    // MARK: 扫描私钥按钮点击事件
+    @IBAction func scanPrivateKeyButtonAction(_ sender: UIButton) {
+        let scanVc = ScanViewController()
+        scanVc.resultBlock = { result in
+            if let btcKeyStore = BitcoinTool.generateBTCKeyBy(privateKey: result) {
+                myAddress = btcKeyStore.address ?? ""
+                myPrivateKey = btcKeyStore.privateKey ?? ""
+                myPublicKey = btcKeyStore.publicKey ?? ""
+                self.myAddressTextFiled.text = btcKeyStore.address
+                self.getBalnce()
+            }
+        }
+        
+        self.navigationController?.pushViewController(scanVc, animated: true)
+        
     }
+    
+    // MARK: 生成二维码按钮点击事件
+    @IBAction func qrCodeButtonAction(_ sender: Any) {
+        let qrCodeVc = QRCodeViewController.init(text: myAddressTextFiled.text!)
+        self.navigationController?.pushViewController(qrCodeVc, animated: true)
+    }
+    
+    // MARK: 扫描接收地址按钮点击事件
     @IBAction func scanButtonAction(_ sender: UIButton) {
         
         let scanVc = ScanViewController()
-        scanVc.delegate = self
+        scanVc.resultBlock = { result in
+            self.receiveAddressTextField.text = result
+        }
         
-        self.present(UINavigationController(rootViewController: scanVc), animated: true, completion: nil)
+        self.navigationController?.pushViewController(scanVc, animated: true)
     }
     
-    
+    // MARK: 获取单个交易详情按钮点击事件
     @IBAction func getTxDetailButtonAction(_ sender: UIButton) {
         getTxDetail()
     }
@@ -98,7 +151,7 @@ class RootViewController: UIViewController {
                     let value = try response.mapJSON()
                     let json = JSON(value)
                     switch coinType {
-                    case .blockChain_btc_Main:
+                    case .blockChain_btc_Main, .blockChain_btc_Test:
                         self.balance = NSDecimalNumber.init(value: json[myAddress]["final_balance"].intValue).decimalValue
                     default:
                         self.balance = NSDecimalNumber.init(value: json["final_balance"].intValue).decimalValue
@@ -119,12 +172,12 @@ class RootViewController: UIViewController {
     /*
     // MARK: 创建交易0
     private func createTx_0() {
-        guard reciveAddressTextField.text! != "" else {
+        guard receiveAddressTextField.text! != "" else {
             self.view.showToast("收款地址不能为空")
             return
         }
         
-        let reciveAddress = reciveAddressTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let reciveAddress = receiveAddressTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         guard BitcoinTool.validateAddress(reciveAddress) else {
             self.view.makeToast("收款地址格式有误")
             return
@@ -150,7 +203,7 @@ class RootViewController: UIViewController {
             break
         }
         
-        ApiManagerProvider.request(.createTx(fromAddress:myAddress,toAddress: reciveAddressTextField.text!, amount: (amount * rate).intValue, fees:fee )) { (result) in
+        ApiManagerProvider.request(.createTx(fromAddress:myAddress,toAddress: receiveAddressTextField.text!, amount: (amount * rate).intValue, fees:fee )) { (result) in
             switch result {
             case .success(let response):
                 do{
@@ -215,7 +268,7 @@ class RootViewController: UIViewController {
     // MARK: 创建交易1
     private func createTx_1() {
         
-        let reciveAddress = reciveAddressTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let reciveAddress = receiveAddressTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
         guard reciveAddress != "" else {
             self.view.showToast("收款地址不能为空")
@@ -282,7 +335,7 @@ class RootViewController: UIViewController {
         
         // 通过私钥签名交易并发送交易
         do {
-            let toAddress = try AddressFactory.create(reciveAddressTextField.text!)
+            let toAddress = try AddressFactory.create(receiveAddressTextField.text!)
             let privateKey = try PrivateKey.init(wif: myPrivateKey)
             let unsignedTx = createUnsignedTx(toAddress: toAddress, privateKey: privateKey,totalSend: totalSend, amount: Int64((amount * rate).intValue), utxos: utxos)
             let tx = signTx(unsignedTx: unsignedTx, privateKey: privateKey)
@@ -410,16 +463,6 @@ class RootViewController: UIViewController {
         }
     }
 }
-
-// MARK: - 扫描视图代理方法
-extension RootViewController : ScanViewControllerDelegate {
-    // MARK: 扫描结果回调
-    func didReciveScanResult(_ result: String) {
-
-        reciveAddressTextField.text = result
-    }
-}
-
 
 extension UIView {
     func showToast(_ message:String?) {

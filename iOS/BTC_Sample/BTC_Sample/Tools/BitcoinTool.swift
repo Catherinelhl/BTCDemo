@@ -87,7 +87,7 @@ class BitcoinTool {
     
     class func validateAddress(_ address:String) -> Bool{
         switch coinType {
-        case .bitcoinMain, .bitcoinTest, .blockChain_btc_Main:
+        case .bitcoinMain, .bitcoinTest, .blockChain_btc_Main, .blockChain_btc_Test:
             if let _ = Base58.decode(address) {
                 return true
             }else {
@@ -114,7 +114,7 @@ class BitcoinTool {
         do {
             var privateKey : PrivateKey
             switch coinType {
-            case .bitcoinMain, .bitcoinTest, .blockChain_btc_Main:
+            case .bitcoinMain, .bitcoinTest, .blockChain_btc_Main, .blockChain_btc_Test:
                 privateKey = try PrivateKey.init(wif: str)
             case .ethMain, .ethTest:
                 guard let privateKeyData = Data(btcHex: str) else {

@@ -19,9 +19,10 @@ enum CoinType : String {
     case ethTest = "https://api.blockcypher.com/v1/beth/test"
     
     case blockChain_btc_Main = "https://blockchain.info"
+    case blockChain_btc_Test = "https://testnet.blockchain.info"
 }
 
-var coinType:CoinType = .blockChain_btc_Main
+var coinType:CoinType = .blockChain_btc_Test
 
 let ApiManagerProvider = MoyaProvider<ApiManager>(requestClosure: { (endpoint:Endpoint, done: @escaping MoyaProvider.RequestResultClosure) in
     do{
@@ -61,10 +62,13 @@ extension ApiManager : TargetType {
     var path: String {
         switch self {
         case .getBalance(let address):
-            if coinType == .blockChain_btc_Main {
+            switch coinType {
+            case .blockChain_btc_Main, .blockChain_btc_Test:
                 return "/balance"
+            default :
+                return "/addrs/\(address)/balance"
             }
-            return "/addrs/\(address)/balance"
+            
             
         case .createTx(_,_,_,_) :
             return "/txs/new"
@@ -78,7 +82,7 @@ extension ApiManager : TargetType {
                 return "/addrs/\(address)/full"
             case .ethMain, .ethTest:
                 return "/addrs/\(address)"
-            case .blockChain_btc_Main:
+            case .blockChain_btc_Main , .blockChain_btc_Test:
                 return "/rawaddr/\(address)"
             }
             
@@ -87,14 +91,14 @@ extension ApiManager : TargetType {
             
         case .getUnspent(_):
             switch coinType {
-            case .blockChain_btc_Main:
+            case .blockChain_btc_Main, .blockChain_btc_Test:
                 return "/unspent"
             default:
                 return ""
             }
         case .pushTx(_):
             switch coinType {
-            case .blockChain_btc_Main:
+            case .blockChain_btc_Main , .blockChain_btc_Test:
                 return "/pushtx"
             default:
                 return ""
@@ -127,7 +131,7 @@ extension ApiManager : TargetType {
                 param["fees"] = fees
             case .ethMain, .ethTest:
                 param["gas_price"] = fees
-            case .blockChain_btc_Main:
+            case .blockChain_btc_Main, .blockChain_btc_Test:
                 break
             }
             
