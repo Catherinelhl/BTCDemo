@@ -68,8 +68,8 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
     TextView tvContent;
     @BindView(R.id.et_fee)
     EditText etFee;
-    @BindView(R.id.cb_switch_net)
-    CheckBox cbSwitchNet;
+    @BindView(R.id.switch_net)
+    Switch switchNet;
     @BindView(R.id.et_private_key)
     EditText etPrivateKey;
     @BindView(R.id.ib_scan_private_key)
@@ -103,15 +103,15 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
     }
 
     private void initListener() {
-        cbSwitchNet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        switchNet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 //刷新当前界面
                 etAddress.setText(MessageConstants.EMPTY);
-                etAddress.setText(MessageConstants.EMPTY);
+                etToAddress.setText(MessageConstants.EMPTY);
+                etPrivateKey.setText(MessageConstants.EMPTY);
                 tvTxHash.setText(MessageConstants.EMPTY);
                 tvContent.setText(MessageConstants.EMPTY);
-
                 //切换网络
                 BTCParamsConstants.isTest = !isChecked;
             }

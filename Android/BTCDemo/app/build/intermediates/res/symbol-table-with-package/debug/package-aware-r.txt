@@ -691,7 +691,6 @@ id capture_container
 id capture_crop_view
 id capture_preview
 id capture_scan_line
-id cb_switch_net
 id center
 id center_horizontal
 id center_vertical
@@ -807,6 +806,7 @@ id standard
 id start
 id submenuarrow
 id submit_area
+id switch_net
 id tabMode
 id tag_transition_group
 id tag_unhandled_key_event_manager

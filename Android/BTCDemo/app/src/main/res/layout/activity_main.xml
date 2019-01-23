@@ -5,12 +5,18 @@
         android:orientation="vertical"
         android:padding="5dp"
         android:layout_height="match_parent">
-    <CheckBox android:layout_width="wrap_content"
-              android:text="我是主网"
-              android:id="@+id/cb_switch_net"
-              android:layout_gravity="center"
-              android:layout_height="wrap_content"/>
-
+    <Switch android:layout_width="wrap_content"
+            android:minWidth="200dp"
+            android:text="开启BTC主网测试"
+            android:id="@+id/switch_net"
+            android:layout_gravity="center"
+            android:minHeight="35dp"
+            android:layout_height="wrap_content"/>
+    <View android:layout_width="match_parent"
+          android:background="#666666"
+          android:layout_marginTop="5dp"
+          android:layout_marginBottom="5dp"
+          android:layout_height="0.5dp"/>
     <!-- my address-->
     <LinearLayout
             android:id="@+id/ll_my_address"
@@ -22,6 +28,9 @@
                 android:id="@+id/et_address"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:hint="请输入/扫描自己的地址"
                 android:textColor="#000000"
                 android:layout_height="wrap_content"/>
@@ -45,6 +54,9 @@
                 android:id="@+id/et_private_key"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:hint="请输入/扫描账户对应的私钥"
                 android:textColor="#000000"
                 android:layout_height="wrap_content"/>
@@ -131,6 +143,9 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:hint="请输入/扫描接收方地址"/>
         <ImageButton
                 android:id="@+id/ib_scan"
