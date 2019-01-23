@@ -8,10 +8,12 @@
 
 import Foundation
 
-var myAddress:String {
+var myAddress:String = ""
+/*
+{
     get{
         switch coinType {
-        case .bitcoinTest:
+        case .bitcoinTest, .blockChain_btc_Test:
             return "mkkjcX4s4zoJJaE5E1NnfvsbuMvmzgBWTo"
         case.bitcoinMain , .blockChain_btc_Main:
             return "1CmRaAsRQ7guVPyfDYN7ucbwkZFx4yHTFA"
@@ -20,10 +22,13 @@ var myAddress:String {
         }
     }
 }
-var myPrivateKey:String {
+*/
+var myPrivateKey:String = ""
+/*
+{
     get{
         switch coinType {
-        case .bitcoinTest:
+        case .bitcoinTest , .blockChain_btc_Test:
             return "93AaWXJMutsyX5KPCXzGjK9uPm18ezP5jiFjcCtvZwELYX9LAkk"
         case.bitcoinMain , .blockChain_btc_Main:
             return "5JX8HpBNRR912Qtk2ddrm4LFRpsSZ3oFqa6kFCBVAjaNkbw75MT"
@@ -32,10 +37,13 @@ var myPrivateKey:String {
         }
     }
 }
-var myPublicKey:String {
+*/
+var myPublicKey:String = ""
+/*
+{
     get{
         switch coinType {
-        case .bitcoinTest:
+        case .bitcoinTest, .blockChain_btc_Test:
             return "04b33ac0f3c51e5a197a77b55998c1da575e0ef9e52b75056885dcd59d78bb340a0f8c25b4b7eaca07c242bb71d56507b887f1957999ff2565b9fbee238d6e756e"
         case.bitcoinMain , .blockChain_btc_Main:
             return "0453ed8abc42e67478e03051253180532eda639c1411b83b46c31741d55ee3bb17968933f46714a1e5f8bc9821dd655b9d12734472192dd6b1ce3cf65b076d2a58"
@@ -44,12 +52,13 @@ var myPublicKey:String {
         }
     }
 }
+*/
 
 /// 货币最小单位的和基本单位之间的汇率
 var rate:Decimal {
     get{
         switch coinType {
-        case .bitcoinMain,.bitcoinTest , .blockChain_btc_Main:
+        case .bitcoinMain,.bitcoinTest , .blockChain_btc_Main, .blockChain_btc_Test:
             // 1 BTC = 10^8 聪
             return pow(10, 8)
         case .ethMain, .ethTest:
@@ -62,7 +71,7 @@ var rate:Decimal {
 var fees:Decimal {
     get{
         switch coinType {
-        case .bitcoinMain, .bitcoinTest , .blockChain_btc_Main:
+        case .bitcoinMain, .bitcoinTest , .blockChain_btc_Main, .blockChain_btc_Test:
             // 单位是BTC
             return 0.0001
         case .ethMain, .ethTest:
@@ -80,7 +89,7 @@ var gasPrice:Decimal {
 var currencySymbol:String {
     get{
         switch coinType {
-        case .bitcoinMain, .bitcoinTest, .blockChain_btc_Main:
+        case .bitcoinMain, .bitcoinTest, .blockChain_btc_Main, .blockChain_btc_Test:
             return "BTC"
         case .ethMain, .ethTest:
             return "ETH"

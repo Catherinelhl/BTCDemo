@@ -11,10 +11,10 @@ import AVFoundation
 import Photos
 
 typealias SuccessBlock = (String?) -> Void
-typealias GrantBlock = () -> ()
-typealias DeniedBlock = () -> ()
+typealias GrantBlock = () -> Void
+typealias DeniedBlock = () -> Void
 
-class AVCaptureSessionManager: AVCaptureSession, AVCaptureMetadataOutputObjectsDelegate {
+class AVCaptureSessionManager: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     
     /// 音效名称
     var soundName:String?
@@ -24,55 +24,54 @@ class AVCaptureSessionManager: AVCaptureSession, AVCaptureMetadataOutputObjectsD
     private var block: SuccessBlock?
     
     private lazy var device: AVCaptureDevice? = {
-       return AVCaptureDevice.default(for:.video)
+        return AVCaptureDevice.default(for:.video)
     }()
     
-    private lazy var preViewLayer: AVCaptureVideoPreviewLayer = {
-        return AVCaptureVideoPreviewLayer(session: self)
-    }()
+    private let session: AVCaptureSession
+    private let preViewLayer: AVCaptureVideoPreviewLayer
     
+    private override init() {
+        session = AVCaptureSession.init()
+        preViewLayer = AVCaptureVideoPreviewLayer(session: session)
+    }
     
-   /// 创建sessionManager
-   ///
-   /// - Parameters:
-   ///   - captureType: 需要扫描的类型
-   ///   - scanRect: 扫描区域这里的Rect(x,y,w,h)分别的取值范围都是0-1 如果需要全屏传入React.null
-   ///   - success: 成功回调
-   convenience init(captureType: AVCaptureType,
-                    scanRect: CGRect,
-                    success: @escaping SuccessBlock) {
+    /// 创建sessionManager
+    ///
+    /// - Parameters:
+    ///   - captureType: 需要扫描的类型
+    ///   - scanRect: 扫描区域这里的Rect(x,y,w,h)分别的取值范围都是0-1 如果需要全屏传入React.null
+    ///   - success: 成功回调
+    convenience init(captureType: AVCaptureType,
+                     scanRect: CGRect,
+                     success: @escaping SuccessBlock) {
         self.init()
         block = success
-    
-        var input: AVCaptureDeviceInput?
+        
+        
+        session.sessionPreset = .high
         do {
-            if let device = device {
-                input = try AVCaptureDeviceInput(device: device)
+            if let captureDevice = device {
+                let input = try AVCaptureDeviceInput(device: captureDevice)
+                if session.canAddInput(input) {
+                    session.addInput(input)
+                }
             }
-        } catch let error as NSError {
-            print("AVCaputreDeviceError \(error)")
-    }
+            
+        } catch let error {
+            MyLog(error)
+        }
         
-        let output = AVCaptureMetadataOutput()
-        output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        
-        if !scanRect.equalTo(CGRect.null) {
+        let output = AVCaptureMetadataOutput.init()
+        if session.canAddOutput(output) {
+            session.addOutput(output)
+            output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+            output.metadataObjectTypes = captureType.supportTypes()
             output.rectOfInterest = scanRect
         }
         
-        sessionPreset = AVCaptureSession.Preset.high
-        if let input = input {
-            if canAddInput(input) {
-                addInput(input)
-            }
+        preViewLayer.videoGravity = .resizeAspectFill
         
-        }
-    
-        if canAddOutput(output) {
-            addOutput(output)
-        }
-    
-        output.metadataObjectTypes = captureType.supportTypes()
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(stop),
                                                name: UIApplication.didEnterBackgroundNotification,
@@ -80,9 +79,9 @@ class AVCaptureSessionManager: AVCaptureSession, AVCaptureMetadataOutputObjectsD
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(start),
-                                               name: UIApplication.willEnterForegroundNotification,
+                                               name: UIApplication.didBecomeActiveNotification,
                                                object: nil)
-    
+        
     }
     
     
@@ -100,7 +99,7 @@ class AVCaptureSessionManager: AVCaptureSession, AVCaptureMetadataOutputObjectsD
         return result
     }
     
-
+    
     /// 监测相机权限
     ///
     /// - Parameters:
@@ -163,26 +162,24 @@ class AVCaptureSessionManager: AVCaptureSession, AVCaptureMetadataOutputObjectsD
         let detector = CIDetector(ofType: CIDetectorTypeQRCode,
                                   context: nil,
                                   options: [CIDetectorAccuracy : CIDetectorAccuracyHigh])
+        var resultString:String?
         if detector != nil {
             let features = detector!.features(in: CIImage(cgImage: image.cgImage!))
             for temp in features {
-                let result = (temp as! CIQRCodeFeature).messageString
-                success(result)
-                return
+                if let result = (temp as? CIQRCodeFeature)?.messageString {
+                    resultString = result
+                }
             }
-            success(nil)
-        }else {
-            success(nil)
         }
-        
+        success(resultString)
     }
     
     /// 显示扫描
     ///
     /// - Parameter view: 需要在哪个View中显示
     func showPreViewLayerIn(view :UIView) {
-        preViewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        preViewLayer.frame = UIScreen.main.bounds
+        
+        preViewLayer.frame = view.bounds
         view.layer.insertSublayer(preViewLayer, at: 0)
         start()
     }
@@ -229,12 +226,14 @@ class AVCaptureSessionManager: AVCaptureSession, AVCaptureMetadataOutputObjectsD
     
     /// 开启扫描
     @objc func start() {
-        startRunning()
+        if !session.isRunning {
+            session.startRunning()
+        }
     }
     
     /// 停止扫描
     @objc func stop() {
-        stopRunning()
+        session.stopRunning()
     }
     
     
@@ -244,9 +243,15 @@ class AVCaptureSessionManager: AVCaptureSession, AVCaptureMetadataOutputObjectsD
             stop()
             playSound()
             // 获取信息
-            let result = metadataObjects.last as! AVMetadataMachineReadableCodeObject
-            block!(result.stringValue)
+            let result = metadataObjects.last as? AVMetadataMachineReadableCodeObject
+            block?(result?.stringValue)
         }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        self.preViewLayer.removeFromSuperlayer()
+        MyLog("AVCaptureSessionManager 移除")
     }
 }
 
