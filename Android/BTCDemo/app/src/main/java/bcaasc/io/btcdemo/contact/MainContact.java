@@ -21,14 +21,14 @@ public interface MainContact {
 
     interface Presenter {
 
-        void getBalance();
+        void getBalance(String address);
 
-        void getTransactionList();
+        void getTransactionList(String address);
 
-        void getUnspent(String amount, String address);
+        void getUnspent(String address, String amount, String fee,String addressTo,String addressPrivateKey);
 
         void getTXInfoByHash(String rawHash);
 
-        void pushTX(String feeString, String toAddress, String amountString);
+        void pushTX(String feeString, String toAddress, String amountString,String addressPrivateKey);
     }
 }

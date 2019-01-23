@@ -43,16 +43,16 @@ public class MainPresenterImp implements MainContact.Presenter {
     }
 
     @Override
-    public void getBalance() {
-        interactor.getBalance(Constants.address, new Callback<String>() {
+    public void getBalance(String address) {
+        interactor.getBalance(address, new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 LogTool.d(TAG, response.body());
                 if (response.body() != null) {
                     try {
                         JSONObject jsonObject = new JSONObject(response.body());
-                        if (jsonObject.has(Constants.address)) {
-                            JSONObject jsonObject1 = jsonObject.getJSONObject(Constants.address);
+                        if (jsonObject.has(address)) {
+                            JSONObject jsonObject1 = jsonObject.getJSONObject(address);
                             if (jsonObject1.has("final_balance")) {
                                 view.getBalanceSuccess(String.valueOf(new BigDecimal(jsonObject1.getString("final_balance")).multiply(new BigDecimal(BTCParamsConstants.BtcUnitRevert))));
                             }
@@ -83,8 +83,8 @@ public class MainPresenterImp implements MainContact.Presenter {
      * @return
      */
     @Override
-    public void getTransactionList() {
-        interactor.getTXList(Constants.address, new Callback<String>() {
+    public void getTransactionList(String address) {
+        interactor.getTXList(address, new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 LogTool.d(TAG, response.body());
@@ -106,8 +106,8 @@ public class MainPresenterImp implements MainContact.Presenter {
      * @return
      */
     @Override
-    public void getUnspent(String amount, String addressTo) {
-        interactor.getUnspent(Constants.address, new Callback<BtcUnspentOutputsResponse>() {
+    public void getUnspent(String address, String amount,String fee, String addressTo, String privateKey) {
+        interactor.getUnspent(address, new Callback<BtcUnspentOutputsResponse>() {
             @Override
             public void onResponse(Call<BtcUnspentOutputsResponse> call, Response<BtcUnspentOutputsResponse> response) {
                 BtcUnspentOutputsResponse unspentOutputsResponse = response.body();
@@ -118,7 +118,7 @@ public class MainPresenterImp implements MainContact.Presenter {
                     //排序UTXO  从大到小
                     Collections.sort(btcUtxoList, (unspentOutput, t1) -> Long.compare(t1.getValue(), unspentOutput.getValue()));
                     view.success(btcUtxoList.toString());
-                    pushTX(Constants.feeString, addressTo, amount);
+                    pushTX(fee, addressTo, amount, privateKey);
                 }
             }
 
@@ -133,7 +133,6 @@ public class MainPresenterImp implements MainContact.Presenter {
 
     @Override
     public void getTXInfoByHash(String rawHash) {
-        rawHash="30b294f322f08621965c30ee5de221e4ef64f5a5fbb0fd255e8a15643cca9a6c";
         if (rawHash == "" || rawHash == null) {
             rawHash = transactionHash;
         }
@@ -147,7 +146,7 @@ public class MainPresenterImp implements MainContact.Presenter {
             @Override
             public void onSuccess(Response<bcaasc.io.btcdemo.bean.Transaction> response) {
                 bcaasc.io.btcdemo.bean.Transaction transaction = response.body();
-                view.success(transaction.toString());
+                view.success(String.valueOf(transaction));
                 if (transaction != null) {
                     long blockHeight = transaction.getBlock_height();
 //                    view.hashStatus(String.valueOf(blockHeight));
@@ -181,7 +180,7 @@ public class MainPresenterImp implements MainContact.Presenter {
      * @return
      */
     @Override
-    public void pushTX(String feeString, String toAddress, String amountString) {
+    public void pushTX(String feeString, String toAddress, String amountString, String addressPrivateKey) {
         //判断当前是否有UTXO事务
         if (btcUtxoList == null) {
             return;
@@ -242,7 +241,7 @@ public class MainPresenterImp implements MainContact.Presenter {
         //得到这次传送之后剩下的btc
         BigDecimal goBackBtc = walletBtc.subtract(amount);
         // 根据私鑰WIF字串轉ECKey
-        ECKey privateKey = DumpedPrivateKey.fromBase58(BTCParamsConstants.NetworkParameter, Constants.privateWIFKey).getKey();
+        ECKey privateKey = DumpedPrivateKey.fromBase58(BTCParamsConstants.NetworkParameter, addressPrivateKey).getKey();
         //判断当前剩下的btc不为0
         if (goBackBtc.doubleValue() != 0.0) {
             //添加「找零」的金额和地址

@@ -25,18 +25,24 @@ public class QrCodeActivity extends AppCompatActivity {
     //二維碼渲染的背景色
     private int backgroundColorOfQRCode = 0x00000000;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrcode);
         ButterKnife.bind(this);
-        makeQRCodeByAddress();
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            String address = bundle.getString("address");
+            makeQRCodeByAddress(address);
+
+        } else {
+
+        }
     }
 
-    private void makeQRCodeByAddress() {
+    private void makeQRCodeByAddress(String address) {
 //        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher);
-        Bitmap qrCode = EncodingUtils.createQRCode(Constants.address, 200,
+        Bitmap qrCode = EncodingUtils.createQRCode(address, 200,
                 200, null, foregroundColorOfQRCode, backgroundColorOfQRCode);
         ivQrCode.setImageBitmap(qrCode);
     }

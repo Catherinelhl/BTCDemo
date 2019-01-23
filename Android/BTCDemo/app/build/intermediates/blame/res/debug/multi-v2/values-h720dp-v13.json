@@ -4,7 +4,11 @@
             "outputFile": "/Users/pengyiqiao/Desktop/Works/OrangeBlock/git_repository/ThirdpartySample/BTC/Android/BTCDemo/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-h720dp-v13/values-h720dp-v13.xml",
             "map": [
                 {
+<<<<<<< HEAD
                     "source": "/Users/pengyiqiao/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e05339722c8849b6ed4046ed0bef8f94/res/values-h720dp-v13/values-h720dp-v13.xml",
+=======
+                    "source": "/Users/catherine.brainwilliam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b2c491c9618253c7ee364cfbe9218974/res/values-h720dp-v13/values-h720dp-v13.xml",
+>>>>>>> 01bee3977b4323e9011556953db22b6631218154
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
