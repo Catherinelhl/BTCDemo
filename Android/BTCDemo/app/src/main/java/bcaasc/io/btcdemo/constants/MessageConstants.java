@@ -16,5 +16,6 @@ public class MessageConstants {
 
     //字节码格式
     public static final String CHARSET_FORMAT = "UTF-8";
+    public static final String EMPTY = "";
     public static String HTTP_CONTENT_ENCODING = "Content-Encoding";
 }

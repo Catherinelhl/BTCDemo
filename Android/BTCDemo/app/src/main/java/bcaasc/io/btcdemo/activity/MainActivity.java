@@ -14,7 +14,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.*;
 import bcaasc.io.btcdemo.R;
+import bcaasc.io.btcdemo.constants.BTCParamsConstants;
 import bcaasc.io.btcdemo.constants.Constants;
+import bcaasc.io.btcdemo.constants.MessageConstants;
 import bcaasc.io.btcdemo.contact.MainContact;
 import bcaasc.io.btcdemo.presenter.MainPresenterImp;
 import butterknife.BindView;
@@ -28,10 +30,8 @@ import com.obt.qrcode.activity.CaptureActivity;
 public class MainActivity extends AppCompatActivity implements MainContact.View {
 
 
-    @BindView(R.id.tv_address)
-    TextView tvAddress;
-    @BindView(R.id.ib_receive)
-    ImageButton ibReceive;
+    @BindView(R.id.et_address)
+    EditText etAddress;
     @BindView(R.id.ll_my_address)
     LinearLayout llMyAddress;
     @BindView(R.id.tv_get_balance)
@@ -42,12 +42,12 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
     LinearLayout llMyBalance;
     @BindView(R.id.et_amount)
     EditText etAmount;
-    @BindView(R.id.btn_to_address)
-    TextView btnToAddress;
-    @BindView(R.id.tv_to_address)
-    TextView tvToAddress;
+    @BindView(R.id.et_to_address)
+    EditText etToAddress;
     @BindView(R.id.ib_scan)
     ImageButton ibScan;
+    @BindView(R.id.ib_scan_address)
+    ImageButton ibScanAddress;
     @BindView(R.id.ll_to_send_address)
     LinearLayout llToSendAddress;
     @BindView(R.id.btn_push)
@@ -66,12 +66,22 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
     LinearLayout llQuery;
     @BindView(R.id.tv_content)
     TextView tvContent;
-    @BindView(R.id.tv_fee)
-    TextView tvFee;
+    @BindView(R.id.et_fee)
+    EditText etFee;
+    @BindView(R.id.cb_switch_net)
+    CheckBox cbSwitchNet;
+    @BindView(R.id.et_private_key)
+    EditText etPrivateKey;
+    @BindView(R.id.ib_scan_private_key)
+    ImageButton ibScanPrivateKey;
+    @BindView(R.id.ll_my_private_key)
+    LinearLayout llMyPrivateKey;
+    @BindView(R.id.ll_send_amount)
+    LinearLayout llSendAmount;
     private MainContact.Presenter presenter;
-    //得到当前交易的hashRaw
-    private String hashRaw;
 
+    //得到当前的txhash
+    private String hashRaw;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,44 +96,78 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
 
     private void initView() {
         presenter = new MainPresenterImp(this);
-        tvAddress.setText("Address:" + Constants.address);
-        tvToAddress.setText(Constants.toAddress);
+//        tvAddress.setText("Address:" + Constants.address);
+//        tvToAddress.setText(Constants.toAddress);
         etAmount.setText("0.0020");
-        tvFee.setText("Fee:" + Constants.feeString + " BTC");
-        presenter.getBalance();
+        etFee.setText(Constants.feeString);
     }
 
     private void initListener() {
-        ibReceive.setOnClickListener(new View.OnClickListener() {
+        cbSwitchNet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, QrCodeActivity.class);
-                startActivity(intent);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //刷新当前界面
+                etAddress.setText(MessageConstants.EMPTY);
+                etAddress.setText(MessageConstants.EMPTY);
+                tvTxHash.setText(MessageConstants.EMPTY);
+                tvContent.setText(MessageConstants.EMPTY);
+
+                //切换网络
+                BTCParamsConstants.isTest = !isChecked;
             }
         });
         tvGetBalance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.getBalance();
+                String address = etAddress.getText().toString();
+                if (address == null || TextUtils.isEmpty(address)) {
+                    Toast.makeText(MainActivity.this, "请先输入地址", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                presenter.getBalance(address);
             }
         });
         btnGetTxList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.getTransactionList();
+                String address = etAddress.getText().toString();
+                if (TextUtils.isEmpty(address)) {
+                    Toast.makeText(MainActivity.this, "请先输入地址", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                presenter.getTransactionList(address);
             }
         });
         btnPush.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String address = tvToAddress.getText().toString();
+                String address = etAddress.getText().toString();
                 String amount = etAmount.getText().toString();
+                String addressTo = etToAddress.getText().toString();
+                String privateKey = etPrivateKey.getText().toString();
                 if (TextUtils.isEmpty(amount)) {
-                    amount = Constants.amountString;
+                    Toast.makeText(MainActivity.this, "请先输入金额", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
-                presenter.getUnspent(amount, address);
+                if (TextUtils.isEmpty(address)) {
+                    Toast.makeText(MainActivity.this, "请先输入地址", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(addressTo)) {
+                    Toast.makeText(MainActivity.this, "请先输入接收方地址", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(privateKey)) {
+                    Toast.makeText(MainActivity.this, "请先输入私钥", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                String fee = etFee.getText().toString();
+                if (TextUtils.isEmpty(fee)) {
+                    Toast.makeText(MainActivity.this, "请先输入手续费", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                presenter.getUnspent(address, amount, fee, addressTo, privateKey);
             }
         });
         tvGetTxStatus.setOnClickListener(new View.OnClickListener() {
@@ -147,8 +191,38 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
         ibScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(MainActivity.this, CaptureActivity.class), REQUEST_CODE_CAMERA_OK);
+                startActivityForResult(new Intent(MainActivity.this, CaptureActivity.class), REQUEST_CODE_SCAN_RECEIVE_ADDRESS_OK);
 
+            }
+        });
+        ibScanAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(MainActivity.this, CaptureActivity.class), REQUEST_CODE_SCAN_ADDRESS_OK);
+
+            }
+        });
+        ibScanPrivateKey.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(MainActivity.this, CaptureActivity.class), REQUEST_CODE_SCAN_PRIVATE_KEY_OK);
+
+            }
+        });
+
+        ibScanAddress.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                String address = etAddress.getText().toString();
+                if (TextUtils.isEmpty(address)) {
+                    Toast.makeText(MainActivity.this, "请先输入地址", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+                Intent intent = new Intent();
+                intent.putExtra("address", address);
+                intent.setClass(MainActivity.this, QrCodeActivity.class);
+                startActivity(intent);
+                return false;
             }
         });
 
@@ -196,7 +270,9 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
         tvContent.setText("blockHeight:" + info);
     }
 
-    public static final int REQUEST_CODE_CAMERA_OK = 0x001;
+    public static final int REQUEST_CODE_SCAN_RECEIVE_ADDRESS_OK = 0x001;
+    public static final int REQUEST_CODE_SCAN_ADDRESS_OK = 0x004;
+    public static final int REQUEST_CODE_SCAN_PRIVATE_KEY_OK = 0x005;
     public static final int REQUEST_CODE_SCAN_HASH_OK = 0x003;
     public static final int REQUEST_CODE_CAMERA_Permission_OK = 0x002;
 
@@ -207,23 +283,35 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
             if (data == null) {
                 return;
             }
-            if (requestCode == REQUEST_CODE_CAMERA_OK) {
-                // 如果当前是照相机扫描回来
-                Bundle bundle = data.getExtras();
-                if (bundle != null) {
-                    String result = bundle.getString("result");
-                    tvToAddress.setText(result);
-                }
-            } else if (requestCode == REQUEST_CODE_SCAN_HASH_OK) {
-                // 如果当前是照相机扫描回来
-                Bundle bundle = data.getExtras();
-                if (bundle != null) {
-                    String result = bundle.getString("result");
-                    tvTxHash.setText(result);
-                }
+            Bundle bundle = data.getExtras();
+            if (bundle == null) {
+                return;
             }
-
+            String result = bundle.getString("result");
+            switch (requestCode) {
+                case REQUEST_CODE_SCAN_ADDRESS_OK:
+                    if (etAddress != null) {
+                        etAddress.setText(result);
+                    }
+                    break;
+                case REQUEST_CODE_SCAN_RECEIVE_ADDRESS_OK:
+                    if (etToAddress != null) {
+                        etToAddress.setText(result);
+                    }
+                    break;
+                case REQUEST_CODE_SCAN_HASH_OK:
+                    if (tvTxHash != null) {
+                        tvTxHash.setText(result);
+                    }
+                    break;
+                case REQUEST_CODE_SCAN_PRIVATE_KEY_OK:
+                    if (etPrivateKey != null) {
+                        etPrivateKey.setText(result);
+                    }
+                    break;
+            }
         }
+
     }
 
     @Override
