@@ -320,5 +320,12 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
     public void setHashRaw(String hashRaw) {
         this.hashRaw = hashRaw;
         tvTxHash.setText(hashRaw);
+        if (presenter != null) {
+            String address = etAddress.getText().toString();
+            if (TextUtils.isEmpty(address)) {
+                return;
+            }
+            presenter.getBalance(address);
+        }
     }
 }
