@@ -7,10 +7,13 @@
         android:layout_height="match_parent">
     <Switch android:layout_width="wrap_content"
             android:minWidth="200dp"
-            android:text="开启BTC主网测试"
+            android:text="BTC主网络"
             android:id="@+id/switch_net"
             android:layout_gravity="center"
-            android:minHeight="35dp"
+            android:textSize="18sp"
+            android:switchMinWidth="48dp"
+            android:track="@drawable/shape_switch"
+            android:thumb="@drawable/thumb"
             android:layout_height="wrap_content"/>
     <View android:layout_width="match_parent"
           android:background="#666666"
@@ -84,6 +87,8 @@
                 android:textColor="@color/button_right_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16sp"
                 android:text="Balance:"/>
         <TextView
                 android:id="@+id/tv_balance"
@@ -196,6 +201,8 @@
                 android:layout_width="wrap_content"
                 android:textColor="@color/button_right_color"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16sp"
                 android:text="TX Hash:"/>
         <TextView
                 android:id="@+id/tv_tx_hash"
