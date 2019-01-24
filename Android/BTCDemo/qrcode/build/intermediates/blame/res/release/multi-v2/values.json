@@ -1,0 +1,82 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/build/intermediates/res/merged/release/values/values.xml",
+            "map": [
+                {
+                    "source": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/src/main/res/values/ids.xml",
+                    "from": {
+                        "startLines": "18,19,20,21,22,23",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "634,670,713,759,793,838",
+                        "endColumns": "35,42,45,33,44,47",
+                        "endOffsets": "665,708,754,788,833,881"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,91,134,180,214,259",
+                        "endColumns": "35,42,45,33,44,47",
+                        "endOffsets": "86,129,175,209,254,302"
+                    }
+                },
+                {
+                    "source": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "1,2",
+                        "startColumns": "4,4",
+                        "startOffsets": "16,68",
+                        "endColumns": "51,60",
+                        "endOffsets": "63,124"
+                    },
+                    "to": {
+                        "startLines": "8,9",
+                        "startColumns": "4,4",
+                        "startOffsets": "307,359",
+                        "endColumns": "51,60",
+                        "endOffsets": "354,415"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/build/intermediates/incremental/mergeReleaseResources/merged.dir/values/values.xml",
+            "map": [
+                {
+                    "source": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/src/main/res/values/ids.xml",
+                    "from": {
+                        "startLines": "18,19,20,21,22,23",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "634,670,713,759,793,838",
+                        "endColumns": "35,42,45,33,44,47",
+                        "endOffsets": "665,708,754,788,833,881"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,91,134,180,214,259",
+                        "endColumns": "35,42,45,33,44,47",
+                        "endOffsets": "86,129,175,209,254,302"
+                    }
+                },
+                {
+                    "source": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "1,2",
+                        "startColumns": "4,4",
+                        "startOffsets": "16,68",
+                        "endColumns": "51,60",
+                        "endOffsets": "63,124"
+                    },
+                    "to": {
+                        "startLines": "8,9",
+                        "startColumns": "4,4",
+                        "startOffsets": "307,359",
+                        "endColumns": "51,60",
+                        "endOffsets": "354,415"
+                    }
+                }
+            ]
+        }
+    ]
+}
