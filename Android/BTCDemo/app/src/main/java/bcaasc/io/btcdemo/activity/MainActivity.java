@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
         switchNet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                switchNet.setText(isChecked ? "BTC测试网络" : "BTC主网络");
                 //刷新当前界面
                 etAddress.setText(MessageConstants.EMPTY);
                 etToAddress.setText(MessageConstants.EMPTY);
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
                 tvTxHash.setText(MessageConstants.EMPTY);
                 tvContent.setText(MessageConstants.EMPTY);
                 //切换网络
-                BTCParamsConstants.isTest = !isChecked;
+                BTCParamsConstants.isTest = isChecked;
             }
         });
         tvGetBalance.setOnClickListener(new View.OnClickListener() {
@@ -293,6 +294,7 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
                     if (etAddress != null) {
                         etAddress.setText(result);
                     }
+                    presenter.getBalance(result);
                     break;
                 case REQUEST_CODE_SCAN_RECEIVE_ADDRESS_OK:
                     if (etToAddress != null) {

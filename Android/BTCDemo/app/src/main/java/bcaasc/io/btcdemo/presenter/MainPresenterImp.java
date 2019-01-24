@@ -149,7 +149,7 @@ public class MainPresenterImp implements MainContact.Presenter {
                 view.success(String.valueOf(transaction));
                 if (transaction != null) {
                     long blockHeight = transaction.getBlock_height();
-//                    view.hashStatus(String.valueOf(blockHeight));
+                    view.hashStatus(String.valueOf(blockHeight));
                 }
             }
 

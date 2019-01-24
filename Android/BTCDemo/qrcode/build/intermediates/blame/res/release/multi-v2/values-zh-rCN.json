@@ -1,0 +1,48 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-zh-rCN/values-zh-rCN.xml",
+            "map": [
+                {
+                    "source": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/src/main/res/values-zh-rCN/strings.xml",
+                    "from": {
+                        "startLines": "1,2",
+                        "startColumns": "4,4",
+                        "startOffsets": "16,68",
+                        "endColumns": "51,47",
+                        "endOffsets": "63,111"
+                    },
+                    "to": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,107",
+                        "endColumns": "51,47",
+                        "endOffsets": "102,150"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/build/intermediates/res/merged/release/values-zh-rCN/values-zh-rCN.xml",
+            "map": [
+                {
+                    "source": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/src/main/res/values-zh-rCN/strings.xml",
+                    "from": {
+                        "startLines": "1,2",
+                        "startColumns": "4,4",
+                        "startOffsets": "16,68",
+                        "endColumns": "51,47",
+                        "endOffsets": "63,111"
+                    },
+                    "to": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,107",
+                        "endColumns": "51,47",
+                        "endOffsets": "102,150"
+                    }
+                }
+            ]
+        }
+    ]
+}

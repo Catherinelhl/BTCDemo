@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/build/intermediates/res/merged/release/drawable/bg_qr_grey.xml",
+        "source": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/src/main/res/drawable/bg_qr_grey.xml"
+    },
+    {
+        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/build/intermediates/res/merged/release/drawable/scan_line.png",
+        "source": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/src/main/res/drawable/scan_line.png"
+    },
+    {
+        "merged": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/build/intermediates/res/merged/release/drawable/img_scan_code.png",
+        "source": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/src/main/res/drawable/img_scan_code.png"
+    }
+]
