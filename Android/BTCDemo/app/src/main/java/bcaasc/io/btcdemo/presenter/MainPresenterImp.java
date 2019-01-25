@@ -241,11 +241,11 @@ public class MainPresenterImp implements MainContact.Presenter {
         //得到这次传送之后剩下的btc
         BigDecimal goBackBtc = walletBtc.subtract(amount);
         // 根据私鑰WIF字串轉ECKey
-        ECKey privateKey = DumpedPrivateKey.fromBase58(BTCParamsConstants.NetworkParameter, addressPrivateKey).getKey();
+        ECKey ecKey = DumpedPrivateKey.fromBase58(BTCParamsConstants.NetworkParameter, addressPrivateKey).getKey();
         //判断当前剩下的btc不为0
         if (goBackBtc.doubleValue() != 0.0) {
             //添加「找零」的金额和地址
-            transaction.addOutput(Coin.valueOf((goBackBtc.longValue())), privateKey.toAddress(BTCParamsConstants.NetworkParameter));
+            transaction.addOutput(Coin.valueOf((goBackBtc.longValue())), ecKey.toAddress(BTCParamsConstants.NetworkParameter));
         }
         LogTool.d(TAG, "goBackBtc = " + goBackBtc);
         LogTool.d(TAG, "unspentOutputs.size :" + btcUnspentOutputList.size() + ";unspentOutputs: " + btcUnspentOutputList);
@@ -264,7 +264,7 @@ public class MainPresenterImp implements MainContact.Presenter {
                 LogTool.d(TAG, "addSignedInput getTxid:" + unspentOutput.getTx_hash_big_endian());
                 LogTool.d(TAG, "addSignedInput getSatoshis:" + unspentOutput.getValue());
                 //添加「交易」信息
-                transaction.addSignedInput(outPoint, script, privateKey, Transaction.SigHash.ALL, true);
+                transaction.addSignedInput(outPoint, script, ecKey, Transaction.SigHash.ALL, true);
             }
         }
         transaction.getConfidence().setSource(TransactionConfidence.Source.SELF);

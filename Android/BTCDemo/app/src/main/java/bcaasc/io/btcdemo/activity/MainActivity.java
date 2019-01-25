@@ -22,6 +22,8 @@ import bcaasc.io.btcdemo.presenter.MainPresenterImp;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.obt.qrcode.activity.CaptureActivity;
+import org.bitcoinj.core.DumpedPrivateKey;
+import org.bitcoinj.core.ECKey;
 
 /**
  * @author catherine.brainwilliam
@@ -30,10 +32,6 @@ import com.obt.qrcode.activity.CaptureActivity;
 public class MainActivity extends AppCompatActivity implements MainContact.View {
 
 
-    @BindView(R.id.et_address)
-    EditText etAddress;
-    @BindView(R.id.ll_my_address)
-    LinearLayout llMyAddress;
     @BindView(R.id.tv_get_balance)
     TextView tvGetBalance;
     @BindView(R.id.tv_balance)
@@ -46,8 +44,6 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
     EditText etToAddress;
     @BindView(R.id.ib_scan)
     ImageButton ibScan;
-    @BindView(R.id.ib_scan_address)
-    ImageButton ibScanAddress;
     @BindView(R.id.ll_to_send_address)
     LinearLayout llToSendAddress;
     @BindView(R.id.btn_push)
@@ -82,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
 
     //得到当前的txhash
     private String hashRaw;
+    //得到当前的私钥信息
+    private String privateKey;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -108,11 +106,11 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 switchNet.setText(isChecked ? "BTC测试网络" : "BTC主网络");
                 //刷新当前界面
-                etAddress.setText(MessageConstants.EMPTY);
                 etToAddress.setText(MessageConstants.EMPTY);
                 etPrivateKey.setText(MessageConstants.EMPTY);
                 tvTxHash.setText(MessageConstants.EMPTY);
                 tvContent.setText(MessageConstants.EMPTY);
+                privateKey=MessageConstants.EMPTY;
                 //切换网络
                 BTCParamsConstants.isTest = isChecked;
             }
@@ -120,9 +118,9 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
         tvGetBalance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String address = etAddress.getText().toString();
+                String address = etPrivateKey.getText().toString();
                 if (address == null || TextUtils.isEmpty(address)) {
-                    Toast.makeText(MainActivity.this, "请先输入地址", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "请先输入私钥", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 presenter.getBalance(address);
@@ -131,9 +129,9 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
         btnGetTxList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String address = etAddress.getText().toString();
+                String address = etPrivateKey.getText().toString();
                 if (TextUtils.isEmpty(address)) {
-                    Toast.makeText(MainActivity.this, "请先输入地址", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "请先输入私钥", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 presenter.getTransactionList(address);
@@ -142,27 +140,23 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
         btnPush.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String address = etAddress.getText().toString();
                 String amount = etAmount.getText().toString();
                 String addressTo = etToAddress.getText().toString();
-                String privateKey = etPrivateKey.getText().toString();
+                String address = etPrivateKey.getText().toString();
+                if (TextUtils.isEmpty(address)) {
+                    Toast.makeText(MainActivity.this, "请先输入私钥", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (TextUtils.isEmpty(amount)) {
                     Toast.makeText(MainActivity.this, "请先输入金额", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if (TextUtils.isEmpty(address)) {
-                    Toast.makeText(MainActivity.this, "请先输入地址", Toast.LENGTH_SHORT).show();
-                    return;
-                }
                 if (TextUtils.isEmpty(addressTo)) {
                     Toast.makeText(MainActivity.this, "请先输入接收方地址", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (TextUtils.isEmpty(privateKey)) {
-                    Toast.makeText(MainActivity.this, "请先输入私钥", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+
                 String fee = etFee.getText().toString();
                 if (TextUtils.isEmpty(fee)) {
                     Toast.makeText(MainActivity.this, "请先输入手续费", Toast.LENGTH_SHORT).show();
@@ -196,13 +190,6 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
 
             }
         });
-        ibScanAddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(new Intent(MainActivity.this, CaptureActivity.class), REQUEST_CODE_SCAN_ADDRESS_OK);
-
-            }
-        });
         ibScanPrivateKey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -211,12 +198,12 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
             }
         });
 
-        ibScanAddress.setOnLongClickListener(new View.OnLongClickListener() {
+        ibScanPrivateKey.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                String address = etAddress.getText().toString();
+                String address = etPrivateKey.getText().toString();
                 if (TextUtils.isEmpty(address)) {
-                    Toast.makeText(MainActivity.this, "请先输入地址", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "请先输入私钥", Toast.LENGTH_SHORT).show();
                     return false;
                 }
                 Intent intent = new Intent();
@@ -257,6 +244,13 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
     @Override
     public void success(String info) {
         tvContent.setText(info);
+        if (presenter != null) {
+            String address = etPrivateKey.getText().toString();
+            if (TextUtils.isEmpty(address)) {
+                return;
+            }
+            presenter.getBalance(address);
+        }
 
     }
 
@@ -272,7 +266,6 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
     }
 
     public static final int REQUEST_CODE_SCAN_RECEIVE_ADDRESS_OK = 0x001;
-    public static final int REQUEST_CODE_SCAN_ADDRESS_OK = 0x004;
     public static final int REQUEST_CODE_SCAN_PRIVATE_KEY_OK = 0x005;
     public static final int REQUEST_CODE_SCAN_HASH_OK = 0x003;
     public static final int REQUEST_CODE_CAMERA_Permission_OK = 0x002;
@@ -290,12 +283,6 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
             }
             String result = bundle.getString("result");
             switch (requestCode) {
-                case REQUEST_CODE_SCAN_ADDRESS_OK:
-                    if (etAddress != null) {
-                        etAddress.setText(result);
-                    }
-                    presenter.getBalance(result);
-                    break;
                 case REQUEST_CODE_SCAN_RECEIVE_ADDRESS_OK:
                     if (etToAddress != null) {
                         etToAddress.setText(result);
@@ -307,9 +294,15 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
                     }
                     break;
                 case REQUEST_CODE_SCAN_PRIVATE_KEY_OK:
+                    this.privateKey=result;
+                    // 根据私鑰WIF字串轉ECKey
+                    ECKey ecKey = DumpedPrivateKey.fromBase58(BTCParamsConstants.NetworkParameter, privateKey).getKey();
+                    //得到当前的私钥，解析出对应的地址信息
+                    String address=ecKey.toAddress(BTCParamsConstants.NetworkParameter).toString();
                     if (etPrivateKey != null) {
-                        etPrivateKey.setText(result);
+                        etPrivateKey.setText(address);
                     }
+                    presenter.getBalance(address);
                     break;
             }
         }
@@ -321,7 +314,7 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
         this.hashRaw = hashRaw;
         tvTxHash.setText(hashRaw);
         if (presenter != null) {
-            String address = etAddress.getText().toString();
+            String address = etPrivateKey.getText().toString();
             if (TextUtils.isEmpty(address)) {
                 return;
             }
