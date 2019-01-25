@@ -63,15 +63,12 @@ public class MainPresenterImp implements MainContact.Presenter {
                         LogTool.d(TAG, e.getMessage());
                     }
                 }
-                view.success(response.body());
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 LogTool.e(TAG, t.getMessage());
                 view.getBalanceFailure(t.getMessage());
-
-
             }
         });
 
