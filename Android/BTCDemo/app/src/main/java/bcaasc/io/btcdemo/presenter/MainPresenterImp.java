@@ -103,7 +103,7 @@ public class MainPresenterImp implements MainContact.Presenter {
      * @return
      */
     @Override
-    public void getUnspent(String address, String amount,String fee, String addressTo, String privateKey) {
+    public void getUnspent(String address, String amount, String fee, String addressTo, String privateKey) {
         interactor.getUnspent(address, new Callback<BtcUnspentOutputsResponse>() {
             @Override
             public void onResponse(Call<BtcUnspentOutputsResponse> call, Response<BtcUnspentOutputsResponse> response) {
@@ -115,6 +115,10 @@ public class MainPresenterImp implements MainContact.Presenter {
                     //排序UTXO  从大到小
                     Collections.sort(btcUtxoList, (unspentOutput, t1) -> Long.compare(t1.getValue(), unspentOutput.getValue()));
                     view.success(btcUtxoList.toString());
+                    LogTool.d(TAG, "发送地址：" + address);
+                    LogTool.d(TAG, "接受地址：" + addressTo);
+                    LogTool.d(TAG, "发送金额：" + amount);
+                    LogTool.d(TAG, "发送手续费：" + fee);
                     pushTX(fee, addressTo, amount, privateKey);
                 }
             }
@@ -183,12 +187,12 @@ public class MainPresenterImp implements MainContact.Presenter {
             return;
         }
         //You must construct a Context object before using BitCoin j!
-        Context.getOrCreate(BTCParamsConstants.NetworkParameter);
+        Context.getOrCreate(BTCParamsConstants.getNetworkParameter());
         //声明一个地址
         Address addressToSend = null;
         try {
             //将当前传入的地址转化成特定的地址格式
-            addressToSend = Address.fromBase58(BTCParamsConstants.NetworkParameter, toAddress);
+            addressToSend = Address.fromBase58(BTCParamsConstants.getNetworkParameter(), toAddress);
         } catch (AddressFormatException a) {
             LogTool.e(TAG, a.getMessage());
         }
@@ -209,7 +213,7 @@ public class MainPresenterImp implements MainContact.Presenter {
         //声明一个变量用于得到待会取出UTXO需要用来支付的的「输入」
         BigDecimal walletBtc = new BigDecimal("0.0");
         //获取当前设定环境下的Transaction实例
-        Transaction transaction = new Transaction(BTCParamsConstants.NetworkParameter);
+        Transaction transaction = new Transaction(BTCParamsConstants.getNetworkParameter());
         //添加「输出」的金额以及地址信息
         transaction.addOutput(Coin.valueOf((amount.longValue())), addressToSend);
         //将当前交易的金额+手续费
@@ -238,11 +242,11 @@ public class MainPresenterImp implements MainContact.Presenter {
         //得到这次传送之后剩下的btc
         BigDecimal goBackBtc = walletBtc.subtract(amount);
         // 根据私鑰WIF字串轉ECKey
-        ECKey ecKey = DumpedPrivateKey.fromBase58(BTCParamsConstants.NetworkParameter, addressPrivateKey).getKey();
+        ECKey ecKey = DumpedPrivateKey.fromBase58(BTCParamsConstants.getNetworkParameter(), addressPrivateKey).getKey();
         //判断当前剩下的btc不为0
         if (goBackBtc.doubleValue() != 0.0) {
             //添加「找零」的金额和地址
-            transaction.addOutput(Coin.valueOf((goBackBtc.longValue())), ecKey.toAddress(BTCParamsConstants.NetworkParameter));
+            transaction.addOutput(Coin.valueOf((goBackBtc.longValue())), ecKey.toAddress(BTCParamsConstants.getNetworkParameter()));
         }
         LogTool.d(TAG, "goBackBtc = " + goBackBtc);
         LogTool.d(TAG, "unspentOutputs.size :" + btcUnspentOutputList.size() + ";unspentOutputs: " + btcUnspentOutputList);
@@ -252,7 +256,7 @@ public class MainPresenterImp implements MainContact.Presenter {
                 // 获取交易输入TXId对应的交易数据
                 Sha256Hash sha256Hash = new Sha256Hash(Utils.parseAsHexOrBase58(unspentOutput.getTx_hash_big_endian()));
                 // 获取交易输入所对应的上一笔交易中的交易输出
-                TransactionOutPoint outPoint = new TransactionOutPoint(BTCParamsConstants.NetworkParameter,
+                TransactionOutPoint outPoint = new TransactionOutPoint(BTCParamsConstants.getNetworkParameter(),
                         unspentOutput.getTx_output_n(), sha256Hash);
                 //获取当前script进行格式解析
                 Script script = new Script(Utils.parseAsHexOrBase58(unspentOutput.getScript()));

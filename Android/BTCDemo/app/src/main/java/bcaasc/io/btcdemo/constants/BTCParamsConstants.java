@@ -16,8 +16,10 @@ public class BTCParamsConstants {
     public static boolean isTest = true;
 
     //根据是否是测试环境，返回网络参数
-    public static final NetworkParameters NetworkParameter = isTest ? TestNet3Params.get() : MainNetParams.get();
+    public static NetworkParameters getNetworkParameter() {
+        return isTest ? TestNet3Params.get() : MainNetParams.get();
+    }
 
-    public static final String BtcUnit = "100000000";
-    public static final String BtcUnitRevert = "0.00000001";
+    public static String BtcUnit = "100000000";
+    public static String BtcUnitRevert = "0.00000001";
 }

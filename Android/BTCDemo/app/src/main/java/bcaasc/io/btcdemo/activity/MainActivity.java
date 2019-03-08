@@ -19,11 +19,13 @@ import bcaasc.io.btcdemo.constants.Constants;
 import bcaasc.io.btcdemo.constants.MessageConstants;
 import bcaasc.io.btcdemo.contact.MainContact;
 import bcaasc.io.btcdemo.presenter.MainPresenterImp;
+import bcaasc.io.btcdemo.tool.LogTool;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.obt.qrcode.activity.CaptureActivity;
 import org.bitcoinj.core.DumpedPrivateKey;
 import org.bitcoinj.core.ECKey;
+import org.bitcoinj.core.WrongNetworkException;
 
 /**
  * @author catherine.brainwilliam
@@ -31,6 +33,7 @@ import org.bitcoinj.core.ECKey;
  */
 public class MainActivity extends AppCompatActivity implements MainContact.View {
 
+    private String TAG = MainActivity.class.getSimpleName();
 
     @BindView(R.id.tv_get_balance)
     TextView tvGetBalance;
@@ -110,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
                 etPrivateKey.setText(MessageConstants.EMPTY);
                 tvTxHash.setText(MessageConstants.EMPTY);
                 tvContent.setText(MessageConstants.EMPTY);
-                privateKey=MessageConstants.EMPTY;
+                privateKey = MessageConstants.EMPTY;
                 //切换网络
                 BTCParamsConstants.isTest = isChecked;
             }
@@ -294,15 +297,23 @@ public class MainActivity extends AppCompatActivity implements MainContact.View 
                     }
                     break;
                 case REQUEST_CODE_SCAN_PRIVATE_KEY_OK:
-                    this.privateKey=result;
-                    // 根据私鑰WIF字串轉ECKey
-                    ECKey ecKey = DumpedPrivateKey.fromBase58(BTCParamsConstants.NetworkParameter, privateKey).getKey();
-                    //得到当前的私钥，解析出对应的地址信息
-                    String address=ecKey.toAddress(BTCParamsConstants.NetworkParameter).toString();
-                    if (etPrivateKey != null) {
-                        etPrivateKey.setText(address);
+                    this.privateKey = result;
+                    LogTool.d(TAG,BTCParamsConstants.isTest);
+                    LogTool.d(TAG,BTCParamsConstants.getNetworkParameter());
+                    try {
+                        // 根据私鑰WIF字串轉ECKey
+                        ECKey ecKey = DumpedPrivateKey.fromBase58(BTCParamsConstants.getNetworkParameter(), privateKey).getKey();
+                        //得到当前的私钥，解析出对应的地址信息
+                        String address = ecKey.toAddress(BTCParamsConstants.getNetworkParameter()).toString();
+                        if (etPrivateKey != null) {
+                            etPrivateKey.setText(address);
+                        }
+                        presenter.getBalance(address);
+                    } catch (Exception e) {
+                        if (e instanceof WrongNetworkException) {
+                            tvContent.setText("网络环境与地址信息不匹配，请核对。");
+                        }
                     }
-                    presenter.getBalance(address);
                     break;
             }
         }
