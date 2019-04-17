@@ -14,5 +14,5 @@ id restart_preview
 id return_scan_result
 layout aty_capture
 raw beep
-string app_name
 string scan_qr_code
+string title

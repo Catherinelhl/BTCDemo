@@ -33,6 +33,7 @@ public class Constants {
     public static String xiaoDongAddress="13WVtuUFwoEp3wsBmocRA1KDQ8C95P5wS3";
 
 
+    public static String APIKEY="abdb2764-f494-4d6f-aa49-761e4199783d";
     //xiaodong's wallet and privateKey
 //    public static String address ="13WVtuUFwoEp3wsBmocRA1KDQ8C95P5wS3";
 //    public static String privateWIFKey ="5JoXZk5nh3FRpfHEFeZmeYimCCjPwvFUgWBAKdSTr6WREe6i9vW";

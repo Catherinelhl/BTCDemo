@@ -6,6 +6,6 @@
     <item name="quit" type="id"/>
     <item name="restart_preview" type="id"/>
     <item name="return_scan_result" type="id"/>
-    <string name="app_name">BlockChainDemo</string>
     <string name="scan_qr_code">Please scan qr code</string>
+    <string name="title">BlockChainDemo</string>
 </resources>

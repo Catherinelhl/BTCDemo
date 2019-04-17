@@ -13,5 +13,5 @@ int id restart_preview 0x7f0b0009
 int id return_scan_result 0x7f0b000a
 int layout aty_capture 0x7f0e0001
 int raw beep 0x7f130001
-int string app_name 0x7f140001
-int string scan_qr_code 0x7f140002
+int string scan_qr_code 0x7f140001
+int string title 0x7f140002

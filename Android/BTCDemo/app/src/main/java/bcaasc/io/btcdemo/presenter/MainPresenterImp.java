@@ -191,9 +191,11 @@ public class MainPresenterImp implements MainContact.Presenter {
         //声明一个地址
         Address addressToSend = null;
         try {
+            LogTool.d(TAG,BTCParamsConstants.getNetworkParameter());
             //将当前传入的地址转化成特定的地址格式
             addressToSend = Address.fromBase58(BTCParamsConstants.getNetworkParameter(), toAddress);
         } catch (AddressFormatException a) {
+            a.printStackTrace();
             LogTool.e(TAG, a.getMessage());
         }
         LogTool.d(TAG, "fee:" + feeString);
@@ -287,7 +289,8 @@ public class MainPresenterImp implements MainContact.Presenter {
      */
     private void pushTX() {
 
-        interactor.pushTX(transactionRaw, new Callback<String>() {
+
+        interactor.pushTX(transactionRaw, Constants.APIKEY, new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 //Transaction Submitted

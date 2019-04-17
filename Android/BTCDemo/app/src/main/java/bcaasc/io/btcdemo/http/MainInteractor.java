@@ -29,9 +29,9 @@ public class MainInteractor {
         Call<BtcUnspentOutputsResponse> call = httpApi.getUnspentTransactionOutputs(address);
         call.enqueue(callBackListener);
     }
-    public void pushTX(String rawHash, Callback<String> callBackListener) {
+    public void pushTX(String rawHash, String apiCode,Callback<String> callBackListener) {
         HttpApi httpApi = RetrofitFactory.getInstance().create(HttpApi.class);
-        Call<String> call = httpApi.pushTX(rawHash);
+        Call<String> call = httpApi.pushTX(rawHash,apiCode);
         call.enqueue(callBackListener);
     }
     public void getTXInfoByHash(String rawHash, Callback<Transaction> callBackListener) {

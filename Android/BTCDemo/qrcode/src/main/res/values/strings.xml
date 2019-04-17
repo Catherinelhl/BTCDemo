@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BlockChainDemo</string>
+    <string name="title">BlockChainDemo</string>
     <string name="scan_qr_code">Please scan qr code</string>
 
 </resources>

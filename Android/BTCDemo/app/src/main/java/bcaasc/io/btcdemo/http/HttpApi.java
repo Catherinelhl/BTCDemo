@@ -20,7 +20,7 @@ public interface HttpApi {
     /*发送交易*/
     @FormUrlEncoded
     @POST("/pushtx")
-    Call<String> pushTX(@Field("tx") String tx);
+    Call<String> pushTX(@Field("tx") String tx,@Field("api_code")String api_code);
 
 
     /*发送交易*/

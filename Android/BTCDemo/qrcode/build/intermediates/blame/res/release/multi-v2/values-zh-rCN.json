@@ -6,18 +6,18 @@
                 {
                     "source": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/src/main/res/values-zh-rCN/strings.xml",
                     "from": {
-                        "startLines": "1,2",
+                        "startLines": "2,1",
                         "startColumns": "4,4",
-                        "startOffsets": "16,68",
-                        "endColumns": "51,47",
-                        "endOffsets": "63,111"
+                        "startOffsets": "65,16",
+                        "endColumns": "47,48",
+                        "endOffsets": "108,60"
                     },
                     "to": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
-                        "startOffsets": "55,107",
-                        "endColumns": "51,47",
-                        "endOffsets": "102,150"
+                        "startOffsets": "55,103",
+                        "endColumns": "47,48",
+                        "endOffsets": "98,147"
                     }
                 }
             ]
@@ -28,18 +28,18 @@
                 {
                     "source": "/Users/catherine.brainwilliam/AndroidOBTProject/BTC/Android/BTCDemo/qrcode/src/main/res/values-zh-rCN/strings.xml",
                     "from": {
-                        "startLines": "1,2",
+                        "startLines": "2,1",
                         "startColumns": "4,4",
-                        "startOffsets": "16,68",
-                        "endColumns": "51,47",
-                        "endOffsets": "63,111"
+                        "startOffsets": "65,16",
+                        "endColumns": "47,48",
+                        "endOffsets": "108,60"
                     },
                     "to": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
-                        "startOffsets": "55,107",
-                        "endColumns": "51,47",
-                        "endOffsets": "102,150"
+                        "startOffsets": "55,103",
+                        "endColumns": "47,48",
+                        "endOffsets": "98,147"
                     }
                 }
             ]
